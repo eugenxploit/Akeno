@@ -509,11 +509,11 @@ def Nisshoku_about_callback(update, context):
     query = update.callback_query
     if query.data == "nisshokuabout_":
         query.message.edit_text(
-            text="*Shoko is a bot for managing your group with additional features,*"
-                 "\nand is fork of [marie](https://github.com/PaulSonOfLars/tgbot)."
-                 "\n\n_Shoko's licensed under the GNU General Public License v3.0_,"
-                 "\nhere is the [repository](https://github.com/gizmostuffin/Shoko)."
-                 "\n\nIf any question about Shoko, let us know at @Shokosupport.",
+            text="*wkwkwkwkwkwkwkwkkwwkwkwkwkkwkw*"
+                 "\nsomething something"
+                 "\n\nsomething something"
+                 "\nsomething something"
+                 "\n\nsomething something",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
