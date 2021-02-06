@@ -54,7 +54,7 @@ buttons += [[InlineKeyboardButton(text="Nekofied",
                                   callback_data="nisshokuabout_"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="Help & Commands Menu",
+buttons += [[InlineKeyboardButton(text="Help & commands menu",
                                   callback_data="help_back"),
 ]]
 
@@ -63,8 +63,8 @@ buttons += [[InlineKeyboardButton(text="Close palette 🔒",
 
 
 HELP_STRINGS = f"""
-`Hi.. I'm` [ELIZABETH🍀](https://telegra.ph/file/281aaa468756db0769df0.jpg)
-`Click on the buttons below to get documentation about specific modules..`"""
+😼 [Nisshoku](https://telegra.ph/file/e323dbcb71201eb41f727.jpg) comes with handy tools which makes chat management easier,
+Click on the buttons below to get their usage instructions."""
 
 
 IMPORTED = {}
