@@ -63,7 +63,7 @@ buttons += [[InlineKeyboardButton(text="🔒 CLOSE THE MENU 🔒",
 
 
 HELP_STRINGS = f"""
-[Nisshoku 😼](https://telegra.ph/file/e323dbcb71201eb41f727.jpg) comes with handy tools which makes chat management easier,
+😼 [Nisshoku](https://telegra.ph/file/e323dbcb71201eb41f727.jpg) 😼 comes with handy tools which makes chat management easier,
 Click on the buttons below to get usage instructions ^_^
 """
 
