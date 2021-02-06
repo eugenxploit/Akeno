@@ -63,8 +63,8 @@ buttons += [[InlineKeyboardButton(text="🔒 CLOSE THE MENU 🔒",
 
 
 HELP_STRINGS = f"""
-`Hi.. I'm` [ELIZABETH🍀](https://telegra.ph/file/281aaa468756db0769df0.jpg)
-`Click on the buttons below to get documentation about specific modules..`"""
+[Nisshoku 😼](https://telegra.ph/file/e323dbcb71201eb41f727.jpg) comes with handy tools which makes chat management easier,
+Click on the buttons below to get usage instructions ^_^"""
 
 
 IMPORTED = {}
@@ -139,7 +139,7 @@ def test(update, context):
     except BaseException:
         pass
     update.effective_message.reply_text(
-        "Hola tester! _I_ *have* `markdown`", parse_mode=ParseMode.MARKDOWN
+        "UwU tester! _I_ *have* `markdown`", parse_mode=ParseMode.MARKDOWN
     )
     update.effective_message.reply_text("This person edited a message")
     print(update.effective_message)
@@ -640,7 +640,7 @@ def main():
         updater.start_polling(timeout=15, read_latency=4)
         updater.bot.send_message(
             chat_id=MESSAGE_DUMP,
-            text="Elizabeth Started...")
+            text="Nyaa! Nisshoku started...")
         client.run_until_disconnected()
 
     updater.idle()
