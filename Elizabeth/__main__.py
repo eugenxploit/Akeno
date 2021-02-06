@@ -39,9 +39,9 @@ from Elizabeth.modules.helper_funcs.alternate import typing_action
 
 
 PM_START_TEXT = f"""
-Hi..Welcome 
-
-`I'm here to help you manage your groups.. Click Help button to find out more about how to use me to my full potential..`
+Nyaa! I'm Nisshoku-Chan,
+I am here to manage your chats, on the go!
+Feel free to add me into your groups.
 """
 
 buttons = [[InlineKeyboardButton(text="🔘  Add me to your group  🔘",
@@ -58,7 +58,7 @@ buttons += [[InlineKeyboardButton(text="Help & Commands Menu",
                                   callback_data="help_back"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="Close pallete 🔒",
+buttons += [[InlineKeyboardButton(text="Close palette 🔒",
                                   callback_data="close_menu")]]
 
 
