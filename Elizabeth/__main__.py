@@ -56,7 +56,6 @@ buttons += [[InlineKeyboardButton(text="Nekofied",
 
 buttons += [[InlineKeyboardButton(text="Help Menu",
                                   url="help_back"),
-
 ]]
 
 buttons += [[InlineKeyboardButton(text="Close 🔒",
