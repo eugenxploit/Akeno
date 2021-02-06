@@ -44,21 +44,21 @@ Hi..Welcome
 `I'm here to help you manage your groups.. Click Help button to find out more about how to use me to my full potential..`
 """
 
-buttons = [[InlineKeyboardButton(text="🔘 Add me to your group 🔘",
-                                  url="t.me/Elizabeth_TgBot?startgroup=true"),
+buttons = [[InlineKeyboardButton(text="🔘  Add me to your group  🔘",
+                                  url="t.me/NekofiedBot?startgroup=true"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="💾SOURCE CODE",
-                                  url="https://github.com/P-RINC-E/ELIZABETH"),
-             InlineKeyboardButton(text="🌳SUPPORT",
-                                  url="https://t.me/ELIZABETH_SUPPORT"),
+buttons += [[InlineKeyboardButton(text="Nekofied",
+                                  url="t.me/otakuzdream"),
+             InlineKeyboardButton(text="About me",
+                                  callback_data="nisshokuabout_"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="Help Menu",
+buttons += [[InlineKeyboardButton(text="Help & Commands Menu",
                                   callback_data="help_back"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="Close 🔒",
+buttons += [[InlineKeyboardButton(text="Close pallete 🔒",
                                   callback_data="close_menu")]]
 
 
@@ -500,7 +500,35 @@ def settings_button(update, context):
                 "Exception in settings buttons. %s", str(
                     query.data))
 
-
+@run_async
+def Nisshoku_about_callback(update, context):
+    query = update.callback_query
+    if query.data == "nisshokuabout_":
+        query.message.edit_text(
+            text="*Shoko is a bot for managing your group with additional features,*"
+                 "\nand is fork of [marie](https://github.com/PaulSonOfLars/tgbot)."
+                 "\n\n_Shoko's licensed under the GNU General Public License v3.0_,"
+                 "\nhere is the [repository](https://github.com/gizmostuffin/Shoko)."
+                 "\n\nIf any question about Shoko, let us know at @Shokosupport.",
+            parse_mode=ParseMode.MARKDOWN,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                 [
+                    InlineKeyboardButton(text="Back", callback_data="nisshokuabout_back")
+                 ]
+                ]
+            ),
+        )
+    elif query.data == "nisshokuabout_back":
+        query.message.edit_text(
+                PM_START_TEXT,
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.MARKDOWN,
+                timeout=60,
+                disable_web_page_preview=True,
+        )
+                                                                            
 @run_async
 @typing_action
 def get_settings(update, context):
@@ -609,18 +637,20 @@ def main():
     migrate_handler = MessageHandler(
         Filters.status_update.migrate, migrate_chats)
     is_chat_allowed_handler = MessageHandler(Filters.group, is_chat_allowed)
+    about_callback_handler = CallbackQueryHandler(Nisshoku_about_callback, pattern=r"nisshokuabout_")
 
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(help_handler)
     dispatcher.add_handler(settings_handler)
     dispatcher.add_handler(help_callback_handler)
+    dispatcher.add_handler(about_callback_handler)
     # dispatcher.add_handler(help_staff_handler)
     dispatcher.add_handler(settings_callback_handler)
     dispatcher.add_handler(migrate_handler)
     dispatcher.add_handler(is_chat_allowed_handler)
     dispatcher.add_error_handler(error_handler)
-
+    
     if WEBHOOK:
         LOGGER.info("Using webhooks.")
         updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
