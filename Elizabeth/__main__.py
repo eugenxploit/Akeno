@@ -44,11 +44,11 @@ PM_START_TEXT = f"""
 `I'm here to help you manage your groups.. Click Help button to find out more about how to use me to my full potential..`
 """
 
-buttons = [[InlineKeyboardButton(text="➡️ HELP AND COMMANDS ⬅️",
+buttons = [[InlineKeyboardButton(text="Help Menu",
                                   callback_data="help_back"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="🌍 ADD ME TO YOUR GROUP 🌍",
+buttons += [[InlineKeyboardButton(text="🔘 Add me to your group 🔘",
                                   url="t.me/Elizabeth_TgBot?startgroup=true"),
 ]]
 
@@ -58,7 +58,7 @@ buttons += [[InlineKeyboardButton(text="💾SOURCE CODE",
                                   url="https://t.me/ELIZABETH_SUPPORT"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="🔒 CLOSE THE MENU 🔒",
+buttons += [[InlineKeyboardButton(text="Close 🔒",
                                   callback_data="close_menu")]]
 
 
