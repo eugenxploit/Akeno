@@ -39,9 +39,9 @@ from Elizabeth.modules.helper_funcs.alternate import typing_action
 
 
 PM_START_TEXT = f"""
-Nyaa! I'm Nisshoku-Chan [ㅤ](https://telegra.ph/file/a13aa0507ccdae094dbee.jpg)
-I am here to manage your chats, on the go!
-Feel free to add me into your groups.
+Nyaa! I'm *Nisshoku-Chan* [ㅤ](https://telegra.ph/file/a13aa0507ccdae094dbee.jpg)
+ • I am here to manage your chats, on the go!
+ • Feel free to add me in your groups.
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
 
@@ -64,7 +64,8 @@ buttons += [[InlineKeyboardButton(text="Close palette 🔒",
 
 
 HELP_STRINGS = f"""
-😼 [Nisshoku](https://telegra.ph/file/e323dbcb71201eb41f727.jpg) comes with handy tools which makes chat management easier,
+*Nisshoku* [😼](https://telegra.ph/file/e323dbcb71201eb41f727.jpg) comes with 
+handy tools which makes chat management easier. 
 Click on the buttons below to get their usage instructions."""
 
 
