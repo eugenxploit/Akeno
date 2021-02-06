@@ -39,7 +39,7 @@ from Elizabeth.modules.helper_funcs.alternate import typing_action
 
 
 PM_START_TEXT = f"""
-Nyaa! I'm Nisshoku-Chan,
+Nyaa! I'm Nisshoku-Chan [ㅤ](https://telegra.ph/file/a13aa0507ccdae094dbee.jpg)
 I am here to manage your chats, on the go!
 Feel free to add me into your groups.
 """
