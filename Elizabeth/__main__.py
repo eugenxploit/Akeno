@@ -48,14 +48,14 @@ buttons = [[InlineKeyboardButton(text="Help Menu",
                                   callback_data="help_back"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="🔘 Add me to your group 🔘",
-                                  url="t.me/Elizabeth_TgBot?startgroup=true"),
-]]
-
 buttons += [[InlineKeyboardButton(text="💾SOURCE CODE",
                                   url="https://github.com/P-RINC-E/ELIZABETH"),
              InlineKeyboardButton(text="🌳SUPPORT",
                                   url="https://t.me/ELIZABETH_SUPPORT"),
+]]
+
+buttons += [[InlineKeyboardButton(text="🔘 Add me to your group 🔘",
+                                  url="t.me/Elizabeth_TgBot?startgroup=true"),
 ]]
 
 buttons += [[InlineKeyboardButton(text="Close 🔒",
