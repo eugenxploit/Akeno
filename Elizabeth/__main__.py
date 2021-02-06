@@ -40,27 +40,27 @@ from Elizabeth.modules.helper_funcs.alternate import typing_action
 
 PM_START_TEXT = f"""
 `Hi..Welcome` 👀
-`I'm` [ELIZABETH🍀](https://telegra.ph/file/281aaa468756db0769df0.jpg)
+`I'm`
 `I'm here to help you manage your groups.. Click Help button to find out more about how to use me to my full potential..`
 """
 
-buttons = [[InlineKeyboardButton(text="➡️ HELP AND COMMANDS ⬅️",
-                                  callback_data="help_back"),
+buttons = [[InlineKeyboardButton(text="🔘 Add me to your group 🔘",
+                                  callback_data="t.me/NekofiedBot?startgroup=true"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="🌍 ADD ME TO YOUR GROUP 🌍",
-                                  url="t.me/Elizabeth_TgBot?startgroup=true"),
+buttons += [[InlineKeyboardButton(text="Nekofied",
+                                  url="https://t.me/otakuzdream"),
+            InlineKeyboardButton(text="About me",
+                                 url="https://t.me/otakuzdream"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="💾SOURCE CODE",
-                                  url="https://github.com/P-RINC-E/ELIZABETH"),
-             InlineKeyboardButton(text="🌳SUPPORT",
-                                  url="https://t.me/ELIZABETH_SUPPORT"),
+buttons += [[InlineKeyboardButton(text="Help Menu",
+                                  url="help_back"),
+
 ]]
 
-buttons += [[InlineKeyboardButton(text="🔒 CLOSE THE MENU 🔒",
+buttons += [[InlineKeyboardButton(text="Close 🔒",
                                   callback_data="close_menu")]]
-
 
 HELP_STRINGS = f"""
 `Hi.. I'm` [ELIZABETH🍀](https://telegra.ph/file/281aaa468756db0769df0.jpg)
