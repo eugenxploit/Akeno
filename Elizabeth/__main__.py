@@ -43,6 +43,7 @@ Nyaa! I'm Nisshoku-Chan,
 I am here to manage your chats, on the go!
 Feel free to add me into your groups.
 """
+NISSHOKU = "https://telegra.ph/file/a13aa0507ccdae094dbee.jpg"
 
 buttons = [[InlineKeyboardButton(text="🔘  Add me to your group  🔘",
                                   url="t.me/NekofiedBot?startgroup=true"),
@@ -169,7 +170,8 @@ def start(update, context):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
-            update.effective_message.reply_text(
+            update.effective_message.reply_photo(
+                NISSHOKU,
                 PM_START_TEXT,
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
