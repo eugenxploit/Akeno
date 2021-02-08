@@ -55,11 +55,11 @@ def ban(update, context):
 
     if is_user_ban_protected(chat, user_id, member):
         message.reply_text(
-            "I'm not gonna ban an admin, don't make fun of yourself!")
+            "I'm not gonna ban an admin, don't make fun of yourself b-baka!")
         return ""
 
     if user_id == context.bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you crazy or wot?")
+        message.reply_text("性交オフ")
         return ""
 
     log = (
@@ -145,7 +145,7 @@ def temp_ban(update, context):
         return ""
 
     if user_id == context.bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you crazy or wot?")
+        message.reply_text("性交オフ -_-")
         return ""
 
     if not reason:
@@ -395,19 +395,19 @@ __help__ = """
 
 Some people need to be publicly banned; spammers, annoyances, or just trolls.
 This module allows you to do that easily, by exposing some common actions, so everyone will see!
- ➩ /kickme: Kicks the user who issued the command
- ➩ /banme: Bans the user who issued the command
+ • /kickme: Kicks the user who issued the command
+ • /banme: Bans the user who issued the command
 *Admin only:*
- ➩ /ban <userhandle>: Bans a user. (via handle, or reply)
- ➩ /tban <userhandle> x(m/h/d): Bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
- ➩ /unban <userhandle>: Unbans a user. (via handle, or reply)
- ➩ /kick <userhandle>: Kicks a user, (via handle, or reply)
+ • /ban <userhandle>: Bans a user. (via handle, or reply)
+ • /tban <userhandle> x(m/h/d): Bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
+ • /unban <userhandle>: Unbans a user. (via handle, or reply)
+ • /kick <userhandle>: Kicks a user, (via handle, or reply)
 An example of temporarily banning someone:
 `/tban @username 2h`; this bans a user for 2 hours.
 """
 
 
-__mod_name__ = "BANS"
+__mod_name__ = "Bans"
 
 BAN_HANDLER = CommandHandler("ban", ban, pass_args=True, filters=Filters.group)
 TEMPBAN_HANDLER = CommandHandler(
