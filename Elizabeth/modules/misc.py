@@ -66,7 +66,7 @@ def get_id(update, context):
         else:
             user = context.bot.get_chat(user_id)
             update.effective_message.reply_text(
-                "{}'s id is `{}`.".format(
+                "*{}'s* id: 「`{}`」".format(
                     escape_markdown(
                         user.first_name),
                     user.id),
@@ -76,12 +76,12 @@ def get_id(update, context):
         chat = update.effective_chat  # type: Optional[Chat]
         if chat.type == "private":
             update.effective_message.reply_text(
-                "Your id is `{}`.".format(
+                "Your id: 「`{}`」".format(
                     chat.id), parse_mode=ParseMode.MARKDOWN)
 
         else:
             update.effective_message.reply_text(
-                "This group's id is `{}`.".format(chat.id),
+                "This group's id:「`{}`」".format(chat.id),
                 parse_mode=ParseMode.MARKDOWN,
             )
 
@@ -116,41 +116,41 @@ def info(update, context):
         return
 
     del_msg = msg.reply_text(
-        "Hold tight while I steal some data from <b>FBI Database</b>...",
+        "<b>Matte matte-kudasai</b>...",
         parse_mode=ParseMode.HTML,
     )
 
     text = (
         "<b>USER INFO</b>:"
-        "\n<b>ID:</b> <code>{}</code>"
-        "\n<b>First Name:</b> <code>{}</code>".format(
+        "\n<b>• ID:</b> <code>{}</code>"
+        "\n<b>• First Name:</b> <code>{}</code>".format(
             user.id, html.escape(user.first_name)
         )
     )
 
     if user.last_name:
-        text += "\n<b>Last Name:</b> <code>{}</code>".format(
+        text += "\n<b>• Last Name:</b> <code>{}</code>".format(
             html.escape(user.last_name)
         )
 
     if user.username:
-        text += "\n<b>Username:</b> @{}".format(html.escape(user.username))
+        text += "\n<b>• Username:</b> @{}".format(html.escape(user.username))
 
-    text += "\n<b>Permanent user link:</b> {}".format(
+    text += "\n<b>• Permanent user link:</b> {}".format(
         mention_html(user.id, "link"))
 
-    text += "\n<b>Number of profile pics:</b> <code>{}</code>".format(
+    text += "\n<b>• Number of profile pics:</b> <code>{}</code>".format(
         context.bot.get_user_profile_photos(user.id).total_count
     )
 
     if chat.type != "private":
         status = context.bot.get_chat_member(chat.id, user.id).status
         if status:
-            _stext = "\n<b>Status:</b> <code>{}</code>"
+            _stext = "\n<b>• Status:</b> <code>{}</code>"
 
         afk_st = is_afk(user.id)
         if afk_st:
-            text += _stext.format("Away From Keyboard")
+            text += _stext.format("User is AFK")
         else:
             status = context.bot.get_chat_member(chat.id, user.id).status
             if status:
@@ -176,10 +176,10 @@ def info(update, context):
     if cas_banned:
         text += "\n\n<b>This Person is CAS Banned!</b>"
         text += f"\n<b>Reason: </b> <a href='{cas_banned}'>CAS Banned</a>"
-        text += "\nAppeal at @cas_discussion"
+        text += "\nAppeal at @Cas_Discussion"
 
     if user.id == OWNER_ID:
-        text += "\n\nAye this guy is my owner.\nI would never do anything against him!"
+        text += "\n\nThis is my creator, though I hate him for hosting me on a cheap server."
 
     elif user.id in DEV_USERS:
         text += (
@@ -266,7 +266,7 @@ def gdpr(update, context):
 
     update.effective_message.reply_text(
         "Your personal data has been deleted.\n\nNote that this will not unban "
-        "you from any chats, as that is telegram data, not Elizabeth_tgbot data. "
+        "you from any chats, as that is telegram data, not Nisshoku's data. "
         "Flooding, warns, and gbans are also preserved, as of "
         "[this](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/), "
         "which clearly states that the right to erasure does not apply "
@@ -382,7 +382,7 @@ def ud(update, context):
 @typing_action
 def src(update, context):
     update.effective_message.reply_text(
-        "Hey there! You can find what makes me click [here](https://github.com/p-rinc-e/elizabeth.git).",
+        "Here is my source owo!: @NisshokuOwO",
         parse_mode=ParseMode.MARKDOWN,
         disable_web_page_preview=True,
     )
@@ -669,33 +669,25 @@ def paste(update, context):
 
 
 __help__ = """
- ➩ /cash: currency converter
+ • /cash: currency converter
 Example:
   `/cash 1 USD INR`
- ➩ /wiki : Search wikipedia articles.
- ➩ /getsticker: Reply to a sticker to me to upload its raw PNG file.
- ➩ /kang: Reply to a sticker to add it to your pack.
- ➩ /stickerid: Reply to a sticker to me to tell you its file ID.
- ➩ /rmeme: Sends random meme scraped from reddit.
- ➩ /ud <query> : Search stuffs in urban dictionary.
- ➩ /wall <query> : Get random wallpapers directly from bot!
- ➩ /lyrics <query> : You can either enter just the song name or both the artist and song name.
- ➩ /covid <country name>: Give stats about COVID-19.
- ➩ /paste : Paste any text file to Nekobin.
- ➩ /gdpr: Deletes your information from the bot's database. Private chats only.
- ➩ /markdownhelp: Quick summary of how markdown works in telegram - can only be called in private chats.
- ➩ /spell: - As a reply to get grammar corrected text of gibberish message.
 
-*Android*
- ➩ /magisk - Gets the latest magisk release for Stable/Beta/Canary.
- ➩ /device <codename> - Gets android device basic info from its codename.
- ➩ /twrp <codename> -  Gets latest twrp for the android device using the codename.
- ➩ /los <codename> - Gets Latest los build.
-
- ⚠️ `Read from top`
+ • /wiki : Search wikipedia articles.  
+ • /rmeme: Sends random meme scraped from reddit.
+ • /ud <query> : Search stuffs in urban dictionary.
+ • /wall <query> : Get random wallpapers directly from bot!
+ • /lyrics <query> : You can either enter just the song name or both the artist and song name.
+ • /covid <country name>: Give stats about COVID-19.
+ • /paste : Paste any text file to Nekobin.
+ • /markdownhelp: Quick summary of how markdown works in telegram - can only be called in private chats.
+ • /spell: - As a reply to get grammar corrected text of gibberish message.
+ • /imdb <movie name> Get imdb result from imbd.com
+ • /weather <city>: Gets weather information of particular place!
+ • /datetime <country code> Get date and time by provided country
 """
 
-__mod_name__ = "EXTRAS"
+__mod_name__ = "Extras"
 
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
