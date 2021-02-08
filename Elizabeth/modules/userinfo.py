@@ -154,7 +154,6 @@ def __user_info__(user_id):
 
 
 __help__ = """
-
 ⚙️ *INFO:*
  • /info: Get information about a user.
  • /setme <text>: Will set your info
