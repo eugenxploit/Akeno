@@ -126,6 +126,13 @@ def weather(update, context):
 
 __mod_name__ = "Weather"
 
+__help__ = """
+*Fetches weather info from* openweathermap.org
+
+• /weather: (city name) To get weather report about specified city.
+
+"""                             
+                             
 WEATHER_HANDLER = DisableAbleCommandHandler("weather", weather, pass_args=True)
 
 dispatcher.add_handler(WEATHER_HANDLER)
