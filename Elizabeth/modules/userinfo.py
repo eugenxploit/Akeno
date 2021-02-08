@@ -95,7 +95,7 @@ def about_bio(update, context):
         )
     else:
         update.effective_message.reply_text(
-            " Your bio  about you has been saved !")
+            " Your bio about you has been saved !")
 
 
 @run_async
@@ -136,19 +136,19 @@ def set_about_bio(update, context):
                 )
     else:
         message.reply_text(
-            " His bio can only be saved if someone MESSAGE as a REPLY")
+            "His bio can only be saved if someone MESSAGE as a REPLY")
 
 
 def __user_info__(user_id):
     bio = html.escape(sql.get_user_bio(user_id) or "")
     me = html.escape(sql.get_user_me_info(user_id) or "")
     if bio and me:
-        return "<b>About user:</b>\n{me}\n\n<b>What others say:</b>\n{bio}".format(
+        return "<b>• About user:</b>\n{me}\n\n<b>• What others say:</b>\n{bio}".format(
             me=me, bio=bio)
     elif bio:
-        return "<b>What others say:</b>\n{bio}\n".format(me=me, bio=bio)
+        return "<b>• What others say:</b>\n{bio}\n".format(me=me, bio=bio)
     elif me:
-        return "<b>About user:</b>\n{me}" "".format(me=me, bio=bio)
+        return "<b>• About user:</b>\n{me}" "".format(me=me, bio=bio)
     else:
         return ""
 
