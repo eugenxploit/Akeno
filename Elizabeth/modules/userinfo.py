@@ -154,25 +154,29 @@ def __user_info__(user_id):
 
 
 __help__ = """
- ➩ /info: Get information about a user.
- ➩ /id: Get the current group id. If used by replying to a message, gets that user's id. 
- ➩ /afk <reason>: Mark yourself as AFK.
- ➩ brb <reason>: Same as the afk command - but not a command.
- ➩ /setbio <text>: While replying, will save another user's bio
- ➩ /bio: Will get your or another user's bio. This cannot be set by yourself.
- ➩ /setme <text>: Will set your info
- ➩ /me: Will get your or another user's info
 
-An example of setting a bio for yourself:
-`/setme I work for Telegram`; Bio is set to yourself.
-
+⚙️ *INFO:*
+ • /info: Get information about a user.
+ • /setme <text>: Will set your info
+ • /me: Will get your or another user's info
+An example of setting info for yourself:
+`/setme I work for Telegram`; info is set to yourself.
+ 
+⚙️ *BIO:*
+ • /setbio <text>: While replying, will save another user's bio
+ • /bio: Will get your or another user's bio. This cannot be set by yourself.
 An example of writing someone else' bio:
 Reply to user's message: `/setbio He is such cool person`.
-
 *Notice:* Do not use /setbio against yourself!
+
+⚙️ *ID:*
+ • /id: Get the current group id. If used by replying to a message, gets that user's id. 
+ • /stickerid: Reply to a sticker to me to tell you its file ID.
+ • /gifid: Reply to a gif to me to tell you its file ID.
+ 
 """
 
-__mod_name__ = "INFO"
+__mod_name__ = "Info"
 
 SET_BIO_HANDLER = DisableAbleCommandHandler("setbio", set_about_bio)
 GET_BIO_HANDLER = DisableAbleCommandHandler("bio", about_bio, pass_args=True)
