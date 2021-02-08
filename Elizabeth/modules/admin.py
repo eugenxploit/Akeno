@@ -518,36 +518,30 @@ def __chat_settings__(chat_id, user_id):
 
 
 __help__ = """
- ➩ /adminlist: list of admins in the chat
+ • /adminlist: list of admins in the chat
 
 *Admin only:*
- ➩ /pin: Silently pins the message replied to - add `loud`, `notify` or `violent` to give notificaton to users.
- ➩ /unpin: Unpins the currently pinned message.
- ➩ /invitelink: Gets private chat's invitelink.
- ➩ /promote: Promotes the user replied to.
- ➩ /demote: Demotes the user replied to.
- ➩ /settitle: Sets a custom title for an admin which is promoted by bot.
- ➩ /setgpic: As a reply to file or photo to set group profile pic!
- ➩ /delgpic: Same as above but to remove group profile pic.
- ➩ /setgtitle <newtitle>: Sets new chat title in your group.
- ➩ /setsticker: As a reply to some sticker to set it as group sticker set!
- ➩ /setdescription: <description> Sets new chat description in group.
- ➩ /spamshield <on/off/yes/no>: Will disable or enable the effect of Spam protection in your group.
-
-Spam shield uses Combot Anti Spam, @Spamwatch API and Global bans to remove Spammers as much as possible from your chatroom!
-
+ • /pin: Silently pins the message replied to - add `loud`, `notify` or `violent` to give notificaton to users.
+ • /unpin: Unpins the currently pinned message.
+ • /invitelink: Gets private chat's invitelink.
+ • /promote: Promotes the user replied to.
+ • /demote: Demotes the user replied to.
+ • /settitle: Sets a custom title for an admin which is promoted by bot.
+ • /setgpic: As a reply to file or photo to set group profile pic!
+ • /delgpic: Same as above but to remove group profile pic.
+ • /setgtitle <newtitle>: Sets new chat title in your group.
+ • /setsticker: As a reply to some sticker to set it as group sticker set!
+ • /setdescription: <description> Sets new chat description in group.
+ 
 ◉ *Note*: To set group sticker set chat must needs to have min 100 members.
 
 ◉ An example of promoting someone to admins:
- ➩ `/promote @username`; This promotes a user to admins.
-
- ➩ /zombies: counts the number of deleted account in your group
- ➩ `/zombies clean`: Remove deleted accounts from group..
-
- ⚠️ Read from top
+ • `/promote @username`; This promotes a user to admins.
+Likewise
+ • `/demote @username`; This demotes an admin to user.
 """
 
-__mod_name__ = "ADMINS"
+__mod_name__ = "Admins"
 
 PIN_HANDLER = CommandHandler("pin", pin, pass_args=True, filters=Filters.group)
 UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=Filters.group)
