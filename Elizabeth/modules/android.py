@@ -337,7 +337,14 @@ def bootleg(update, context) -> str:
             disable_web_page_preview=True,
         )
         return
-
+__help__ = """
+ • /app <app name> Search application from play store
+ • /magisk - Gets the latest magisk release for Stable/Beta/Canary.
+ • /device <codename> - Gets android device basic info from its codename.
+ • /twrp <codename> -  Gets latest twrp for the android device using the codename.
+ • /los <codename> - Gets Latest los build.
+ • /phone <full number> Check Details 
+"""
 
 __mod_name__ = "Android"
 
