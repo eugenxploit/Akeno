@@ -172,7 +172,9 @@ Reply to user's message: `/setbio He is such cool person`.
  • /id: Get the current group id. If used by replying to a message, gets that user's id. 
  • /stickerid: Reply to a sticker to me to tell you its file ID.
  • /gifid: Reply to a gif to me to tell you its file ID.
- 
+
+⚙️ *ERASE INFO:*
+ • /gdpr: Deletes your information from the bot's database. Private chats only.
 """
 
 __mod_name__ = "Info"
