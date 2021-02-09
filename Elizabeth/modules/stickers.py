@@ -446,6 +446,13 @@ def stickerid(update, context):
 
 
 __mod_name__ = "Stickers"
+
+__help__ = """
+• /stickerid: reply to a sticker to get its ID.
+• /getsticker: reply to a sticker to get the raw PNG image.
+• /kang: reply to a sticker or image to add it to your pack.
+
+"""
 KANG_HANDLER = DisableAbleCommandHandler(
     "kang", kang, pass_args=True, admin_ok=True)
 STICKERID_HANDLER = DisableAbleCommandHandler("stickerid", stickerid)
