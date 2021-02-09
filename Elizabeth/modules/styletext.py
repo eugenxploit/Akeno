@@ -484,6 +484,22 @@ def lined(update, context):
 
 __mod_name__ = "StyleText"
 
+__help__ = """ 
+⚙️ *Stylish Text*:
+
+Usage: /command text here.
+
+Available styles:
+• /weebify 
+• /bubble
+• /fbubble
+• /square
+• /fsquare
+• /blue
+• /latin
+• /lined
+"""
+
 WEEBIFY_HANDLER = DisableAbleCommandHandler("weebify", weebify)
 BUBBLE_HANDLER = DisableAbleCommandHandler("bubble", bubble)
 FBUBBLE_HANDLER = DisableAbleCommandHandler("fbubble", fbubble)
