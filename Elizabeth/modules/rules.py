@@ -61,7 +61,7 @@ def send_rules(update, chat_id, from_pm=False):
                 [
                     [
                         InlineKeyboardButton(
-                            text="Rules",
+                            text="Group rules",
                             url="t.me/{}?start={}".format(bot.username, chat_id),
                         )
                     ]
@@ -128,14 +128,14 @@ def __chat_settings__(chat_id, user_id):
 __help__ = """
 Every chat works with different rules; this module will help make those rules clearer!
 
- ➩ /rules: get the rules for this chat.
+ • /rules: get the rules for this chat.
 
 *Admin only:*
- ➩ /setrules <your rules here>: Sets rules for the chat.
- ➩ /clearrules: Clears saved rules for the chat.
+ • /setrules <your rules here>: Sets rules for the chat.
+ • /clearrules: Clears saved rules for the chat.
 """
 
-__mod_name__ = "RULES"
+__mod_name__ = "Rules"
 
 GET_RULES_HANDLER = CommandHandler("rules", get_rules, filters=Filters.group)
 SET_RULES_HANDLER = CommandHandler(
