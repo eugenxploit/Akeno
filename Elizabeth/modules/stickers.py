@@ -3,6 +3,7 @@ import os
 import requests
 import urllib.request as urllib
 from html import escape
+from bs4 import BeautifulSoup as bs
 
 from PIL import Image
 from telegram import (
