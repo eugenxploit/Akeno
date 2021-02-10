@@ -459,48 +459,49 @@ def goodmorning(update, context):
 
 
 __help__ = """
-Some dank memes for fun or whatever!
+⚙️ *Some dank memes for fun or whatever!*
 
- ➩ /shrug | /cri: Get shrug or ToT.
- ➩ /decide: Randomly answer yes no etc.
- ➩ /abuse: Abuses the retard!
- ➩ /table: Flips a table...
- ➩ /runs: Reply a random string from an array of replies.
- ➩ /slap: Slap a user, or get slapped if not a reply.
- ➩ /pasta: Famous copypasta meme, try and see.
- ➩ /clap: Claps on someones message!
- ➩ /owo: UwU-fy whole text XD.
- ➩ /roll: Rolls a dice.
- ➩ /recite: Logical quotes to change your life.
- ➩ /stretch:  streeeeeeetch iiiiiiit.
- ➩ /warm: Hug a user warmly, or get hugged if not a reply.
- ➩ /punch: Punch a user, or get punched if not a reply.
- ➩ /police: Give Police siren Animation
- ➩ /weebify <text>: weebify your text!
- ➩ /bubble <text>: bubble your text!
- ➩ /fbubble <text>: bubble-filled your text!
- ➩ /square <text>: square your text!
- ➩ /fsquare <text>: square-filled your text!
- ➩ /blue <text>: bluify your text!
- ➩ /latin <text>: latinify your text!
- ➩ /lined <text>: lined your text!
+ • /shrug | /cri: Get shrug or ToT.
+ • /decide: Randomly answer yes no etc.
+ • /abuse: Abuses the retard!
+ • /table: Flips a table...
+ • /runs: Reply a random string from an array of replies.
+ • /slap: Slap a user, or get slapped if not a reply.
+ • /pasta: Famous copypasta meme, try and see.
+ • /clap: Claps on someones message!
+ • /owo: UwU-fy whole text XD.
+ • /roll: Rolls a dice.
+ • /recite: Logical quotes to change your life.
+ • /stretch:  streeeeeeetch iiiiiiit.
+ • /warm: Hug a user warmly, or get hugged if not a reply.
+ • /punch: Punch a user, or get punched if not a reply.
+ • /police: Give Police siren Animation
+ • /weebify <text>: weebify your text!
+ • /bubble <text>: bubble your text!
+ • /fbubble <text>: bubble-filled your text!
+ • /square <text>: square your text!
+ • /fsquare <text>: square-filled your text!
+ • /blue <text>: bluify your text!
+ • /latin <text>: latinify your text!
+ • /lined <text>: lined your text!
+
 *Regex based memes:*
 
- ➩ `/decide` can be also used with regex like: `Elizabeth What? <question>: randomly answer "Yes, No" etc.`
+ • `/decide` can be also used with regex like: `Nisshoku What? <question>: randomly answer "Yes, No" etc.`
 
   Some other regex filters are:
   `me too` | `good morning` | `good night`.
 
-  Elizabeth will reply random strings accordingly when these words are used!
+  Nisshoku will reply random strings accordingly when these words are used!
   All regex filters can be disabled incase u don't want... like: `/disable metoo`.
 
 """
 
-__mod_name__ = "MEMES"
+__mod_name__ = "Memes"
 
 SHRUG_HANDLER = DisableAbleCommandHandler("shrug", shrug)
 DECIDE_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"(?i)(Elizabeth)"), decide, friendly="decide"
+    Filters.regex(r"(?i)(Nisshoku)"), decide, friendly="decide"
 )
 SNIPE_HANDLER = CommandHandler(
     "snipe", snipe, pass_args=True, filters=CustomFilters.sudo_filter
