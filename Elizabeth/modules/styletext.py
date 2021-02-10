@@ -487,7 +487,7 @@ __mod_name__ = "Style-Text"
 __help__ = """ 
 ⚙️ *Stylish Text*:
 
-Usage: /command text here.
+Usage: `/(stylename)` your text here.
 
 Available styles:
 • /weebify 
