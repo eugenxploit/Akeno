@@ -69,7 +69,7 @@ def paginate_modules(
             ]
         )
 
-    pairs = list(zip(modules[::2], modules[1::2], modules[::1::2]))
+    pairs = list(zip(modules[::2], modules[1::2], modules[1::2]))
     
     if len(modules) % 2 == 1:
        pairs.append((modules[-1],))
