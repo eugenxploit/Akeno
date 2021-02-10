@@ -518,9 +518,10 @@ def __chat_settings__(chat_id, user_id):
 
 
 __help__ = """
- • /adminlist: list of admins in the chat
+⚙️ *List all admins in chat:*
+ • /adminlist: list of all admins in the chat
 
-*Admin only:*
+⚙️ *Admin only:*
  • /pin: Silently pins the message replied to - add `loud`, `notify` or `violent` to give notificaton to users.
  • /unpin: Unpins the currently pinned message.
  • /invitelink: Gets private chat's invitelink.
@@ -533,9 +534,9 @@ __help__ = """
  • /setsticker: As a reply to some sticker to set it as group sticker set!
  • /setdescription: <description> Sets new chat description in group.
  
-◉ *Note*: To set group sticker set chat must needs to have min 100 members.
+⚙️ *Note*: To set group sticker set chat must needs to have min 100 members.
 
-◉ An example of promoting someone to admins:
+⚙️ An example of promoting someone to admins:
  • `/promote @username`; This promotes a user to admins.
 Likewise
  • `/demote @username`; This demotes an admin to user.
