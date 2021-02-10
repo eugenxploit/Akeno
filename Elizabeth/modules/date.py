@@ -86,3 +86,12 @@ async def _(event):
         return
 
     await send_message.edit(result, parse_mode="html")
+
+    
+__help__ = """
+⚙️ *Date and time by country*
+
+• /datetime <country code> Get date and time by provided country
+"""
+
+__mod_name__ = "Time"    
