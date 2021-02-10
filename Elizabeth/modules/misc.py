@@ -4,6 +4,7 @@ import html
 import os
 import random
 import re
+import subprocess
 from io import BytesIO
 from random import randint
 from typing import Optional
@@ -565,10 +566,17 @@ def staff_ids(update, context):
 
 @run_async
 def stats(update, context):
-    update.effective_message.reply_text(
-        "Current stats:\n" + "\n".join([mod.__stats__() for mod in STATS])
+    process = subprocess.Popen(
+        "neofetch --stdout", shell=True, text=True, stdout=subprocess.PIPE
     )
-
+    output = process.communicate()[0]
+    stats = (
+        "<b>Current stats:</b>\n"
+        + "\n"
+        + output
+        + "\n".join([mod.__stats__() for mod in STATS])
+    )
+    result = re.sub(r"(\d+)", r"<code>\1</code>", stats)
 
 @run_async
 @typing_action
