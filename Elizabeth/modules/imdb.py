@@ -115,3 +115,12 @@ async def imdb(e):
     			)
  except IndexError:
      await e.reply("Please enter a valid movie name !")
+        
+        
+__help__ = """
+⚙️ *Search your query on IMDB*
+
+• /imdb <show name / movie name> 
+"""
+
+__mod_name__ = "IMDB"
