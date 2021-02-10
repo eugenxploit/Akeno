@@ -17,6 +17,29 @@ from Elizabeth import dispatcher
 from Elizabeth.modules.disable import DisableAbleCommandHandler
 from Elizabeth.modules.helper_funcs.alternate import typing_action
 
+combot_stickers_url = "https://combot.org/telegram/stickers?q="
+
+@run_async
+@typing_action
+def cb_sticker(update: Update, context: CallbackContext):
+    msg = update.effective_message
+    split = msg.text.split(" ", 1)
+    if len(split) == 1:
+        msg.reply_text("Provide some name to search for pack.")
+        return
+    text = requests.get(combot_stickers_url + split[1]).text
+    soup = bs(text, "lxml")
+    results = soup.find_all("a", {"class": "sticker-pack__btn"})
+    titles = soup.find_all("div", "sticker-pack__title")
+    if not results:
+        msg.reply_text("No results found ;-;.")
+        return
+    reply = f"Stickers for *{split[1]}*:"
+    for result, title in zip(results, titles):
+        link = result["href"]
+        reply += f"\n• [{title.get_text()}]({link})"
+    msg.reply_text(reply, parse_mode=ParseMode.MARKDOWN)
+
 
 @run_async
 @typing_action
@@ -448,6 +471,7 @@ def stickerid(update, context):
 __mod_name__ = "Stickers"
 
 __help__ = """
+• /stickers: Find stickers for given term on combot sticker catalogue.
 • /stickerid: reply to a sticker to get its ID.
 • /getsticker: reply to a sticker to get the raw PNG image.
 • /kang: reply to a sticker or image to add it to your pack.
@@ -457,7 +481,10 @@ KANG_HANDLER = DisableAbleCommandHandler(
     "kang", kang, pass_args=True, admin_ok=True)
 STICKERID_HANDLER = DisableAbleCommandHandler("stickerid", stickerid)
 GETSTICKER_HANDLER = DisableAbleCommandHandler("getsticker", getsticker)
+STICKERS_HANDLER = DisableAbleCommandHandler("stickers", cb_sticker)
+
 
 dispatcher.add_handler(KANG_HANDLER)
 dispatcher.add_handler(STICKERID_HANDLER)
 dispatcher.add_handler(GETSTICKER_HANDLER)
+dispatcher.add_handler(STICKERS_HANDLER)
