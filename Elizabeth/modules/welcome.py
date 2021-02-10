@@ -189,7 +189,7 @@ def new_member(update, context):
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
                 update.effective_message.reply_text(
-                    "My Owner is in the houseeee, let's get this party started!",
+                    "wkwkwkwkwkwk Axel joined, lmao!",
                     reply_to_message_id=reply,
                 )
                 continue
@@ -205,7 +205,7 @@ def new_member(update, context):
             # Make bot greet admins
             elif new_mem.id == context.bot.id:
                 update.effective_message.reply_text(
-                    "Hey 😍 {}, I'm {}! Thank you for adding me to {}".format(
+                    "UwU {}, I'm {}! Thank you for adding me to {}, I will try my best!".format(
                         user.first_name, context.bot.first_name, chat_name
                     ),
                     reply_to_message_id=reply,
@@ -213,7 +213,7 @@ def new_member(update, context):
 
                 context.bot.send_message(
                     MESSAGE_DUMP,
-                    "Elizabeth have been added to <pre>{}</pre> with ID: \n<pre>{}</pre>".format(
+                    "Nisshoku have been #added to <pre>{}</pre> with ID: \n<pre>{}</pre>".format(
                         chat.title,
                         chat.id),
                     parse_mode=ParseMode.HTML,
@@ -351,7 +351,7 @@ def new_member(update, context):
                                 [
                                     [
                                         InlineKeyboardButton(
-                                            text="Yus, I'm a human",
+                                            text="Yeah, I'm a human",
                                             callback_data="user_join_({})".format(
                                                 new_mem.id),
                                         )]]),
