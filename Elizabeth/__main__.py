@@ -40,12 +40,14 @@ from Elizabeth.modules.helper_funcs.alternate import typing_action
 
 PM_START_TEXT = f"""
 Nyaa! I'm *Nisshoku-Chan* [ㅤ](https://telegra.ph/file/a13aa0507ccdae094dbee.jpg)
- • I am here to manage your chats, on the go!
- • Feel free to add me in your groups.
+ 
+ 😼 Multi-featured chat management bot.
+ 😼 Suited for Anime and gaming chats.
+ 😼 Feel free to add it in your groups!
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
 
-buttons = [[InlineKeyboardButton(text="🔘  Add me to your group  🔘",
+buttons = [[InlineKeyboardButton(text="➕ Add me to your group",
                                   url="t.me/NekofiedBot?startgroup=true"),
 ]]
 
@@ -59,14 +61,15 @@ buttons += [[InlineKeyboardButton(text="Help & commands menu",
                                   callback_data="help_back"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="Close palette 🔒",
+buttons += [[InlineKeyboardButton(text="Close menu 🔒",
                                   callback_data="close_menu")]]
 
 
 HELP_STRINGS = f"""
-*Nisshoku* [😼](https://telegra.ph/file/e323dbcb71201eb41f727.jpg) comes with 
-handy tools which makes chat management easier. 
-Click on the buttons below to get their usage instructions."""
+*Nisshoku* [😼](https://telegra.ph/file/a13aa0507ccdae094dbee.jpg) 
+
+• Comes with handy tools which makes chat management easier. 
+• Click on the buttons below to get their usage instructions."""
 
 
 IMPORTED = {}
