@@ -21,7 +21,8 @@ combot_stickers_url = "https://combot.org/telegram/stickers?q="
 
 @run_async
 @typing_action
-def cb_sticker(update: Update, context: CallbackContext):
+def cb_sticker(update, context):
+    args = context.args
     msg = update.effective_message
     split = msg.text.split(" ", 1)
     if len(split) == 1:
