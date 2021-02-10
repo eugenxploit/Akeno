@@ -69,7 +69,9 @@ def paginate_modules(
             ]
         )
 
-    pairs = list(zip(modules[::2], modules[1::2], modules[1::2]))
+    pairs = [
+    modules[i * 3:(i + 1) * 3] for i in range((len(modules) + 3 - 1) // 3)
+    ]
     
     if len(modules) % 2 == 1:
        pairs.append((modules[-1],))
@@ -93,7 +95,7 @@ def paginate_modules(
        pairs = pairs[modulo_page * 10:10 * (modulo_page + 1)] + [
                 (
                     EqInlineKeyboardButton("<<<", callback_data="{}_prev({})".format(prefix, modulo_page)),
-                    EqInlineKeyboardButton("Close", callback_data="close_menu"),
+                    EqInlineKeyboardButton("Close 🔒", callback_data="close_menu"),
                     EqInlineKeyboardButton(">>>", callback_data="{}_next({})".format(prefix, modulo_page)))]
 
     return pairs
