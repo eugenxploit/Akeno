@@ -670,11 +670,24 @@ def paste(update, context):
 
 __help__ = """
 ⚙️ *Some extras:*
+- Currency:
+ • /cash: currency converter
+Example:
+  `/cash 1 USD INR`
 
+- Wikipedia:
  • /wiki : Search wikipedia articles.  
+
+- Reddit memes: 
  • /rmeme: Sends random meme scraped from reddit.
+ 
+- Urban dictionary:
  • /ud <query> : Search stuffs in urban dictionary.
+ 
+- Wallpaper search:
  • /wall <query> : Get random wallpapers directly from bot!
+ 
+- Markdown usage:
  • /markdownhelp: Quick summary of how markdown works in telegram - can only be called in private chats.
 """
 
