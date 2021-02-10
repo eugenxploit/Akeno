@@ -174,6 +174,13 @@ dispatcher.add_handler(AFK_REPLY_HANDLER, AFK_REPLY_GROUP)
 
 
 __mod_name__ = "AFK"
+
+__help__ = """
+⚙️ Away from keyboard
+ 
+ • /afk <reason>: Mark yourself as AFK.
+ • brb <reason>: Same as the afk command - but not a command.
+"""
 __command_list__ = ["afk"]
 __handlers__ = [
     (AFK_HANDLER, AFK_GROUP),
