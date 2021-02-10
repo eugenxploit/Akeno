@@ -278,8 +278,9 @@ async def download_video(v_url):
 
 
 __help__ = """
- • /song <songname artist(optional)>: uploads the song in it's best quality available
+⚙️ *Music / Video songs using YTDL:*
 
+ • /song <songname artist(optional)>: uploads the song in it's best quality available
  • /video <songname artist(optional)>: uploads the video song in it's best quality available
 """
 
