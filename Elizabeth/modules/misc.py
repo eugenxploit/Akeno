@@ -388,6 +388,17 @@ def src(update, context):
         disable_web_page_preview=True,
     )
 
+@run_async
+@typing_action
+def gifid(update, context):
+    msg = update.effective_message
+    if msg.reply_to_message and msg.reply_to_message.animation:
+       update.effective_message.reply_text(
+            f"Gif ID:\n<code>{msg.reply_to_message.animation.file_id}</code>",
+            parse_mode=ParseMode.HTML)
+    else:
+        update.effective_message.reply_text(
+            "Please reply to a gif to get its ID.")
 
 @run_async
 @typing_action
@@ -725,7 +736,9 @@ REDDIT_MEMES_HANDLER = DisableAbleCommandHandler("rmeme", rmemes)
 SRC_HANDLER = CommandHandler("source", src, filters=Filters.private)
 COVID_HANDLER = CommandHandler("covid", covid)
 PASTE_HANDLER = CommandHandler("paste", paste)
+GIFID_HANDLER = CommandHandler("gifid", gifid)
 
+dispatcher.add_handler(GIFID_HANDLER)
 dispatcher.add_handler(WALLPAPER_HANDLER)
 dispatcher.add_handler(UD_HANDLER)
 dispatcher.add_handler(ID_HANDLER)
