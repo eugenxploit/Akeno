@@ -669,22 +669,13 @@ def paste(update, context):
 
 
 __help__ = """
- • /cash: currency converter
-Example:
-  `/cash 1 USD INR`
+⚙️ *Some extras:*
 
  • /wiki : Search wikipedia articles.  
  • /rmeme: Sends random meme scraped from reddit.
  • /ud <query> : Search stuffs in urban dictionary.
  • /wall <query> : Get random wallpapers directly from bot!
- • /lyrics <query> : You can either enter just the song name or both the artist and song name.
- • /covid <country name>: Give stats about COVID-19.
- • /paste : Paste any text file to Nekobin.
  • /markdownhelp: Quick summary of how markdown works in telegram - can only be called in private chats.
- • /spell: - As a reply to get grammar corrected text of gibberish message.
- • /imdb <movie name> Get imdb result from imbd.com
- • /weather <city>: Gets weather information of particular place!
- • /datetime <country code> Get date and time by provided country
 """
 
 __mod_name__ = "Extras"
@@ -704,10 +695,10 @@ WALLPAPER_HANDLER = DisableAbleCommandHandler("wall", wall, pass_args=True)
 UD_HANDLER = DisableAbleCommandHandler("ud", ud)
 LYRICS_HANDLER = DisableAbleCommandHandler("lyrics", lyrics, pass_args=True)
 GETLINK_HANDLER = CommandHandler(
-    "getlink", getlink, pass_args=True, filters=CustomFilters.dev_filter
+    "invitelink", getlink, pass_args=True, filters=CustomFilters.dev_filter
 )
 STAFFLIST_HANDLER = CommandHandler(
-    "staffids", staff_ids, filters=Filters.user(OWNER_ID)
+    "nekofied", staff_ids, filters=Filters.user(OWNER_ID)
 )
 REDDIT_MEMES_HANDLER = DisableAbleCommandHandler("rmeme", rmemes)
 SRC_HANDLER = CommandHandler("source", src, filters=Filters.private)
