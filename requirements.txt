@@ -46,3 +46,4 @@ fontTools
 bing_image_downloader
 instantmusic
 git+https://github.com/riasugremory/python-markdown2
+beautifulsoup
