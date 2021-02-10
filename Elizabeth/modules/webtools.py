@@ -64,16 +64,15 @@ def ping(update, context):
     
 @run_async
 @typing_action
-def speedtst(update, context):    
-    msg = update.effective_message("Testing Nisshoku's network speed. . .")
+def speedtst(update, context):        
     speed = speedtest.Speedtest()
     speed.get_best_server()
     speed.download()
     speed.upload()
-    replymsg = "SpeedTest Results:"
+    replymsg = "Ookla speedtest results:"
     speedtest_image = speed.results.share()
     update.effective_message.reply_photo(photo=speedtest_image, caption=replymsg)
-    msg.delete()
+    
 
 
 @run_async
