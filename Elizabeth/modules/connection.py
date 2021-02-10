@@ -417,7 +417,7 @@ def connect_button(update, context):
         connect_chat(update, context)
 
 
-__mod_name__ = "CONNECT"
+__mod_name__ = "Connections"
 
 
 __help__ = """
