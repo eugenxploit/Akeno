@@ -527,7 +527,7 @@ __help__ = """
  • /invitelink: Gets private chat's invitelink.
  • /promote: Promotes the user replied to.
  • /demote: Demotes the user replied to.
- • /settitle: Sets a custom title for an admin which is promoted by bot.
+ • /title: Sets a custom title for an admin which is promoted by bot.
  • /setgpic: As a reply to file or photo to set group profile pic!
  • /delgpic: Same as above but to remove group profile pic.
  • /setgtitle <newtitle>: Sets new chat title in your group.
@@ -540,6 +540,10 @@ __help__ = """
  • `/promote @username`; This promotes a user to admins.
 Likewise
  • `/demote @username`; This demotes an admin to user.
+
+⚙️ *Zombies (Clears deleted accounts from group)
+ • /zombies: counts the number of deleted account in your group.
+ • /zombies clean: Removes deleted accounts from group.
 """
 
 __mod_name__ = "Admins"
@@ -571,7 +575,7 @@ DEMOTE_HANDLER = CommandHandler(
     filters=Filters.group)
 
 SET_TITLE_HANDLER = DisableAbleCommandHandler(
-    "settitle", set_title, pass_args=True)
+    "title", set_title, pass_args=True)
 ADMINLIST_HANDLER = DisableAbleCommandHandler(
     "adminlist", adminlist, filters=Filters.group
 )
