@@ -41,9 +41,9 @@ from Elizabeth.modules.helper_funcs.alternate import typing_action
 PM_START_TEXT = f"""
 Nyaa! I'm *Nisshoku-Chan* [ㅤ](https://telegra.ph/file/a13aa0507ccdae094dbee.jpg)
  
- 😼 Multi-featured chat management bot.
- 😼 Suited for Anime and gaming chats.
- 😼 Feel free to add it in your groups!
+ 😼 *Multi-featured* chat management bot.
+ 😼 Suited for *Anime and gaming* chats.
+ 😼 Feel free to *add it* in your groups!
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
 
