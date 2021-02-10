@@ -460,7 +460,18 @@ def __chat_settings__(chat_id, user_id):
         sql.does_chat_gban(chat_id))
 
 
-__mod_name__ = "Spam Shield"
+__mod_name__ = "Spam Guard"
+
+__help__ = """
+🛡 *Spam Guard* 🛡
+
+Spam guard uses Combot Anti Spam, @Spamwatch API and Global bans to remove Spammers as much as possible from your chatroom!
+
+⚙️ *Admins only:*
+ • /spamguard <on/off/yes/no>: Will disable or enable the effect of Spam protection in your group.
+
+"""
+
 
 GBAN_HANDLER = CommandHandler(
     "gban",
@@ -481,7 +492,7 @@ GBAN_LIST = CommandHandler(
 )
 
 GBAN_STATUS = CommandHandler(
-    "spamshield", gbanstat, pass_args=True, filters=Filters.group
+    "spamguard", gbanstat, pass_args=True, filters=Filters.group
 )
 
 GBAN_ENFORCER = MessageHandler(Filters.all & Filters.group, enforce_gban)
