@@ -482,7 +482,7 @@ def lined(update, context):
         message.reply_text(string)
 
 
-__mod_name__ = "StyleText"
+__mod_name__ = "Style-Text"
 
 __help__ = """ 
 ⚙️ *Stylish Text*:
