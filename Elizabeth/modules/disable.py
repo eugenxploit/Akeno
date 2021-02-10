@@ -247,22 +247,22 @@ if is_module_loaded(FILENAME):
 
 
     __help__ = """
-    *DISABLE/ENABLE*
+    ⚙️ *DISABLE/ENABLE*
     Not everyone wants every feature that the bot offers. Some commands are best \
     left unused; to avoid spam and abuse.
 
     This allows you to disable some commonly used commands, so noone can use them. \
     It'll also allow you to autodelete them, stopping people from bluetexting.
 
-    ➩ /cmds: Check the current status of disabled commands
+    • /cmds: Check the current status of disabled commands
 
-    *Admin only:*
-    ➩ /enable <cmd name>: Enable that command
-    ➩ /disable <cmd name>: Disable that command
-    ➩ /listcmds: List all possible disablable commands
+    ⚙️ *Admin only:*
+    • /enable <cmd name>: Enable that command
+    • /disable <cmd name>: Disable that command
+    • /listcmds: List all possible disablable commands
     """
    
-    __mod_name__ = "DISABLE"
+    __mod_name__ = "Command disabling"
 
 
     DISABLE_HANDLER = CommandHandler(
