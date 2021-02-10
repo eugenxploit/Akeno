@@ -61,29 +61,34 @@ def ping(update, context):
     )
 
 
+def convert(speed):
+    return round(int(speed) / 1048576, 2
+    
+    
 @run_async
 @typing_action
-def speedtst(update, context):
-    message = update.effective_message
-    ed_msg = message.reply_text("Running high speed test . . .")
-    test = speedtest.Speedtest()
-    test.get_best_server()
-    test.download()
-    test.upload()
-    test.results.share()
-    result = test.results.dict()
-    context.bot.editMessageText(
-        "Download "
-        f"{speed_convert(result['download'])} \n"
-        "Upload "
-        f"{speed_convert(result['upload'])} \n"
-        "Ping "
-        f"{result['ping']} \n"
-        "ISP "
-        f"{result['client']['isp']}",
-        update.effective_chat.id,
-        ed_msg.message_id,
-    )
+def speedtestxyz_callback(update, context):
+    query = update.callback_query
+    msg = update.effective_message.edit_text("Testing Nisshoku's network speed....")
+    speed = speedtest.Speedtest()
+    speed.get_best_server()
+    speed.download()
+    speed.upload()
+    replymsg = "Speedtest results:"
+
+    if query.data == "speedtest_image":
+       speedtest_image = speed.results.share()
+       update.effective_message.reply_photo(
+       photo=speedtest_image, caption=replymsg
+            )
+            msg.delete()
+
+    elif query.data == "speedtest_text":
+         result = speed.results.dict()
+         replymsg += f"\nDownload: `{convert(result['download'])}Mb/s`\nUpload: `{convert(result['upload'])}Mb/s`\nPing: `{result['ping']}`"
+         update.effective_message.edit_text(replymsg, parse_mode=ParseMode.MARKDOWN)
+    else:
+        query.answer("You can't use this command nyaa :3.")
 
 
 @run_async
@@ -184,10 +189,10 @@ IP_HANDLER = CommandHandler(
     "ip", get_bot_ip, filters=Filters.chat(OWNER_ID)
 )
 PING_HANDLER = CommandHandler(
-    "ping", ping, filters=CustomFilters.sudo_filter
+    "ping", ping
 )
 SPEED_HANDLER = CommandHandler(
-    "speedtest", speedtst, filters=CustomFilters.sudo_filter
+    "speedtest", speedtestxyz
 )
 SYS_STATUS_HANDLER = CommandHandler(
     "sysinfo", system_status, filters=CustomFilters.dev_filter
