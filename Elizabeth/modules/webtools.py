@@ -60,35 +60,22 @@ def ping(update, context):
         "*Pong!!!*\n`{}ms`".format(ping_time), parse_mode=ParseMode.MARKDOWN
     )
 
-
-def convert(speed):
-    return round(int(speed) / 1048576, 2
-    
+   
     
 @run_async
 @typing_action
-def speedtst(update, context):
-    message = update.effective_message
-    ed_msg = message.reply_text("Running high speed test . . .")
-    test = speedtest.Speedtest()
-    test.get_best_server()
-    test.download()
-    test.upload()
-    test.results.share()
-    result = test.results.dict()
-    context.bot.editMessageText(
-        "Download "
-        f"{speed_convert(result['download'])} \n"
-        "Upload "
-        f"{speed_convert(result['upload'])} \n"
-        "Ping "
-        f"{result['ping']} \n"
-        "ISP "
-        f"{result['client']['isp']}",
-        update.effective_chat.id,
-        ed_msg.message_id,
-    )
-
+def speedtst(update, context):    
+    msg = update.effective_message.edit_text("Testing Nisshoku's network speed. . .")
+    speed = speedtest.Speedtest()
+    speed.get_best_server()
+    speed.download()
+    speed.upload()
+    replymsg = "SpeedTest Results:"
+    speedtest_image = speed.results.share()
+    update.effective_message.reply_photo(
+                photo=speedtest_image, caption=replymsg
+            )
+            msg.delete()
 
 
 @run_async
