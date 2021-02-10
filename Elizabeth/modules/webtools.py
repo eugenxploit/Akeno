@@ -73,7 +73,7 @@ def speedtst(update, context):
     replymsg = "SpeedTest Results:"
     speedtest_image = speed.results.share()
     update.effective_message.reply_photo(photo=speedtest_image, caption=replymsg)
-    msg.delete()
+    
 
 
 @run_async
