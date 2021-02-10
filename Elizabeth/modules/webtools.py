@@ -65,7 +65,7 @@ def ping(update, context):
 @run_async
 @typing_action
 def speedtst(update, context):    
-    msg = update.effective_message.reply_text("Testing Nisshoku's network speed. . .")
+    msg = update.effective_message("Testing Nisshoku's network speed. . .")
     speed = speedtest.Speedtest()
     speed.get_best_server()
     speed.download()
