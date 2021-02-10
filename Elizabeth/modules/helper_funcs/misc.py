@@ -69,9 +69,11 @@ def paginate_modules(
             ]
         )
 
-    pairs = list(zip(modules[::3], modules[1::3]))
+    pairs = [
+    modules[i * 3:(i + 1) * 3] for i in range((len(modules) + 3 - 1) // 3)
+    ]
     
-    if len(modules) % 3 == 1:
+    if len(modules) % 2 == 1:
        pairs.append((modules[-1],))
 
     max_num_pages = ceil(len(pairs) / 12)
