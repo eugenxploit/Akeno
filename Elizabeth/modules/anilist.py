@@ -7,6 +7,7 @@ import requests
 
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode)
 from telegram.ext import CallbackQueryHandler, run_async
+from Elizabeth.modules.helper_funcs.alternate import typing_action
 
 info_btn = "More Info 📕"
 prequel_btn = "⬅️ Prequel"
