@@ -541,7 +541,7 @@ __help__ = """
 Likewise
  • `/demote @username`; This demotes an admin to user.
 
-⚙️ *Zombies (Clears deleted accounts from group)
+⚙️ Zombies - clears deleted accounts from group
  • /zombies: counts the number of deleted account in your group.
  • /zombies clean: Removes deleted accounts from group.
 """
