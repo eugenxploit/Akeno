@@ -12,7 +12,7 @@ from telegram.error import BadRequest, Unauthorized, RetryAfter
 from Elizabeth import dispatcher, AI_API_KEY, OWNER_ID
 import Elizabeth.modules.sql.chatbot_sql as sql
 from Elizabeth.modules.helper_funcs.filters import CustomFilters
-from Elizabeth.modules.helper_funcs.alternate import typing_action
+#from Elizabeth.modules.helper_funcs.alternate import typing_action
 
 CoffeeHouseAPI = API(AI_API_KEY)
 api_client = LydiaAI(CoffeeHouseAPI)
