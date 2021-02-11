@@ -27,8 +27,8 @@ from Elizabeth import (
     LOGGER,
     BLACKLIST_CHATS,
     WHITELIST_CHATS,
-    nyaa,
-    client
+    #nyaa,
+    #client
 )
 
 # needed to dynamically load modules
