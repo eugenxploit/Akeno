@@ -11,6 +11,7 @@ from telegram.ext import CommandHandler, Filters, MessageHandler, CallbackQueryH
 from telegram.ext.dispatcher import run_async, DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
 
+
 from Elizabeth import (
     dispatcher,
     DEV_USERS,
@@ -26,6 +27,8 @@ from Elizabeth import (
     LOGGER,
     BLACKLIST_CHATS,
     WHITELIST_CHATS,
+    nyaa,
+    client
 )
 
 # needed to dynamically load modules
