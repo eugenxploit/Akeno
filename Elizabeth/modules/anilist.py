@@ -175,7 +175,7 @@ def airing(update, context):
         }).json()['data']['Media']
     info = response.get('siteUrl')
     image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
-    msg = f"🇯🇵*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n*🧾ID*: `{response['id']}`[⁠ ⁠]({image})"
+    msg = f"🇯🇵*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n\n*🧾ID*: `{response['id']}`[⁠ ⁠]({image})"
     if response['nextAiringEpisode']:
         time = response['nextAiringEpisode']['timeUntilAiring'] * 1000
         time = t(time)
@@ -206,7 +206,7 @@ def anime(update, context):
         return
     if json:
         json = json['data']['Media']
-        msg = f"*🇯🇵{json['title']['romaji']}*(`{json['title']['native']}`)\n*📺Type*: {json['format']}\n*📂Status*: {json['status']}\n*🗓Episodes*: {json.get('episodes', 'N/A')}\n*⏲Duration*: {json.get('duration', 'N/A')} Per Ep.\n**📊Score*: {json['averageScore']}\n**🎭Genres*: `"
+        msg = f"*🇯🇵{json['title']['romaji']}*(`{json['title']['native']}`)\n\n*📺Type*: {json['format']}\n*📂Status*: {json['status']}\n*🗓Episodes*: {json.get('episodes', 'N/A')}\n*⏲Duration*: {json.get('duration', 'N/A')} Per Ep.\n**📊Score*: {json['averageScore']}\n**🎭Genres*: `"
         for x in json['genres']:
             msg += f"{x}, "
         msg = msg[:-2] + '`\n'
@@ -506,9 +506,6 @@ __help__ = """
  • /character <character> : returns information about the character.
  • /user <user> : returns information about a MyAnimeList user.
  • /schedule : returns a list of new anime in the upcoming seasons.
-
- 
-
  """
 
 ANIME_HANDLER = DisableAbleCommandHandler("anime", anime)
