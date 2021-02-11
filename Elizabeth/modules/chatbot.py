@@ -19,7 +19,6 @@ api_client = LydiaAI(CoffeeHouseAPI)
 
 
 @run_async
-@typing_action
 def add_chat(update: Update, context: CallbackContext):
     global api_client
     chat_id = update.effective_chat.id
@@ -36,7 +35,6 @@ def add_chat(update: Update, context: CallbackContext):
         
         
 @run_async
-@typing_action
 def remove_chat(update: Update, context: CallbackContext):
     msg = update.effective_message
     chat_id = update.effective_chat.id
@@ -60,7 +58,6 @@ def check_message(bot: Bot, message):
                 
         
 @run_async
-@typing_action
 def chatbot(update: Update, context: CallbackContext):
     global api_client
     msg = update.effective_message
@@ -92,7 +89,6 @@ def chatbot(update: Update, context: CallbackContext):
                     
                     
 @run_async
-@typing_action
 def list_chatbot_chats(update: Update, context: CallbackContext):
     chats = sql.get_all_chats()
     text = "<b>AI-Enabled Chats</b>\n"
