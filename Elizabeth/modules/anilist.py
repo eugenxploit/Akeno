@@ -509,12 +509,12 @@ __help__ = """
 
  """
 
-ANIME_HANDLER = DisableAbleCommandHandler("anime", anime)
-AIRING_HANDLER = DisableAbleCommandHandler("airing", airing)
-CHARACTER_HANDLER = DisableAbleCommandHandler("character", character)
-MANGA_HANDLER = DisableAbleCommandHandler("manga", manga)
-USER_HANDLER = DisableAbleCommandHandler("user", user)
-UPCOMING_HANDLER = DisableAbleCommandHandler("schedule", upcoming)
+ANIME_HANDLER = CommandHandler("anime", anime)
+AIRING_HANDLER = CommandHandler("airing", airing)
+CHARACTER_HANDLER = CommandHandler("character", character)
+MANGA_HANDLER = CommandHandler("manga", manga)
+USER_HANDLER = CommandHandler("user", user)
+UPCOMING_HANDLER = CommandHandler("schedule", upcoming)
 BUTTON_HANDLER = CallbackQueryHandler(button, pattern='anime_.*')
 
 dispatcher.add_handler(BUTTON_HANDLER)
