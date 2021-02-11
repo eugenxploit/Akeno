@@ -205,7 +205,7 @@ else:
 api_id = TELETHON_ID
 api_hash = TELETHON_HASH
 client = TelegramClient("Elizabeth", api_id, api_hash)
-nyaa = Client("pyrogram", api_id=TL_APP_ID, api_hash=TL_HASH, bot_token=TOKEN)
+nyaa = Client("pyrogram", api_id=TELETHON_ID, api_hash=TELETHON_HASH, bot_token=TOKEN)
 
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 
