@@ -119,7 +119,7 @@ if ENV:
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
     IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
     IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
-
+    AI_API_KEY = os.environ.get('AI_API_KEY', "")
 
 else:
     from Elizabeth.config import Development as Config
@@ -180,7 +180,7 @@ else:
     STRICT_GBAN = Config.STRICT_GBAN
     WORKERS = Config.WORKERS
     BAN_STICKER = Config.BAN_STICKER
-    # ALLOW_EXCL = Config.ALLOW_EXCL
+    ALLOW_EXCL = Config.ALLOW_EXCL
     CUSTOM_CMD = Config.CUSTOM_CMD
     API_WEATHER = Config.API_OPENWEATHER
     WALL_API = Config.WALL_API
@@ -188,7 +188,8 @@ else:
     TELETHON_ID = Config.TELETHON_ID
     SPAMWATCH = Config.SPAMWATCH_API
     LASTFM_API_KEY = Config.LASTFM_API_KEY
-
+    AI_API_KEY = Config.AI_API_KEY
+    
 DEV_USERS.add(OWNER_ID)
 
 # Pass if SpamWatch token not set.
