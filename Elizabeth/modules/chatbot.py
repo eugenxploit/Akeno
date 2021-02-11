@@ -108,7 +108,17 @@ def list_chatbot_chats(update: Update, context: CallbackContext):
         except RetryAfter as e:
             sleep(e.retry_after)
     update.effective_message.reply_text(text, parse_mode="HTML")
-                    
+ 
+__help__ = """
+*Chatbot* uses Artificial intelligence API by CoffeeHouse @Intellivoid 
+
+⚙️ *Admins only:*
+ • /addchat: Enables Chatbot mode in the chat.
+ • /rmchat: Disables Chatbot mode in the chat.
+
+"""
+
+__mod_name__ = "AI Chat"
                     
 ADD_CHAT_HANDLER = CommandHandler("addchat", add_chat, filters=CustomFilters.dev_filter)
 REMOVE_CHAT_HANDLER = CommandHandler("rmchat", remove_chat, filters=CustomFilters.dev_filter)
