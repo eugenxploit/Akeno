@@ -9,6 +9,8 @@ from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode)
 from telegram.ext import CallbackQueryHandler, CommandHandler, run_async
 from Elizabeth.modules.helper_funcs.alternate import typing_action
 from Elizabeth import dispatcher
+from Elizabeth.modules.disable import DisableAbleCommandHandler
+
 info_btn = "More Info 📕"
 prequel_btn = "⬅️ Prequel"
 sequel_btn = "Sequel ➡️"
@@ -19,9 +21,9 @@ def shorten(description, info='anilist.co'):
     msg = ""
     if len(description) > 700:
         description = description[0:500] + '....'
-        msg += f"\n*Description*: _{description}_[Read More]({info})"
+        msg += f"\n*📕Description*: _{description}_[Read More]({info})"
     else:
-        msg += f"\n*Description*:_{description}_"
+        msg += f"\n*📕Description*:_{description}_"
     return msg
 
 
@@ -173,13 +175,13 @@ def airing(update, context):
         }).json()['data']['Media']
     info = response.get('siteUrl')
     image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
-    msg = f"*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n*ID*: `{response['id']}`[⁠ ⁠]({image})"
+    msg = f"🇯🇵*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n*🧾ID*: `{response['id']}`[⁠ ⁠]({image})"
     if response['nextAiringEpisode']:
         time = response['nextAiringEpisode']['timeUntilAiring'] * 1000
         time = t(time)
-        msg += f"\n*Episode*: `{response['nextAiringEpisode']['episode']}`\n*Airing In*: `{time}`"
+        msg += f"\n*📺Episode*: `{response['nextAiringEpisode']['episode']}`\n*🎉Airing In*: `{time}`"
     else:
-        msg += f"\n*Episode*:{response['episodes']}\n*Status*: `N/A`"
+        msg += f"\n*📺Episode*:{response['episodes']}\n*📂Status*: `N/A`"
     update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
 
 
@@ -204,11 +206,11 @@ def anime(update, context):
         return
     if json:
         json = json['data']['Media']
-        msg = f"*{json['title']['romaji']}*(`{json['title']['native']}`)\n*Type*: {json['format']}\n*Status*: {json['status']}\n*Episodes*: {json.get('episodes', 'N/A')}\n*Duration*: {json.get('duration', 'N/A')} Per Ep.\n*Score*: {json['averageScore']}\n*Genres*: `"
+        msg = f"*🇯🇵{json['title']['romaji']}*(`{json['title']['native']}`)\n*📺Type*: {json['format']}\n*📂Status*: {json['status']}\n*🗓Episodes*: {json.get('episodes', 'N/A')}\n*⏲Duration*: {json.get('duration', 'N/A')} Per Ep.\n**📊Score*: {json['averageScore']}\n**🎭Genres*: `"
         for x in json['genres']:
             msg += f"{x}, "
         msg = msg[:-2] + '`\n'
-        msg += "*Studios*: `"
+        msg += "*🎥Studios*: `"
         for x in json['studios']['nodes']:
             msg += f"{x['name']}, "
         msg = msg[:-2] + '`\n'
@@ -226,7 +228,7 @@ def anime(update, context):
         image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
         if trailer:
             buttons = [[
-                InlineKeyboardButton("More Info", url=info),
+                InlineKeyboardButton("More Info 📌", url=info),
                 InlineKeyboardButton("Trailer 🎬", url=trailer)
             ]]
         else:
@@ -272,7 +274,7 @@ def character(update, context):
         return
     if json:
         json = json['data']['Character']
-        msg = f"*{json.get('name').get('full')}*(`{json.get('name').get('native')}`)\n"
+        msg = f"*🎀 {json.get('name').get('full')}*(`{json.get('name').get('native')}`) 🎀\n"
         description = f"{json['description']}"
         site_url = json.get('siteUrl')
         msg += shorten(description, site_url)
@@ -320,12 +322,12 @@ def manga(update, context):
             if title_native:
                 msg += f"(`{title_native}`)"
         if start_date:
-            msg += f"\n*Start Date* - `{start_date}`"
+            msg += f"\n*🎉Start Date* - `{start_date}`"
         if status:
-            msg += f"\n*Status* - `{status}`"
+            msg += f"\n*📂Status* - `{status}`"
         if score:
-            msg += f"\n*Score* - `{score}`"
-        msg += '\n*Genres* - '
+            msg += f"\n*📊Score* - `{score}`"
+        msg += '\n*🎭Genres* - '
         for x in json.get('genres', []):
             msg += f"{x}, "
         msg = msg[:-2]
@@ -494,7 +496,7 @@ def button(update, context):
 
 
 __help__ = """
-✨ *Fetch information about anime, manga or characters from [AniList](anilist.co).*
+✨ *Fetch information about anime, manga or characters from Anilist.co*
 
 ⚙️ *Available commands:*
 
@@ -509,12 +511,12 @@ __help__ = """
 
  """
 
-ANIME_HANDLER = CommandHandler("anime", anime)
-AIRING_HANDLER = CommandHandler("airing", airing)
-CHARACTER_HANDLER = CommandHandler("character", character)
-MANGA_HANDLER = CommandHandler("manga", manga)
-USER_HANDLER = CommandHandler("user", user)
-UPCOMING_HANDLER = CommandHandler("schedule", upcoming)
+ANIME_HANDLER = DisableAbleCommandHandler("anime", anime)
+AIRING_HANDLER = DisableAbleCommandHandler("airing", airing)
+CHARACTER_HANDLER = DisableAbleCommandHandler("character", character)
+MANGA_HANDLER = DisableAbleCommandHandler("manga", manga)
+USER_HANDLER = DisableAbleCommandHandler("user", user)
+UPCOMING_HANDLER = DisableAbleCommandHandler("schedule", upcoming)
 BUTTON_HANDLER = CallbackQueryHandler(button, pattern='anime_.*')
 
 dispatcher.add_handler(BUTTON_HANDLER)
