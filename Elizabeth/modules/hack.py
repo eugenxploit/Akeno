@@ -10,7 +10,7 @@ progress_callback_data = {}
 
 
 @nyaa.on_message(filters.command('hack'))
-async def hack_func(message):
+async def hack_func(c: Client, m: Message):
     user = await message.client.get_user_dict(message.from_user.id)
     heckerman = user['mention']
     animation_chars = [
