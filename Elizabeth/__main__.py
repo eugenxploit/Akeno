@@ -27,8 +27,8 @@ from Elizabeth import (
     LOGGER,
     BLACKLIST_CHATS,
     WHITELIST_CHATS,
-    #nyaa,
-    #client
+    nyaa,
+    client
 )
 
 # needed to dynamically load modules
@@ -688,5 +688,5 @@ def main():
 if __name__ == "__main__":
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     client.start(bot_token=TOKEN)
-    #nyaa.start()
+    nyaa.start()
     main()
