@@ -11,7 +11,7 @@ progress_callback_data = {}
 
 @nyaa.on_message(filters.command('hack'))
 async def hack_func(c: Client, m: Message):
-    user = await m.client.get_user_dict(m.from_user.id)
+    user = await m.c.get_user_dict(m.from_user.id)
     heckerman = user['mention']
     animation_chars = [
         "```Connecting To Private Server \\```",
