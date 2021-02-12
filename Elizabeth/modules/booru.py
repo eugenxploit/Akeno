@@ -1,5 +1,5 @@
 from asyncbooru import Danbooru, Gelbooru, Konachan, Sankaku, Yandere
-from Elizabeth import ldr
+from Elizabeth import nyaa
 
 commands = {
     ("dan", "danx", "danq", "dans"): Danbooru(ldr.aioclient),
@@ -10,7 +10,7 @@ commands = {
 }
 
 
-@ldr.add_dict(commands, pattern_extra="(f|)", help="Fetches images from Danbooru, Gelbooru, Konachan, Sankaku Complex and Yandere, takes tags as arguments.")
+@nyaa.add_dict(commands, pattern_extra="(f|)", help="Fetches images from Danbooru, Gelbooru, Konachan, Sankaku Complex and Yandere, takes tags as arguments.")
 async def booru(event):
     await event.edit("`Processing…`")
     safety_arg = event.command[-1]
