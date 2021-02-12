@@ -208,11 +208,8 @@ def new_member(update, context):
             # Make bot greet admins
             elif new_mem.id == context.bot.id:
                 update.effective_message.reply_video(ECHIDNA, 
-                    caption=ECHIDNATEXT.format(escape_markdown(first_name), OWNER_ID)
-                    ),
-                    reply_to_message_id=reply,
-                )
-
+                    caption=ECHIDNATEXT.format(escape_markdown(first_name), OWNER_ID))
+                   
                 context.bot.send_message(
                     MESSAGE_DUMP,
                     "Echidna have been #added to <pre>{}</pre> with ID: \n<pre>{}</pre>".format(
