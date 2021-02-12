@@ -2,11 +2,11 @@ from asyncbooru import Danbooru, Gelbooru, Konachan, Sankaku, Yandere
 from Elizabeth import nyaa
 
 commands = {
-    ("dan", "danx", "danq", "dans"): Danbooru(ldr.aioclient),
-    ("gel", "gelx", "gelq", "gels"): Gelbooru(ldr.aioclient),
-    ("kon", "konx", "konq", "kons"): Konachan(ldr.aioclient),
-    ("san", "sanx", "sanq", "sans"): Sankaku(ldr.aioclient),
-    ("yan", "yanx", "yanq", "yans"): Yandere(ldr.aioclient)
+    ("dan", "danx", "danq", "dans"): Danbooru(nyaa.aioclient),
+    ("gel", "gelx", "gelq", "gels"): Gelbooru(nyaa.aioclient),
+    ("kon", "konx", "konq", "kons"): Konachan(nyaa.aioclient),
+    ("san", "sanx", "sanq", "sans"): Sankaku(nyaa.aioclient),
+    ("yan", "yanx", "yanq", "yans"): Yandere(nyaa.aioclient)
 }
 
 
