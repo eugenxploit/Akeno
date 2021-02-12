@@ -90,16 +90,16 @@ async def whatanime(c: Client, m: Message):
             at_time = match['at']
             text = f'<a href="https://anilist.co/anime/{anilist_id}">{title_romaji}</a>'
             if title_english:
-                text += f' ({title_english})'
+                text += f'\n({title_english})'
             if title_native:
-                text += f' ({title_native})'
+                text += f'\n({title_native})'
             if synonyms:
-                text += f'\n<b>Synonyms:</b> {synonyms}'
-            text += f'\n<b>Similarity:</b> {(Decimal(similarity) * 100).quantize(Decimal(".01"))}%\n'
+                text += f'\n<b>🔁Synonyms:</b> {synonyms}'
+            text += f'\n<b>✅Similarity:</b> {(Decimal(similarity) * 100).quantize(Decimal(".01"))}%\n'
             if episode:
-                text += f'<b>Episode:</b> {episode}\n'
+                text += f'<b>📽Episode:</b> {episode}\n'
             if nsfw:
-                text += '<b>Hentai/NSFW:</b> no'
+                text += '<b>🔞Hentai/NSFW:</b> no'
 
             async def _send_preview():
                 url = f'https://media.trace.moe/video/{anilist_id}/{urlencode(filename)}?t={at_time}&token={tokenthumb}'
@@ -133,7 +133,7 @@ async def progress_callback(current, total, reply):
                 (total - current) / (time.time() - start_time))
         else:
             download_speed = '0 B'
-        text = f'''Downloading...
+        text = f'''<b>Pouring sauce on it...\n</b><b>hold tight!...</b>
 <code>{return_progress_string(current, total)}</code>
 <b>Total Size:</b> {format_bytes(total)}
 <b>Downladed Size:</b> {format_bytes(current)}
