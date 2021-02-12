@@ -1,4 +1,4 @@
-aiohttp>=2.2.5
+aiohttp
 tgcrypto
 pyrogram>=1.0.7
 jikanpy
