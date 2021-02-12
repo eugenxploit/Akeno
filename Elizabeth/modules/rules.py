@@ -16,7 +16,7 @@ from Elizabeth import dispatcher
 from Elizabeth.modules.helper_funcs.alternate import typing_action
 from Elizabeth.modules.helper_funcs.chat_status import user_admin
 from Elizabeth.modules.helper_funcs.string_handling import markdown_parser
-
+from Elizabeth.modules.disable import DisableAbleCommandHandler
 
 @run_async
 @typing_action
@@ -137,7 +137,7 @@ Every chat works with different rules; this module will help make those rules cl
 
 __mod_name__ = "Rules"
 
-GET_RULES_HANDLER = CommandHandler("rules", get_rules, filters=Filters.group)
+GET_RULES_HANDLER = DisableAbleCommandHandler("rules", get_rules, filters=Filters.group)
 SET_RULES_HANDLER = CommandHandler(
     "setrules", set_rules, filters=Filters.group)
 RESET_RULES_HANDLER = CommandHandler(
