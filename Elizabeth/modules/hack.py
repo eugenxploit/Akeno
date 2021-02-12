@@ -11,7 +11,7 @@ progress_callback_data = {}
 
 @nyaa.on_message(filters.command('hack'))
 async def hack_func(c: Client, m: Message):
-    user = await message.client.get_user_dict(message.from_user.id)
+    user = await m.client.get_user_dict(m.from_user.id)
     heckerman = user['mention']
     animation_chars = [
         "```Connecting To Private Server \\```",
@@ -51,5 +51,5 @@ async def hack_func(c: Client, m: Message):
     max_ani = len(animation_chars)
     for i in range(max_ani):
         await asyncio.sleep(2)
-        await message.edit(animation_chars[i % max_ani])
-    await message.edit(hecked)
+        await m.edit(animation_chars[i % max_ani])
+    await m.edit(hecked)
