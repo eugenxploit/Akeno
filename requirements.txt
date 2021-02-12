@@ -1,4 +1,3 @@
-coffeehouse
 jikanpy
 geopy
 future
