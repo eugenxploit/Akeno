@@ -56,12 +56,12 @@ async def whatanime(c: Client, m: Message):
         await m.reply_text('Photo or GIF or Video required')
         return
     with tempfile.TemporaryDirectory() as tempdir:
-        reply = await m.reply_text('*Pouring sauce on it...*')
+        reply = await m.reply_text('Pouring sauce on it...')
         path = await c.download_media(media, file_name=os.path.join(tempdir, '0'), progress=progress_callback, progress_args=(reply,))
         new_path = os.path.join(tempdir, '1.png')
         proc = await asyncio.create_subprocess_exec('ffmpeg', '-i', path, '-frames:v', '1', new_path)
         await proc.communicate()
-        await reply.edit_text('*hold tight!.....*')
+        await reply.edit_text('Hold tight....')
         with open(new_path, 'rb') as file:
             async with session.post('https://trace.moe/api/search', data={'image': file}) as resp:
                 json = await resp.json()
@@ -95,7 +95,7 @@ async def whatanime(c: Client, m: Message):
                 text += f'\n({title_native})'
             if synonyms:
                 text += f'\n<b>Synonyms:</b> {synonyms}'
-            text += f'\n<b>✅Similarity:</b> {(Decimal(similarity) * 100).quantize(Decimal(".01"))}%\n'
+            text += f'\n<b>Similarity:</b> {(Decimal(similarity) * 100).quantize(Decimal(".01"))}%\n'
             if episode:
                 text += f'<b>Episode:</b> {episode}\n'
             if nsfw:
@@ -149,7 +149,9 @@ async def progress_callback(current, total, reply):
 __help__ = """
 Trace.moe *Anime reverse search*
 
-• /whatanime : reply to anime GIF / Video / Image for its sauce.
+• /whatanime : reply to an anime GIF / Video / Image for its sauce.
+
+NOTE: Output can be inaccurate sometimes. Use it on your own risks.
 """
 
 __mod_name__ = "Trace.moe"
