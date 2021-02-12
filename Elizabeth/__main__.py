@@ -42,20 +42,19 @@ from Elizabeth.modules.helper_funcs.alternate import typing_action
 
 
 PM_START_TEXT = f"""
-Nyaa! I'm *Nisshoku-Chan* [ㅤ](https://telegra.ph/file/a13aa0507ccdae094dbee.jpg)
- 
- 😼 *Multi-featured* chat management bot.
- 😼 Suited for *Anime and gaming* chats.
- 😼 Feel free to *add it* in your groups!
+[Echidna](https://telegra.ph/file/7c30923dc3a452294f27c.jpg)
+- A chat management bot 🦋
+- Exclusively made for @AnimeRyuzoku 🦋
+- I don't care 🦋
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
 
 buttons = [[InlineKeyboardButton(text="➕ Add me to your group",
-                                  url="t.me/NekofiedBot?startgroup=true"),
+                                  url="t.me/EchidnaRoBot?startgroup=true"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="Nekofied",
-                                  url="t.me/otakuzdream"),
+buttons += [[InlineKeyboardButton(text="Ryuzoku",
+                                  url="t.me/ryuzokux"),
              InlineKeyboardButton(text="About me",
                                   callback_data="nisshokuabout_"),
 ]]
@@ -69,7 +68,7 @@ buttons += [[InlineKeyboardButton(text="Close menu 🔒",
 
 
 HELP_STRINGS = f"""
-*Nisshoku* [😼](https://telegra.ph/file/a13aa0507ccdae094dbee.jpg) 
+*Echidna* [🦋](https://telegra.ph/file/a55641a64ee929a15cd0a.jpg) 
 
 - Click on the buttons below to get their usage instructions."""
 
@@ -176,7 +175,7 @@ def start(update, context):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
-                update.effective_message.reply_sticker(NISSHOKU)
+                #update.effective_message.reply_sticker(NISSHOKU)
                 update.effective_message.reply_text(
                 PM_START_TEXT,
                 reply_markup=InlineKeyboardMarkup(buttons),
