@@ -1,4 +1,5 @@
 import asyncio
+import aiohttp
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from Elizabeth import nyaa
