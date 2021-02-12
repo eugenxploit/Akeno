@@ -120,7 +120,7 @@ if ENV:
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
     IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
     IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
-    AI_API_KEY = os.environ.get('AI_API_KEY', "")
+    #AI_API_KEY = os.environ.get('AI_API_KEY', "")
 
 else:
     from Elizabeth.config import Development as Config
