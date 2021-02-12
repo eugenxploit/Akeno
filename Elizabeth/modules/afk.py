@@ -161,6 +161,9 @@ AFK_HANDLER = DisableAbleCommandHandler("afk", afk)
 AFK_REGEX_HANDLER = DisableAbleMessageHandler(
     Filters.regex("(?i)brb"), afk, friendly="afk"
 )
+BYE_REGEX_HANDLER = DisableAbleMessageHandler(
+    Filters.regex("(?i)bye"), afk, friendly="afk"
+)
 NO_AFK_HANDLER = MessageHandler(Filters.all & Filters.group, no_longer_afk)
 AFK_REPLY_HANDLER = MessageHandler(
     Filters.all & Filters.group & ~Filters.update.edited_message, reply_afk
@@ -169,6 +172,7 @@ AFK_REPLY_HANDLER = MessageHandler(
 
 dispatcher.add_handler(AFK_HANDLER, AFK_GROUP)
 dispatcher.add_handler(AFK_REGEX_HANDLER, AFK_GROUP)
+dispatcher.add_handler(BYE_REGEX_HANDLER, AFK_GROUP)
 dispatcher.add_handler(NO_AFK_HANDLER, AFK_GROUP)
 dispatcher.add_handler(AFK_REPLY_HANDLER, AFK_REPLY_GROUP)
 
@@ -187,4 +191,5 @@ __handlers__ = [
     (AFK_REGEX_HANDLER, AFK_GROUP),
     (NO_AFK_HANDLER, AFK_GROUP),
     (AFK_REPLY_HANDLER, AFK_REPLY_GROUP),
+    (BYE_REGEX_HANDLER, AFK_GROUP),
 ]
