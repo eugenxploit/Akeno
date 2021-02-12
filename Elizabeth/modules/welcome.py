@@ -60,7 +60,7 @@ ENUM_FUNC_MAP = {
 
 ECHIDNA = "https://telegra.ph/file/b2cba26a29eb9f91cb013.mp4"
 ECHIDNATEXT = """
-Come on {}, drink up, I especially made this body fluid tea for you!
+Come on, drink up, I especially made this body fluid tea for you!
 """
 # do not async
 def send(update, message, keyboard, backup_message):
@@ -208,7 +208,7 @@ def new_member(update, context):
             # Make bot greet admins
             elif new_mem.id == context.bot.id:
                 update.effective_message.reply_video(ECHIDNA, 
-                    caption=ECHIDNATEXT.format(escape_markdown(first_name), OWNER_ID))
+                    caption=ECHIDNATEXT)
                    
                 context.bot.send_message(
                     MESSAGE_DUMP,
