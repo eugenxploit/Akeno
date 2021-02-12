@@ -37,7 +37,7 @@ def afk(update, context):
         afkstr.format(
             update.effective_user.first_name,
             notice))
-    sleep(5)
+    sleep(7)
     afksend.delete()
 
 
