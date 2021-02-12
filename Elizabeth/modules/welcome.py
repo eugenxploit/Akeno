@@ -58,7 +58,10 @@ ENUM_FUNC_MAP = {
     sql.Types.VIDEO.value: dispatcher.bot.send_video,
 }
 
-
+ECHIDNA = "https://telegra.ph/file/b2cba26a29eb9f91cb013.mp4"
+ECHIDNATEXT = """
+Come on {}, drink up, I especially made this body fluid tea for you!
+"""
 # do not async
 def send(update, message, keyboard, backup_message):
     chat = update.effective_chat
@@ -204,16 +207,15 @@ def new_member(update, context):
 
             # Make bot greet admins
             elif new_mem.id == context.bot.id:
-                update.effective_message.reply_text(
-                    "UwU {}, I'm {}! Thank you for adding me to {}, I will try my best!".format(
-                        user.first_name, context.bot.first_name, chat_name
+                update.effective_message.reply_video(ECHIDNA, 
+                    caption=ECHIDNATEXT.format(escape_markdown(first_name), OWNER_ID)
                     ),
                     reply_to_message_id=reply,
                 )
 
                 context.bot.send_message(
                     MESSAGE_DUMP,
-                    "Nisshoku have been #added to <pre>{}</pre> with ID: \n<pre>{}</pre>".format(
+                    "Echidna have been #added to <pre>{}</pre> with ID: \n<pre>{}</pre>".format(
                         chat.title,
                         chat.id),
                     parse_mode=ParseMode.HTML,
