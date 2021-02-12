@@ -56,12 +56,12 @@ async def whatanime(c: Client, m: Message):
         await m.reply_text('Photo or GIF or Video required')
         return
     with tempfile.TemporaryDirectory() as tempdir:
-        reply = await m.reply_text('Downloading...')
+        reply = await m.reply_text('*Pouring sauce on it...*')
         path = await c.download_media(media, file_name=os.path.join(tempdir, '0'), progress=progress_callback, progress_args=(reply,))
         new_path = os.path.join(tempdir, '1.png')
         proc = await asyncio.create_subprocess_exec('ffmpeg', '-i', path, '-frames:v', '1', new_path)
         await proc.communicate()
-        await reply.edit_text('Uploading...')
+        await reply.edit_text('*hold tight!.....*')
         with open(new_path, 'rb') as file:
             async with session.post('https://trace.moe/api/search', data={'image': file}) as resp:
                 json = await resp.json()
@@ -94,12 +94,12 @@ async def whatanime(c: Client, m: Message):
             if title_native:
                 text += f'\n({title_native})'
             if synonyms:
-                text += f'\n<b>🔁Synonyms:</b> {synonyms}'
+                text += f'\n<b>Synonyms:</b> {synonyms}'
             text += f'\n<b>✅Similarity:</b> {(Decimal(similarity) * 100).quantize(Decimal(".01"))}%\n'
             if episode:
-                text += f'<b>📽Episode:</b> {episode}\n'
+                text += f'<b>Episode:</b> {episode}\n'
             if nsfw:
-                text += '<b>🔞Hentai/NSFW:</b> no'
+                text += '<b>Hentai/NSFW:</b> no'
 
             async def _send_preview():
                 url = f'https://media.trace.moe/video/{anilist_id}/{urlencode(filename)}?t={at_time}&token={tokenthumb}'
@@ -144,3 +144,12 @@ async def progress_callback(current, total, reply):
             prevtext = text
             last_edit_time = time.time()
             progress_callback_data[message_identifier] = last_edit_time, prevtext, start_time
+
+
+__help__ = """
+Trace.moe *Anime reverse search*
+
+• /whatanime : reply to anime GIF / Video / Image for its sauce.
+"""
+
+__mod_name__ = "Trace.moe"
