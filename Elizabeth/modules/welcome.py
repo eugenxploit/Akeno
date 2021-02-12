@@ -17,7 +17,7 @@ from telegram.ext import (
     run_async,
 )
 from telegram.utils.helpers import mention_html
-
+from telegram.utils.helpers import escape_markdown
 import Elizabeth.modules.sql.welcome_sql as sql
 from Elizabeth import DEV_USERS, LOGGER, MESSAGE_DUMP, OWNER_ID, dispatcher, spamwtc
 from Elizabeth.modules.helper_funcs.alternate import send_message, typing_action
