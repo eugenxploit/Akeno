@@ -44,8 +44,9 @@ def afk(update, context):
             "{} is now Away!".format(fname))
     except BadRequest:
         pass
-    sleep(7)
-    afksend.delete()
+    
+    #sleep(7)
+    #afksend.delete()
 
 
 @run_async
@@ -69,8 +70,8 @@ def no_longer_afk(update, context):
                 "{} is no longer AFK!\nTime you were AFK for: {}".format(firstname, end_afk_time))
         except Exception:
             return
-            sleep(10)
-            unafk.delete()
+            #sleep(10)
+            #unafk.delete()
         except BaseException:
             return
 
@@ -147,8 +148,8 @@ def check_afk(update, context, user_id, fst_name, userc_id):
                 return
             res = "{} is AFK! Says it's because of:\n{}\nSince: {}".format(fst_name, reason, since_afk)
             update.effective_message.reply_text(res)
-            sleep(10)
-            replafk.delete()
+            #sleep(10)
+            #replafk.delete()
 
             
 def __user_info__(user_id):
