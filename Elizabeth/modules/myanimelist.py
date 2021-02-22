@@ -4,7 +4,7 @@ from jikanpy.exceptions import APIException
 
 from telegram import Message, Chat, User, ParseMode, Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler, Filters, run_async
-
+from Elizabeth.modules.helper_funcs.alternate import typing_action
 from Elizabeth import dispatcher
 
 jikan = Jikan()
