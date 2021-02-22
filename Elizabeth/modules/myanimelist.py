@@ -5,16 +5,16 @@ from jikanpy.exceptions import APIException
 from telegram import Message, Chat, User, ParseMode, Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler, Filters, run_async
 
-from SaitamaRobot import dispatcher
+from Elizabeth import dispatcher
 
 jikan = Jikan()
 
 
 @run_async
 @typing_action
-def anime(update: Update, context: CallbackContext):
+def anime(bot: Bot, update: Update, args: List[str]) -> None:
     msg = update.effective_message
-    args = context.args
+    #args = context.args
     query = " ".join(args)
     res = ""
     try:
@@ -86,10 +86,10 @@ def anime(update: Update, context: CallbackContext):
 
 @run_async
 @typing_action
-def character(update: Update, context: CallbackContext):
+def character(bot: Bot, update: Update, args: List[str]) -> None:
     msg = update.effective_message
     res = ""
-    args = context.args
+    #args = context.args
     query = " ".join(args)
     try:
         search = jikan.search("character", query).get("results")[0].get("mal_id")
@@ -122,7 +122,7 @@ def character(update: Update, context: CallbackContext):
         
 @run_async
 @typing_action
-def upcoming(update: Update, context: CallbackContext):
+def upcoming(bot: Bot, update: Update, args: List[str]) -> None:
     msg = update.effective_message
     rep = "<b>Upcoming anime</b>\n"
     later = jikan.season_later()
@@ -138,9 +138,9 @@ def upcoming(update: Update, context: CallbackContext):
     
 @run_async
 @typing_action
-def manga(update: Update, context: CallbackContext):
+def manga(bot: Bot, update: Update, args: List[str]) -> None:
     msg = update.effective_message
-    args = context.args
+    #args = context.args
     query = " ".join(args)
     res = ""
     manga = ""
