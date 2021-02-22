@@ -49,7 +49,7 @@ def afk(update, context):
 
 @run_async
 def no_longer_afk(update, context):
-     user = update.effective_user
+    user = update.effective_user
     message = update.effective_message
     if not user:  # ignore channels
         return
