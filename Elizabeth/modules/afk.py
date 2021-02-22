@@ -1,4 +1,5 @@
 import random
+import time
 from time import sleep
 
 from telegram import MessageEntity
