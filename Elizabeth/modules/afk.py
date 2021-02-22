@@ -16,7 +16,7 @@ from Elizabeth.modules.sql import afk_sql as sql
 from Elizabeth.modules.users import get_user_id
 from Elizabeth import REDIS
 from Elizabeth.modules.sql.afk_redis import start_afk, end_afk, is_user_afk, afk_reason
-
+from Elizabeth.modules.helper_funcs.readable_time import get_readable_time
 
 AFK_GROUP = 7
 AFK_REPLY_GROUP = 8
