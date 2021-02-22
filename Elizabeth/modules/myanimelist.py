@@ -12,9 +12,9 @@ jikan = Jikan()
 
 @run_async
 @typing_action
-def anime(bot: Bot, update: Update, args: List[str]) -> None:
+def anime(update, context):
     msg = update.effective_message
-    #args = context.args
+    args = context.args
     query = " ".join(args)
     res = ""
     try:
@@ -86,10 +86,10 @@ def anime(bot: Bot, update: Update, args: List[str]) -> None:
 
 @run_async
 @typing_action
-def character(bot: Bot, update: Update, args: List[str]) -> None:
+def character(update, context):
     msg = update.effective_message
     res = ""
-    #args = context.args
+    args = context.args
     query = " ".join(args)
     try:
         search = jikan.search("character", query).get("results")[0].get("mal_id")
@@ -122,7 +122,7 @@ def character(bot: Bot, update: Update, args: List[str]) -> None:
         
 @run_async
 @typing_action
-def upcoming(bot: Bot, update: Update, args: List[str]) -> None:
+def upcoming(update, context):
     msg = update.effective_message
     rep = "<b>Upcoming anime</b>\n"
     later = jikan.season_later()
@@ -138,9 +138,9 @@ def upcoming(bot: Bot, update: Update, args: List[str]) -> None:
     
 @run_async
 @typing_action
-def manga(bot: Bot, update: Update, args: List[str]) -> None:
+def manga(update, context):
     msg = update.effective_message
-    #args = context.args
+    args = context.args
     query = " ".join(args)
     res = ""
     manga = ""
