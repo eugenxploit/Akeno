@@ -3,6 +3,7 @@ import time
 import os
 import sys
 import spamwatch
+from redis import StrictRedis
 from pyrogram import Client, errors
 from telethon import TelegramClient
 import telegram.ext as tg
@@ -120,6 +121,7 @@ if ENV:
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
     IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
     IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
+    REDIS_URL = os.environ.get('REDIS_URL', None)
     #AI_API_KEY = os.environ.get('AI_API_KEY', "")
 
 else:
@@ -190,6 +192,7 @@ else:
     SPAMWATCH = Config.SPAMWATCH_API
     LASTFM_API_KEY = Config.LASTFM_API_KEY
     AI_API_KEY = Config.AI_API_KEY
+    REDIS_URL = Config.REDIS_URL
     
 DEV_USERS.add(OWNER_ID)
 
@@ -199,6 +202,14 @@ if SPAMWATCH is None:
     LOGGER.warning("Invalid spamwatch api")
 else:
     spamwtc = spamwatch.Client(SPAMWATCH)
+
+#redis
+REDIS = StrictRedis.from_url(REDIS_URL,decode_responses=True)
+try:
+    REDIS.ping()
+    LOGGER.info("Your redis server is now alive!")
+except BaseException:
+    raise Exception("Your redis server is not alive, please check again.")
 
 
 # Telethon
