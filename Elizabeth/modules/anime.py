@@ -227,8 +227,8 @@ def anime(update, context):
             site = trailer.get('site', None)
             if site == "youtube":
                 trailer = 'https://youtu.be/' + trailer_id
-        description = json.get('description', 'N/A').replace('<i>', '').replace(
-            '</i>', '').replace('<br>', '')
+        description = json.get('description', 'N/A').replace('<b>', '').replace(
+            '</b>', '').replace('<br>', '')
         msg += shorten(description, info)
         image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
         if trailer:
@@ -292,10 +292,11 @@ def character(update, context):
             update.effective_message.reply_photo(
                 photo=image,
                 caption=msg.replace('<b>', '</b>'),
+                reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN)
         else:
             update.effective_message.reply_text(
-                msg.replace('<b>', '</b>'), parse_mode=ParseMode.MARKDOWN)
+                msg.replace('<b>', '</b>'), reply_markup=InlineKeyboardMarkup(buttons), parse_mode=ParseMode.MARKDOWN)
 
 
 @run_async
