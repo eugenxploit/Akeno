@@ -25,6 +25,7 @@ from Elizabeth import (
     PORT,
     URL,
     LOGGER,
+    OWNER_ID,
     BLACKLIST_CHATS,
     WHITELIST_CHATS,
     nyaa,
