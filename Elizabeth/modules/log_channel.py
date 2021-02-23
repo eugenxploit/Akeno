@@ -41,9 +41,8 @@ if is_module_loaded(FILENAME):
             return result
 
         return log_action
-
-	def gloggable(func):
-
+    
+    def gloggable(func):
         @wraps(func)
         def glog_action(update, context, *args, **kwargs):
             result = func(update, context, *args, **kwargs)
@@ -63,7 +62,7 @@ if is_module_loaded(FILENAME):
 
             return result
 
-		return glog_action
+         return glog_action
 
     def send_log(bot: Bot, log_chat_id: str, orig_chat_id: str, result: str):
         try:
