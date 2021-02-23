@@ -77,7 +77,7 @@ async def whois(client, message):
                 bio=desc if desc else "`No bio set up.`"),
             disable_web_page_preview=True)
 
-  __mod_name__ = "Whois"
+__mod_name__ = "Whois"
 
 __help__ = """
 ⚙️ *WHOIS-lookup:*
