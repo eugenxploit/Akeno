@@ -704,9 +704,9 @@ KICKME_HANDLER = DisableAbleCommandHandler(
     "kickme", kickme, filters=Filters.group)
 BANME_HANDLER = DisableAbleCommandHandler(
     "banme", banme, filters=Filters.group)
-STEMPBAN_HANDLER = CommandHandler(["stban"], stemp_ban)
+#STEMPBAN_HANDLER = CommandHandler(["stban"], stemp_ban)
 #SBAN_HANDLER = CommandHandler("sban", sban)
-SKICK_HANDLER = CommandHandler("skick", skick)
+#SKICK_HANDLER = CommandHandler("skick", skick)
 DBAN_HANDLER = CommandHandler("dban", dban)
 
 
@@ -716,7 +716,7 @@ dispatcher.add_handler(KICK_HANDLER)
 dispatcher.add_handler(UNBAN_HANDLER)
 dispatcher.add_handler(KICKME_HANDLER)
 dispatcher.add_handler(BANME_HANDLER)
-dispatcher.add_handler(STEMPBAN_HANDLER)
-dispatcher.add_handler(SKICK_HANDLER)
+#dispatcher.add_handler(STEMPBAN_HANDLER)
+#dispatcher.add_handler(SKICK_HANDLER)
 #dispatcher.add_handler(SBAN_HANDLER)
 dispatcher.add_handler(DBAN_HANDLER)
