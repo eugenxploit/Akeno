@@ -385,14 +385,15 @@ def new_member(update, context):
             if sent:
                 sql.set_clean_welcome(chat.id, sent.message_id)
                 
-        if welcome_log:
+        elif welcome_log:
             return welcome_log
 
         return (f"{html.escape(chat.title)}\n"
                 f"#USER_JOINED\n"
                 f"<b>User</b>: {mention_html(user.id, user.first_name)}\n"
                 f"<b>ID</b>: <code>{user.id}</code>")
-
+        
+    
 @run_async
 def left_member(update, context):
     chat = update.effective_chat
