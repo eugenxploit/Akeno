@@ -64,7 +64,10 @@ if is_module_loaded(FILENAME):
 
         return glog_action
 
-     def send_log(bot: Bot, log_chat_id: str, orig_chat_id: str, result: str):
+    def send_log(bot: Bot, 
+                  log_chat_id: str,
+                  orig_chat_id: str,
+                  result: str):
         try:
             bot.send_message(log_chat_id, result, parse_mode=ParseMode.HTML)
         except BadRequest as excp:
