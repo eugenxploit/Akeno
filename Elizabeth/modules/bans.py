@@ -310,7 +310,7 @@ def temp_ban(update, context):
 @user_admin
 @user_can_ban
 @loggable
-def sban(update: Update, context: CallbackContext) -> str:
+def sban(update, context): -> str:
     chat = update.effective_chat
     user = update.effective_user
     message = update.effective_message
@@ -370,7 +370,7 @@ def sban(update: Update, context: CallbackContext) -> str:
 @user_admin
 @user_can_ban
 @loggable
-def stemp_ban(update: Update, context: CallbackContext) -> str:
+def stemp_ban(update, context): -> str:
     chat = update.effective_chat
     user = update.effective_user
     message = update.effective_message
@@ -541,7 +541,7 @@ def banme(update, context):
 @user_admin
 @user_can_ban
 @loggable
-def skick(update: Update, context: CallbackContext) -> str:
+def skick(update, context): -> str:
     chat = update.effective_chat
     user = update.effective_user
     message = update.effective_message
