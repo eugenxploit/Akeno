@@ -5,7 +5,7 @@ import datetime
 import textwrap
 import requests
 
-from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode)
+from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update)
 from telegram.ext import CallbackQueryHandler, CommandHandler, run_async
 from telegram.utils.helpers import mention_html
 
@@ -675,6 +675,44 @@ def button(update, context):
         else:
             query.answer("You are not allowed to use this.")
 
+def anime_quote():
+    url = "https://animechanapi.xyz/api/quotes/random"
+    response = requests.get(url)
+    # since text attribute returns dictionary like string
+    dic = json.loads(response.text)
+    quote = dic["data"][0]["quote"]
+    character = dic["data"][0]["character"]
+    anime = dic["data"][0]["anime"]
+    return quote, character, anime
+
+
+@run_async
+def quotes(update: Update, context: CallbackContext):
+    message = update.effective_message
+    quote, character, anime = anime_quote()
+    msg = f"<i>❝{quote}❞</i>\n\n<b>{character} from {anime}</b>"
+    keyboard = InlineKeyboardMarkup(
+        [[InlineKeyboardButton(text="Change", callback_data="change_quote")]]
+    )
+    message.reply_text(
+        msg,
+        reply_markup=keyboard,
+        parse_mode=ParseMode.HTML,
+    )
+
+
+@run_async
+def change_quote(update: Update, context: CallbackContext):
+    query = update.callback_query
+    chat = update.effective_chat
+    message = update.effective_message
+    quote, character, anime = anime_quote()
+    msg = f"<i>❝{quote}❞</i>\n\n<b>{character} from {anime}</b>"
+    keyboard = InlineKeyboardMarkup(
+        [[InlineKeyboardButton(text="Change", callback_data="quote_change")]]
+    )
+    message.edit_text(msg, reply_markup=keyboard, parse_mode=ParseMode.HTML)
+
 
 
 __help__ = """
@@ -693,7 +731,8 @@ __help__ = """
  • /mywaifus | characterlist | fcl: to get your favorite characters / waifus list.
  • /removewatchlist | rwl <anime>: to remove a anime from your list.
  • /rfcharacter | rfcl <character>: to remove a character from your list.  
- • /rmanga | rml <manga>: to remove a manga from your list.                              
+ • /rmanga | rml <manga>: to remove a manga from your list. 
+ • /quote: random quotes from anime characters.                              
  """
 
 ANIME_HANDLER = DisableAbleCommandHandler("anime", anime)
@@ -711,6 +750,9 @@ REMOVE_FVRT_CHAR_HANDLER = DisableAbleCommandHandler(["rfcharacter","rfcl"], rem
 REMOVE_MANGA_CHAR_HANDLER = DisableAbleCommandHandler(["rmanga","rml"], removemangalist)
 BUTTON_HANDLER = CallbackQueryHandler(button, pattern='anime_.*')
 ANIME_STUFFS_HANDLER = CallbackQueryHandler(animestuffs, pattern='xanime_.*')
+QUOTE = DisableAbleCommandHandler("quote", quotes)
+CHANGE_QUOTE = CallbackQueryHandler(change_quote, pattern=r"change_.*")
+QUOTE_CHANGE = CallbackQueryHandler(change_quote, pattern=r"quote_.*")
 
 dispatcher.add_handler(BUTTON_HANDLER)
 dispatcher.add_handler(ANIME_HANDLER)
@@ -725,6 +767,9 @@ dispatcher.add_handler(FVRT_CHAR_HANDLER)
 dispatcher.add_handler(REMOVE_FVRT_CHAR_HANDLER)
 dispatcher.add_handler(REMOVE_MANGA_CHAR_HANDLER)
 dispatcher.add_handler(REMOVE_WATCHLIST_HANDLER)
+dispatcher.add_handler(QUOTE)
+dispatcher.add_handler(CHANGE_QUOTE)
+dispatcher.add_handler(QUOTE_CHANGE)
 
 __mod_name__ = "Anime"
 __command_list__ = [
