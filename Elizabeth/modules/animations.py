@@ -226,7 +226,7 @@ earth_ani = [
 ]
 
 
-@user_admin
+#@user_admin
 @run_async
 @typing_action
 def blockanimation(update: Update, context: CallbackContext):
@@ -240,7 +240,7 @@ def blockanimation(update: Update, context: CallbackContext):
 
 
 
-@user_admin
+#@user_admin
 @run_async
 @typing_action
 def clockanimation(update: Update, context: CallbackContext):
@@ -254,7 +254,7 @@ def clockanimation(update: Update, context: CallbackContext):
 
 
 
-@user_admin
+#@user_admin
 @run_async
 @typing_action
 def earthanimation(update: Update, context: CallbackContext):
@@ -269,7 +269,7 @@ def earthanimation(update: Update, context: CallbackContext):
 
 
 
-@user_admin
+#@user_admin
 @run_async
 @typing_action
 def moonanimation(update: Update, context: CallbackContext):
@@ -288,7 +288,7 @@ def moonanimation(update: Update, context: CallbackContext):
 
 
 
-@user_admin
+#@user_admin
 @run_async
 @typing_action
 def bombs(update: Update, context: CallbackContext):
@@ -309,7 +309,7 @@ def bombs(update: Update, context: CallbackContext):
 
 
 
-@user_admin
+#@user_admin
 @run_async
 @typing_action
 def hack(update: Update, context: CallbackContext):
@@ -327,7 +327,7 @@ def hack(update: Update, context: CallbackContext):
 
 
 
-@user_admin
+#@user_admin
 @run_async
 @typing_action
 def love(update: Update, context: CallbackContext):
@@ -341,7 +341,7 @@ def love(update: Update, context: CallbackContext):
 
 
 
-@user_admin
+#@user_admin
 @run_async
 @typing_action
 def kill(update: Update, context: CallbackContext):
