@@ -5,6 +5,7 @@ from time import sleep
 from telegram import MessageEntity
 from telegram.error import BadRequest
 from telegram.ext import Filters, MessageHandler, run_async
+from telegram import ParseMode
 
 import Elizabeth.modules.helper_funcs.fun_strings as fun
 from Elizabeth import dispatcher
