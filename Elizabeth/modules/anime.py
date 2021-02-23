@@ -6,7 +6,7 @@ import textwrap
 import requests
 
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update)
-from telegram.ext import CallbackQueryHandler, CommandHandler, run_async
+from telegram.ext import CallbackQueryHandler, CommandHandler, run_async, CallbackContext
 from telegram.utils.helpers import mention_html
 
 from Elizabeth.modules.helper_funcs.alternate import typing_action
