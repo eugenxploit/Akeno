@@ -28,6 +28,7 @@ from Elizabeth.modules.helper_funcs.misc import (
     revert_buttons,
 )
 from Elizabeth.modules.helper_funcs.msg_types import get_welcome_type
+from Elizabeth.modules.log_channel import loggable
 from Elizabeth.modules.helper_funcs.string_handling import (
     escape_invalid_curly_brackets,
     markdown_parser,
@@ -149,6 +150,7 @@ def send(update, message, keyboard, backup_message):
 
 
 @run_async
+@loggable
 def new_member(update, context):
     chat = update.effective_chat
     user = update.effective_user
@@ -168,6 +170,8 @@ def new_member(update, context):
         for new_mem in new_members:
             reply = update.message.message_id
             cleanserv = sql.clean_service(chat.id)
+            welcome_log = None
+
             # Clean service welcome
             if cleanserv:
                 reply = False
@@ -380,7 +384,14 @@ def new_member(update, context):
 
             if sent:
                 sql.set_clean_welcome(chat.id, sent.message_id)
+                
+        if welcome_log:
+            return welcome_log
 
+        return (f"{html.escape(chat.title)}\n"
+                f"#USER_JOINED\n"
+                f"<b>User</b>: {mention_html(user.id, user.first_name)}\n"
+                f"<b>ID</b>: <code>{user.id}</code>")
 
 @run_async
 def left_member(update, context):
