@@ -1,5 +1,6 @@
 import re
 import time
+import html
 from html import escape
 
 from telegram import (
