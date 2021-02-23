@@ -305,7 +305,6 @@ def temp_ban(update, context):
     return ""
   
 @run_async
-@connection_status
 @bot_admin
 @can_restrict
 @user_admin
@@ -366,7 +365,6 @@ def sban(update: Update, context: CallbackContext) -> str:
 
   
 @run_async
-@connection_status
 @bot_admin
 @can_restrict
 @user_admin
@@ -538,7 +536,6 @@ def banme(update, context):
         update.effective_message.reply_text("Huh? I can't :/")
 
 @run_async
-@connection_status
 @bot_admin
 @can_restrict
 @user_admin
