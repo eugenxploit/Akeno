@@ -10,7 +10,7 @@ if is_module_loaded(FILENAME):
     from telegram.ext import CommandHandler, run_async
     from telegram.utils.helpers import escape_markdown
 
-    from Elizabeth import LOGGER, dispatcher
+    from Elizabeth import LOGGER, dispatcher, MESSAGE_DUMP
     from Elizabeth.modules.helper_funcs.chat_status import user_admin
     from Elizabeth.modules.sql import log_channel_sql as sql
 
