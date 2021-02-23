@@ -364,77 +364,78 @@ def temp_ban(update, context):
 
 
   
-@run_async
-@bot_admin
-@can_restrict
-@user_admin
-@user_can_ban
-@loggable
-def stemp_ban(update, context): 
-    chat = update.effective_chat
-    user = update.effective_user
-    message = update.effective_message
-    log_message = ""
-    bot, args = context.bot, context.args
-    user_id, reason = extract_user_and_text(message, args)
-    update.effective_message.delete()
-    if not user_id:
-        return log_message
-
-    try:
-        member = chat.get_member(user_id)
-    except BadRequest as excp:
-        if excp.message == "User not found":
-            return log_message
-        else:
-            raise
-
-    if user_id == bot.id:
-        return log_message
-
-    if is_user_ban_protected(chat, user_id, member):
-        return log_message
-
-    if not reason:
-        message.reply_text("You haven't specified a time to ban this user for!")
-        return log_message
-
-    split_reason = reason.split(None, 1)
-
-    time_val = split_reason[0].lower()
-    if len(split_reason) > 1:
-        reason = split_reason[1]
-    else:
-        reason = ""
-
-    bantime = extract_time(message, time_val)
-
-    if not bantime:
-        return log_message
-
-    log = (
-        f"<b>{html.escape(chat.title)}:</b>\n"
-        "#STEMP BANNED\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}\n"
-        f"<b>Time:</b> {time_val}")
-    if reason:
-        log += "\n<b>Reason:</b> {}".format(reason)
-
-    try:
-        chat.kick_member(user_id, until_date=bantime)
-        # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
-        return log
-
-    except BadRequest as excp:
-        if excp.message == "Reply message not found":
-            # Do not reply
-            return log
-        else:
-            LOGGER.warning(update)
-            LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s",
-                             user_id, chat.title, chat.id, excp.message)
-    return log_message
+#@run_async
+#@bot_admin
+#@can_restrict
+#@user_admin
+#@user_can_ban
+#@loggable
+#def stemp_ban(update, context): 
+#    chat = update.effective_chat
+#    user = update.effective_user
+#    message = update.effective_message
+#    log_message = ""
+#    bot, args = context.bot, context.args
+#    user_id, reason = extract_user_and_text(message, args)
+#    update.effective_message.delete()
+#    if not user_id:
+#        return log_message
+#
+#
+#    try:
+#        member = chat.get_member(user_id)
+#    except BadRequest as excp:
+#        if excp.message == "User not found":
+#            return log_message
+#        else:
+#            raise
+#
+#    if user_id == bot.id:
+#        return log_message
+#
+#    if is_user_ban_protected(chat, user_id, member):
+#        return log_message
+#
+#    if not reason:
+#        message.reply_text("You haven't specified a time to ban this user for!")
+#        return log_message
+#
+#   split_reason = reason.split(None, 1)
+#
+#    time_val = split_reason[0].lower()
+#    if len(split_reason) > 1:
+#        reason = split_reason[1]
+#    else:
+#        reason = ""
+#
+#    bantime = extract_time(message, time_val)
+#
+#    if not bantime:
+#        return log_message
+#
+#    log = (
+#        f"<b>{html.escape(chat.title)}:</b>\n"
+#        "#STEMP BANNED\n"
+#        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
+#        f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}\n"
+#        f"<b>Time:</b> {time_val}")
+#    if reason:
+#        log += "\n<b>Reason:</b> {}".format(reason)
+#
+#    try:
+#        chat.kick_member(user_id, until_date=bantime)
+#        # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+#        return log
+#
+#    except BadRequest as excp:
+#        if excp.message == "Reply message not found":
+#            # Do not reply
+#            return log
+#        else:
+#            LOGGER.warning(update)
+#            LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s",
+#                             user_id, chat.title, chat.id, excp.message)
+#    return log_message
 
 @run_async
 @bot_admin
@@ -535,51 +536,51 @@ def banme(update, context):
     else:
         update.effective_message.reply_text("Huh? I can't :/")
 
-@run_async
-@bot_admin
-@can_restrict
-@user_admin
-@user_can_ban
-@loggable
-def skick(update, context): 
-    chat = update.effective_chat
-    user = update.effective_user
-    message = update.effective_message
-    log_message = ""
-    bot, args = context.bot, context.args
-    user_id, reason = extract_user_and_text(message, args)
-    update.effective_message.delete()
-    if not user_id:
-        return log_message
-
-    try:
-        member = chat.get_member(user_id)
-    except BadRequest as excp:
-        if excp.message == "User not found":
-            return log_message
-        else:
-            raise
-
-    if user_id == bot.id:
-        return log_message
-
-    if is_user_ban_protected(chat, user_id):
-        return log_message
-
-    res = chat.unban_member(user_id)  # unban on current user = kick
-    if res:
-        log = (
-            f"<b>{html.escape(chat.title)}:</b>\n"
-            f"#SKICKED\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-            f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
-        )
-        if reason:
-            log += f"\n<b>Reason:</b> {reason}"
-
-        return log
-
-    return log_message
+#@run_async
+#@bot_admin
+#@can_restrict
+#@user_admin
+#@user_can_ban
+#@loggable
+#def skick(update, context): 
+#    chat = update.effective_chat
+#    user = update.effective_user
+#    message = update.effective_message
+#    log_message = ""
+#    bot, args = context.bot, context.args
+#    user_id, reason = extract_user_and_text(message, args)
+#    update.effective_message.delete()
+#    if not user_id:
+#        return log_message
+#
+#    try:
+#        member = chat.get_member(user_id)
+#    except BadRequest as excp:
+#        if excp.message == "User not found":
+#            return log_message
+#        else:
+#            raise
+#
+#    if user_id == bot.id:
+#        return log_message
+#
+#    if is_user_ban_protected(chat, user_id):
+#        return log_message
+#
+#   res = chat.unban_member(user_id)  # unban on current user = kick
+#    if res:
+#        log = (
+#            f"<b>{html.escape(chat.title)}:</b>\n"
+#            f"#SKICKED\n"
+#            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
+#            f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
+#        )
+#        if reason:
+#            log += f"\n<b>Reason:</b> {reason}"
+#
+#       return log
+#
+#    return log_message
         
 @run_async
 @bot_admin
