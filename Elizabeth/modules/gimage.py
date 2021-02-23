@@ -40,6 +40,7 @@ async def img_sampler(event):
        if not (await is_register_admin(event.input_chat, event.message.sender_id)):
           await event.reply("😜 Hai.. You are not admin..🤭 You can't use this command.. But you can use in my pm🙈")
           return
+     await event.reply("Downloading images, wait for a while!")
      query = event.pattern_match.group(1)
      jit = f'"{query}"'
      downloader.download(jit, limit=10, output_dir='store', adult_filter_off=False, force_replace=False, timeout=60)
