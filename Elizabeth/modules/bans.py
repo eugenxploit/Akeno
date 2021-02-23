@@ -1,7 +1,7 @@
 import html
 import telethon
 
-from telegram import ParseMode
+from telegram import ParseMode, Update
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters, run_async
 from telegram.utils.helpers import mention_html
