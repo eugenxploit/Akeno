@@ -146,12 +146,12 @@ async def progress_callback(current, total, reply):
             progress_callback_data[message_identifier] = last_edit_time, prevtext, start_time
 
 
-__help__ = """
-Trace.moe *Anime reverse search*
+#__help__ = """
+#Trace.moe *Anime reverse search*
 
-• /whatanime : reply to an anime GIF / Video / Image for its sauce.
+#• /whatanime : reply to an anime GIF / Video / Image for its sauce.
 
-NOTE: Output can be inaccurate sometimes. Use it on your own risks.
-"""
+#NOTE: Output can be inaccurate sometimes. Use it on your own risks.
+#"""
 
-__mod_name__ = "Trace.moe"
+#__mod_name__ = "Trace.moe"
