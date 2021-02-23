@@ -71,7 +71,7 @@ if is_module_loaded(FILENAME):
             bot.send_message(
                 log_chat_id,
                 result,
-                parse_mode=ParseMode.HTML,
+                #parse_mode=ParseMode.HTML,
                 disable_web_page_preview=True)
         except BadRequest as excp:
             if excp.message == "Chat not found":
