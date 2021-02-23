@@ -68,7 +68,11 @@ if is_module_loaded(FILENAME):
                  result: str):
         bot = context.bot        
         try:
-            bot.send_message(log_chat_id, result, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+            bot.send_message(
+                log_chat_id,
+                result,
+                parse_mode=ParseMode.HTML,
+                disable_web_page_preview=True)
         except BadRequest as excp:
             if excp.message == "Chat not found":
                 bot.send_message(
