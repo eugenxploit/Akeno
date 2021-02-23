@@ -62,7 +62,7 @@ if is_module_loaded(FILENAME):
 
             return result
 
-         return glog_action
+        return glog_action
 
     def send_log(bot: Bot, log_chat_id: str, orig_chat_id: str, result: str):
         try:
