@@ -283,6 +283,7 @@ def character(update, context):
         msg = f"*🎀 {json.get('name').get('full')}*(`{json.get('name').get('native')}`) 🎀\n"
         description = f"{json['description']}"
         site_url = json.get('siteUrl')
+        char_name = f"{json.get('name').get('full')}"
         msg += shorten(description, site_url)
         image = json.get('image', None)
         if image:
