@@ -1,5 +1,5 @@
 redis
-nekos
+nekos.py
 aiohttp>=2.2.5
 tgcrypto
 pyrogram>=1.0.7
