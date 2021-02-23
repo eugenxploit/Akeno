@@ -304,62 +304,62 @@ def temp_ban(update, context):
 
     return ""
   
-@run_async
-@bot_admin
-@can_restrict
-@user_admin
-@user_can_ban
-@loggable
-def sban(update, context): 
-    chat = update.effective_chat
-    user = update.effective_user
-    message = update.effective_message
-    log_message = ""
-    bot = context.bot
-    args = context.args
-    user_id, reason = extract_user_and_text(message, args)
-    update.effective_message.delete()
-    if not user_id:
-        return log_message
-
-    try:
-        member = chat.get_member(user_id)
-    except BadRequest as excp:
-        if excp.message == "User not found":
-            return log_message
-        else:
-            raise
-
-    if user_id == bot.id:
-        return log_message
-
-    if is_user_ban_protected(chat, user_id, member):
-        return log_message
-      
-    if user_id == 777000 or user_id == 1087968824:
-        return log_message
-      
-    log = (
-        f"<b>{html.escape(chat.title)}:</b>\n"
-        f"#SBANNED\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
-    )
-    if reason:
-        log += "\n<b>Reason:</b> {}".format(reason)
-
-    try:
-        chat.kick_member(user_id)
-        return log
-
-    except BadRequest as excp:
-        if excp.message == "Reply message not found":
-            return log
-        else:
-            LOGGER.warning(update)
-            LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s",
-                             user_id, chat.title, chat.id, excp.message)
-    return log_message
+#@run_async
+#@bot_admin
+#@can_restrict
+#@user_admin
+#@user_can_ban
+#@loggable
+#def sban(update, context): 
+#    chat = update.effective_chat
+#    user = update.effective_user
+#    message = update.effective_message
+#    log_message = ""
+#    bot = context.bot
+#    args = context.args
+#    user_id, reason = extract_user_and_text(message, args)
+#    update.effective_message.delete()
+#    if not user_id:
+#        return log_message
+#
+#    try:
+#        member = chat.get_member(user_id)
+#    except BadRequest as excp:
+#        if excp.message == "User not found":
+#            return log_message
+#        else:
+#            raise
+#
+#    if user_id == bot.id:
+#        return log_message
+#
+#    if is_user_ban_protected(chat, user_id, member):
+#        return log_message
+#      
+#    if user_id == 777000 or user_id == 1087968824:
+#        return log_message
+#      
+#    log = (
+#        f"<b>{html.escape(chat.title)}:</b>\n"
+#        f"#SBANNED\n"
+#        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
+#        f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
+#    )
+#    if reason:
+#        log += "\n<b>Reason:</b> {}".format(reason)
+#
+#    try:
+#        chat.kick_member(user_id)
+#        return log
+#
+#    except BadRequest as excp:
+#        if excp.message == "Reply message not found":
+#            return log
+#        else:
+#            LOGGER.warning(update)
+#            LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s",
+#                             user_id, chat.title, chat.id, excp.message)
+#    return log_message
 
 
 
@@ -704,7 +704,7 @@ KICKME_HANDLER = DisableAbleCommandHandler(
 BANME_HANDLER = DisableAbleCommandHandler(
     "banme", banme, filters=Filters.group)
 STEMPBAN_HANDLER = CommandHandler(["stban"], stemp_ban)
-SBAN_HANDLER = CommandHandler("sban", sban)
+#SBAN_HANDLER = CommandHandler("sban", sban)
 SKICK_HANDLER = CommandHandler("skick", skick)
 DBAN_HANDLER = CommandHandler("dban", dban)
 
@@ -717,5 +717,5 @@ dispatcher.add_handler(KICKME_HANDLER)
 dispatcher.add_handler(BANME_HANDLER)
 dispatcher.add_handler(STEMPBAN_HANDLER)
 dispatcher.add_handler(SKICK_HANDLER)
-dispatcher.add_handler(SBAN_HANDLER)
+#dispatcher.add_handler(SBAN_HANDLER)
 dispatcher.add_handler(DBAN_HANDLER)
