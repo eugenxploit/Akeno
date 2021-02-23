@@ -7,9 +7,13 @@ import requests
 
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode)
 from telegram.ext import CallbackQueryHandler, CommandHandler, run_async
+from telegram.utils.helpers import mention_html
+
 from Elizabeth.modules.helper_funcs.alternate import typing_action
 from Elizabeth import dispatcher
 from Elizabeth.modules.disable import DisableAbleCommandHandler
+from Elizabeth import OWNER_ID, SUDO_USERS, REDIS, dispatcher
+
 
 info_btn = "More Info 📕"
 prequel_btn = "⬅️ Prequel"
@@ -233,6 +237,7 @@ def anime(update, context):
             ]]
         else:
             buttons = [[InlineKeyboardButton("More Info", url=info)]]
+            buttons += [[InlineKeyboardButton("Add To Watchlist", callback_data=f"xanime_watchlist={anime_name_w}")]]
         if image:
             try:
                 update.effective_message.reply_photo(
@@ -281,6 +286,7 @@ def character(update, context):
         image = json.get('image', None)
         if image:
             image = image.get('large')
+            buttons = [[InlineKeyboardButton("Save as waifu 💝", callback_data=f"xanime_fvrtchar={char_name}")]]
             update.effective_message.reply_photo(
                 photo=image,
                 caption=msg.replace('<b>', '</b>'),
@@ -333,6 +339,7 @@ def manga(update, context):
         msg = msg[:-2]
         info = json['siteUrl']
         buttons = [[InlineKeyboardButton("More Info", url=info)]]
+        buttons += [[InlineKeyboardButton("📕 Add To Read List", callback_data=f"xanime_manga={title}")]]
         image = json.get("bannerImage", False)
         msg += f"_{json.get('description', None)}_"
         if image:
@@ -412,15 +419,13 @@ def user(update, context):
 
     caption = ""
 
-    caption += textwrap.dedent(f"""
+    caption += textwrap.dedent("""
     *Username*: [{user['username']}]({user['url']})
-
     *Gender*: `{user['gender']}`
     *Birthday*: `{user_birthday_formatted}`
     *Joined*: `{user_joined_date_formatted}`
     *Days wasted watching anime*: `{user['anime_stats']['days_watched']}`
     *Days wasted reading manga*: `{user['manga_stats']['days_read']}`
-
     """)
 
     caption += f"*About*: {about_string}"
@@ -457,6 +462,180 @@ def upcoming(update, context):
 
     update.effective_message.reply_text(upcoming_message)
 
+@run_async
+def watchlist(update, context):
+    chat = update.effective_chat  
+    user = update.effective_user 
+    message = update.effective_message  
+    watchlist = list(REDIS.sunion(f'anime_watch_list{user.id}'))
+    watchlist.sort()
+    watchlist = "\n• ".join(watchlist)
+    if watchlist:
+        message.reply_text(
+            "{}<b>'s Watchlist:</b>"
+            "\n• {}".format(mention_html(user.id, user.first_name),
+                        watchlist),
+            parse_mode=ParseMode.HTML
+        )
+    else:
+        message.reply_text(
+            "You havn't added anything in your watchlist!"
+        )
+@run_async
+def removewatchlist(update, context):
+    user = update.effective_user 
+    message = update.effective_message 
+    removewlist = message.text.split(' ', 1) 
+    args = context.args
+    query = " ".join(args)
+    if not query:
+        message.reply_text("Please enter a anime name to remove from your watchlist.")
+        return
+    watchlist = list(REDIS.sunion(f'anime_watch_list{user.id}'))
+    removewlist = removewlist[1]
+    
+    if removewlist not in watchlist:
+        message.reply_text(
+            f"<code>{removewlist}</code> doesn't exist in your watch list.",
+            parse_mode=ParseMode.HTML
+        )
+    else:
+        message.reply_text(
+            f"<code>{removewlist}</code> has been removed from your watch list.",
+            parse_mode=ParseMode.HTML
+        )
+        REDIS.srem(f'anime_watch_list{user.id}', removewlist)
+
+@run_async
+def fvrtchar(update, context):
+    chat = update.effective_chat  
+    user = update.effective_user 
+    message = update.effective_message  
+    fvrt_char = list(REDIS.sunion(f'anime_fvrtchar{user.id}'))
+    fvrt_char.sort()
+    fvrt_char = "\n• ".join(fvrt_char)
+    if fvrt_char:
+        message.reply_text(
+            "{}<b>'s Harem:</b>"
+            "\n• {}".format(mention_html(user.id, user.first_name),
+                        fvrt_char),
+            parse_mode=ParseMode.HTML
+        )
+    else:
+        message.reply_text(
+            "You havn't added any waifu in your harem!"
+        )
+        
+@run_async
+def removefvrtchar(update, context):
+    user = update.effective_user 
+    message = update.effective_message 
+    removewlist = message.text.split(' ', 1) 
+    args = context.args
+    query = " ".join(args)
+    if not query:
+        message.reply_text("Please enter a your waifu name to remove from your harem.")
+        return
+    fvrt_char = list(REDIS.sunion(f'anime_fvrtchar{user.id}'))
+    removewlist = removewlist[1]
+    
+    if removewlist not in fvrt_char:
+        message.reply_text(
+            f"<code>{removewlist}</code> doesn't exist in your harem",
+            parse_mode=ParseMode.HTML
+        )
+    else:
+        message.reply_text(
+            f"<code>{removewlist}</code> has been removed from your harem",
+            parse_mode=ParseMode.HTML
+        )
+        REDIS.srem(f'anime_fvrtchar{user.id}', removewlist)
+    
+@run_async
+def readmanga(update, context):
+    chat = update.effective_chat  
+    user = update.effective_user 
+    message = update.effective_message  
+    manga_list = list(REDIS.sunion(f'anime_mangaread{user.id}'))
+    manga_list.sort()
+    manga_list = "\n• ".join(manga_list)
+    if manga_list:
+        message.reply_text(
+            "{}<b>'s Manga Lists:</b>"
+            "\n• {}".format(mention_html(user.id, user.first_name),
+                        manga_list),
+            parse_mode=ParseMode.HTML
+        )
+    else:
+        message.reply_text(
+            "You havn't added anything in your manga list!"
+        )
+        
+@run_async
+def removemangalist(update, context):
+    user = update.effective_user 
+    message = update.effective_message 
+    removewlist = message.text.split(' ', 1) 
+    args = context.args
+    query = " ".join(args)
+    if not query:
+        message.reply_text("Please enter a manga name to remove from your manga list.")
+        return
+    fvrt_char = list(REDIS.sunion(f'anime_mangaread{user.id}'))
+    removewlist = removewlist[1]
+    
+    if removewlist not in fvrt_char:
+        message.reply_text(
+            f"<code>{removewlist}</code> doesn't exist in your manga list.",
+            parse_mode=ParseMode.HTML
+        )
+    else:
+        message.reply_text(
+            f"<code>{removewlist}</code> has been removed from your favorite characters list.",
+            parse_mode=ParseMode.HTML
+        )
+        REDIS.srem(f'anime_mangaread{user.id}', removewlist)
+
+def animestuffs(update, context):
+    query = update.callback_query
+    user = update.effective_user
+    splitter = query.data.split('=')
+    query_match = splitter[0]
+    callback_anime_data = splitter[1] 
+    if query_match == "xanime_watchlist":
+        watchlist = list(REDIS.sunion(f'anime_watch_list{user.id}'))
+        if not callback_anime_data in watchlist:
+            REDIS.sadd(f'anime_watch_list{user.id}', callback_anime_data)
+            context.bot.answer_callback_query(query.id,
+                                                text=f"{callback_anime_data} is successfully added to your watch list.",
+                                                show_alert=True)
+        else:
+            context.bot.answer_callback_query(query.id,
+                                                text=f"{callback_anime_data} is already exists in your watch list!",
+                                                show_alert=True)
+            
+    elif query_match == "xanime_fvrtchar":   
+        fvrt_char = list(REDIS.sunion(f'anime_fvrtchar{user.id}'))
+        if not callback_anime_data in fvrt_char:
+            REDIS.sadd(f'anime_fvrtchar{user.id}', callback_anime_data)
+            context.bot.answer_callback_query(query.id,
+                                                text=f"{callback_anime_data} is successfully added to your favorite character.",
+                                                show_alert=True)
+        else:
+            context.bot.answer_callback_query(query.id,
+                                                text=f"{callback_anime_data} is already exists in your favorite characters list!",
+                                                show_alert=True)
+    elif query_match == "xanime_manga":   
+        fvrt_char = list(REDIS.sunion(f'anime_mangaread{user.id}'))
+        if not callback_anime_data in fvrt_char:
+            REDIS.sadd(f'anime_mangaread{user.id}', callback_anime_data)
+            context.bot.answer_callback_query(query.id,
+                                                text=f"{callback_anime_data} is successfully added to your favorite character.",
+                                                show_alert=True)
+        else:
+            context.bot.answer_callback_query(query.id,
+                                                text=f"{callback_anime_data} is already exists in your favorite characters list!",
+                                                show_alert=True)
 
 def button(update, context):
     bot = context.bot
@@ -499,13 +678,19 @@ __help__ = """
 ✨ *Fetch information about anime, manga or characters from Anilist.co*
 
 ⚙️ *Available commands:*
-
+ • /whatanime : reply to an anime GIF / Video / Image for its sauce.
  • /anime <anime> : returns information about the anime.
  • /airing <anime> : returns anime airing info.
  • /manga <manga> : returns information about the manga.
  • /character <character> : returns information about the character.
  • /user <user> : returns information about a MyAnimeList user.
  • /schedule : returns a list of new anime in the upcoming seasons.
+ • /watchlist: to get your saved watchlist.
+ • /mangalist: to get your saved manga read list.
+ • /mywaifus | characterlist | fcl: to get your favorite characters / waifus list.
+ • /removewatchlist | rwl <anime>: to remove a anime from your list.
+ • /rfcharacter | rfcl <character>: to remove a character from your list.  
+ • /rmanga | rml <manga>: to remove a manga from your list.                              
  """
 
 ANIME_HANDLER = DisableAbleCommandHandler("anime", anime)
@@ -515,6 +700,14 @@ MANGA_HANDLER = DisableAbleCommandHandler("manga", manga)
 USER_HANDLER = DisableAbleCommandHandler("user", user)
 UPCOMING_HANDLER = DisableAbleCommandHandler("schedule", upcoming)
 BUTTON_HANDLER = CallbackQueryHandler(button, pattern='anime_.*')
+WATCHLIST_HANDLER = DisableAbleCommandHandler("watchlist", watchlist)
+MANGALIST_HANDLER = DisableAbleCommandHandler("mangalist", readmanga)
+FVRT_CHAR_HANDLER = DisableAbleCommandHandler(["characterlist","fcl","mywaifus"], fvrtchar)
+REMOVE_WATCHLIST_HANDLER = DisableAbleCommandHandler(["removewatchlist","rwl"], removewatchlist)
+REMOVE_FVRT_CHAR_HANDLER = DisableAbleCommandHandler(["rfcharacter","rfcl"], removefvrtchar)
+REMOVE_MANGA_CHAR_HANDLER = DisableAbleCommandHandler(["rmanga","rml"], removemangalist)
+BUTTON_HANDLER = CallbackQueryHandler(button, pattern='anime_.*')
+ANIME_STUFFS_HANDLER = CallbackQueryHandler(animestuffs, pattern='xanime_.*')
 
 dispatcher.add_handler(BUTTON_HANDLER)
 dispatcher.add_handler(ANIME_HANDLER)
@@ -523,8 +716,14 @@ dispatcher.add_handler(MANGA_HANDLER)
 dispatcher.add_handler(AIRING_HANDLER)
 dispatcher.add_handler(USER_HANDLER)
 dispatcher.add_handler(UPCOMING_HANDLER)
+dispatcher.add_handler(WATCHLIST_HANDLER)
+dispatcher.add_handler(MANGALIST_HANDLER)
+dispatcher.add_handler(FVRT_CHAR_HANDLER)
+dispatcher.add_handler(REMOVE_FVRT_CHAR_HANDLER)
+dispatcher.add_handler(REMOVE_MANGA_CHAR_HANDLER)
+dispatcher.add_handler(REMOVE_WATCHLIST_HANDLER)
 
-__mod_name__ = "AniList"
+__mod_name__ = "Anime"
 __command_list__ = [
     "anime", "manga", "character", "user", "upcoming", "airing"   
 ]
