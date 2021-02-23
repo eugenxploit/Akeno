@@ -218,6 +218,7 @@ def anime(update, context):
         for x in json['studios']['nodes']:
             msg += f"{x['name']}, "
         msg = msg[:-2] + '`\n'
+        anime_name_w = f"{json['title']['romaji']}"
         info = json.get('siteUrl')
         trailer = json.get('trailer', None)
         anime_id = json['id']
@@ -419,7 +420,7 @@ def user(update, context):
 
     caption = ""
 
-    caption += textwrap.dedent("""
+    caption += textwrap.dedent(f"""
     *Username*: [{user['username']}]({user['url']})
     *Gender*: `{user['gender']}`
     *Birthday*: `{user_birthday_formatted}`
