@@ -64,8 +64,10 @@ if is_module_loaded(FILENAME):
 
         return glog_action
 
-    def send_log(bot: Bot, context: CallbackContext, log_chat_id: str, orig_chat_id: str,
-                 result: str):
+    def send_log(bot: Bot, #context: CallbackContext, 
+                log_chat_id: str, 
+                orig_chat_id: str,
+                result: str):
         #bot = context.bot        
         try:
             bot.send_message(
