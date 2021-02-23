@@ -4,7 +4,7 @@ import jikanpy
 import datetime
 import textwrap
 import requests
-
+import json
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update)
 from telegram.ext import CallbackQueryHandler, CommandHandler, run_async, CallbackContext
 from telegram.utils.helpers import mention_html
