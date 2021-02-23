@@ -7,7 +7,7 @@ FILENAME = __name__.rsplit(".", 1)[-1]
 if is_module_loaded(FILENAME):
     from telegram import Bot, ParseMode
     from telegram.error import BadRequest, Unauthorized
-    from telegram.ext import CommandHandler, run_async
+    from telegram.ext import CommandHandler, run_async, CallbackContext
     from telegram.utils.helpers import escape_markdown
 
     from Elizabeth import LOGGER, dispatcher, MESSAGE_DUMP
@@ -65,7 +65,7 @@ if is_module_loaded(FILENAME):
 
         return glog_action
     
-    def send_log(bot: Bot, log_chat_id: str, orig_chat_id: str, result: str):
+    def send_log(bot: Bot, log_chat_id: str, orig_chat_id: str, result: str, context: CallbackContext):
         try:
             bot.send_message(log_chat_id, result, parse_mode=ParseMode.HTML)
         except BadRequest as excp:
