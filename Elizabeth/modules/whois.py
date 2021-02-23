@@ -76,3 +76,11 @@ async def whois(client, message):
                 last_online=LastOnline(user),
                 bio=desc if desc else "`No bio set up.`"),
             disable_web_page_preview=True)
+
+  __mod_name__ = "Whois"
+
+__help__ = """
+⚙️ *WHOIS-lookup:*
+
+• /whois - use it as a reply or /whois @username or userid, to fetch whois data.
+"""
