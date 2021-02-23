@@ -141,12 +141,12 @@ def check_afk(update, context, user_id, fst_name, userc_id):
         if reason == "none":
             if int(userc_id) == int(user_id):
                 return
-            res = "{} is AFK!\nSince: {}".format(fst_name, since_afk)
+            res = "{} is AFK!\n*Since:* {}".format(fst_name, since_afk)
             update.effective_message.reply_text(res)
         else:
             if int(userc_id) == int(user_id):
                 return
-            res = "{} is AFK! Says it's because of:\n{}\nSince: {}".format(fst_name, reason, since_afk)
+            res = "{} is AFK!\n*Reason:*\n{}\n*Last seen:* {}".format(fst_name, reason, since_afk)
             update.effective_message.reply_text(res)
             #sleep(10)
             #replafk.delete()
@@ -161,7 +161,7 @@ def __user_info__(user_id):
         text += f"\n<i>Since: {since_afk}</i>"
        
     else:
-        text = "<i>This user is currently isn't afk (away from keyboard).</i>"
+        text = "<i>Currently this user isn't afk (away from keyboard).</i>"
     return text
 
 
