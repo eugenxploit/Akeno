@@ -1,5 +1,5 @@
 from functools import wraps
-from datetime import datetime
+
 from Elizabeth.modules.helper_funcs.misc import is_module_loaded
 
 FILENAME = __name__.rsplit(".", 1)[-1]
@@ -7,10 +7,10 @@ FILENAME = __name__.rsplit(".", 1)[-1]
 if is_module_loaded(FILENAME):
     from telegram import Bot, ParseMode
     from telegram.error import BadRequest, Unauthorized
-    from telegram.ext import CommandHandler, run_async, CallbackContext
+    from telegram.ext import CommandHandler, run_async
     from telegram.utils.helpers import escape_markdown
 
-    from Elizabeth import LOGGER, dispatcher, MESSAGE_DUMP
+    from Elizabeth import LOGGER, dispatcher
     from Elizabeth.modules.helper_funcs.chat_status import user_admin
     from Elizabeth.modules.sql import log_channel_sql as sql
 
@@ -42,7 +42,7 @@ if is_module_loaded(FILENAME):
 
         return log_action
 
-    def gloggable(func):
+	def gloggable(func):
 
         @wraps(func)
         def glog_action(update, context, *args, **kwargs):
@@ -63,10 +63,9 @@ if is_module_loaded(FILENAME):
 
             return result
 
-        return glog_action
-    
-    def send_log(context: CallbackContext, log_chat_id: str, orig_chat_id: str, result: str):
-        bot = context.bot
+		return glog_action
+
+    def send_log(bot: Bot, log_chat_id: str, orig_chat_id: str, result: str):
         try:
             bot.send_message(log_chat_id, result, parse_mode=ParseMode.HTML)
         except BadRequest as excp:
@@ -187,7 +186,6 @@ if is_module_loaded(FILENAME):
 Recent actions are nice, but they don't help you log every action taken by the bot. This is why you need log channels!
 Log channels can help you keep track of exactly what the other admins are doing. \
 Bans, Mutes, warns, notes - everything can be moderated.
-
 *Admin only:*
  • /logchannel: Get log channel info
  • /setlog: Set the log channel.
@@ -213,4 +211,6 @@ Setting the log channel is done by:
 else:
     # run anyway if module not loaded
     def loggable(func):
+        return func
+    def gloggable(func):
         return func
