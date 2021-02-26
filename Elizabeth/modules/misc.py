@@ -8,7 +8,8 @@ import subprocess
 from io import BytesIO
 from random import randint
 from typing import Optional
-
+import sh
+import neofetch
 import requests as r
 import wikipedia
 from covid import Covid
