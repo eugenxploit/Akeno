@@ -8,7 +8,7 @@ from contextlib import redirect_stdout
 
 from Elizabeth import LOGGER, dispatcher
 #from Elizabeth.modules.helper_funcs.chat_status import dev_plus
-from telegram import ParseMode, Update
+from telegram import ParseMode, Update, Bot
 from telegram.ext import CallbackContext, CommandHandler, run_async
 
 namespaces = {}
