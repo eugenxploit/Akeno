@@ -5,6 +5,7 @@ import os
 import random
 import re
 import subprocess
+
 from io import BytesIO
 from random import randint
 from typing import Optional
@@ -587,7 +588,8 @@ def stats(update, context):
         + "\n".join([mod.__stats__() for mod in STATS])
     )
     result = re.sub(r"(\d+)", r"<code>\1</code>", stats)
-
+    update.effective_message.reply_text(result, parse_mode=ParseMode.HTML)
+    
 @run_async
 @typing_action
 def covid(update, context):
