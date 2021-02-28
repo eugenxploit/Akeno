@@ -151,9 +151,9 @@ def new_member(update: Update, context: CallbackContext):
         welcome_bool = True
         media_wel = False
 
-        if sw != None:
-            sw_ban = sw.get_ban(new_mem.id)
-            if sw_ban:
+        if spamwtc != None:
+            spamwtc_ban = spamwtc.get_ban(new_mem.id)
+            if spamwtc_ban:
                 return
 
         if should_welc:
@@ -452,9 +452,9 @@ def left_member(update: Update, context: CallbackContext):
         if left_mem:
 
             # Thingy for spamwatched users
-            if sw != None:
-                sw_ban = sw.get_ban(left_mem.id)
-                if sw_ban:
+            if spamwtc != None:
+                spamwtc_ban = spamwtc.get_ban(left_mem.id)
+                if spamwtc_ban:
                     return
 
             # Dont say goodbyes to gbanned users
@@ -982,22 +982,36 @@ def __chat_settings__(chat_id, user_id):
 
 
 __help__ = """
-*Admins only:*
- • `/welcome <on/off>`*:* enable/disable welcome messages.
- • `/welcome`*:* shows current welcome settings.
- • `/welcome noformat`*:* shows current welcome settings, without the formatting - useful to recycle your welcome messages!
- • `/goodbye`*:* same usage and args as `/welcome`.
- • `/setwelcome <sometext>`*:* set a custom welcome message. If used replying to media, uses that media.
- • `/setgoodbye <sometext>`*:* set a custom goodbye message. If used replying to media, uses that media.
- • `/resetwelcome`*:* reset to the default welcome message.
- • `/resetgoodbye`*:* reset to the default goodbye message.
- • `/cleanwelcome <on/off>`*:* On new member, try to delete the previous welcome message to avoid spamming the chat.
- • `/welcomemutehelp`*:* gives information about welcome mutes.
- • `/cleanservice <on/off`*:* deletes telegrams welcome/left service messages.
- *Example:*
+⚙️ *Admins only:*
+ • /welcome <on/off>*:* enable/disable welcome messages.
+ • /welcome*:* shows current welcome settings.
+ • /welcome noformat*:* shows current welcome settings, without the formatting - useful to recycle your welcome messages!
+ • /goodbye*:* same usage and args as `/welcome`.
+ • /setwelcome <sometext>*:* set a custom welcome message. If used replying to media, uses that media.
+ • /setgoodbye <sometext>*:* set a custom goodbye message. If used replying to media, uses that media.
+ • /resetwelcome*:* reset to the default welcome message.
+ • /resetgoodbye*:* reset to the default goodbye message.
+ • /cleanwelcome <on/off>*:* On new member, try to delete the previous welcome message to avoid spamming the chat.
+ • /welcomemutehelp*:* gives information about welcome mutes.
+ • /cleanservice <on/off*:* deletes telegrams welcome/left service messages.
+ 
+⚙️ *Example:*
 user joined chat, user left chat.
 *Welcome markdown:*
  • `/welcomehelp`*:* view more formatting information for custom welcome/goodbye messages.
+
+An example of using buttons:
+You can create a button using `[button text](buttonurl://example.com)`.
+
+If you wish to add more than 1 buttons simply do the following:
+`[Button 1](buttonurl://example.com)`
+`[Button 2](buttonurl://github.com:same)`
+`[Button 3](buttonurl://google.com)`
+
+The `:same` end of the link merges 2 buttons on same line as 1 button, resulting in 3rd button to be separated \
+from same line.
+
+• Tip: Buttons must be placed at the end of welcome messages.
 """
 
 NEW_MEM_HANDLER = MessageHandler(Filters.status_update.new_chat_members,
