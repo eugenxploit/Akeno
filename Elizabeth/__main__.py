@@ -167,6 +167,7 @@ def test(update, context):
 @run_async
 @typing_action
 def start(update, context):
+    uptime = get_readable_time((time.time() - StartTime))
     if update.effective_chat.type == "private":
         args = context.args
         if len(args) >= 1:
