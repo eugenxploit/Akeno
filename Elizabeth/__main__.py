@@ -51,8 +51,7 @@ PM_START_TEXT = f"""
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
 AKENOPINGIMG = "https://telegra.ph/file/6cd255ca75a70c4ebe92d.gif"
-AKENOPINGIMGTEXT = """<b>Ara Ara! queen in command!</b>\n<b>since:</b> <code>{}</code>""".format(uptime),
-            parse_mode=ParseMode.HTML)
+AKENOPINGIMGTEXT = """<b>Ara Ara! queen in command!</b>\n<b>since:</b> <code>{}</code>""".format(uptime), parse_mode=ParseMode.HTML)
 
 buttons = [[InlineKeyboardButton(text="➕ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ",
                                   url="t.me/EchidnaRoBot?startgroup=true"),
