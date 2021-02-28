@@ -3,7 +3,8 @@
 import requests
 
 from telegram import Update, ParseMode
-from telegram.ext import CommandHandler, CallbackContext
+from telegram.ext import CommandHandler, CallbackContext, run_async
+
 
 from Elizabeth import dispatcher, LASTFM_API_KEY
 from Elizabeth.modules.disable import DisableAbleCommandHandler
