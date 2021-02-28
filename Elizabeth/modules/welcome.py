@@ -283,43 +283,46 @@ def new_member(update, context):
                     # edge case of empty name - occurs for some bugs.
                     first_name = new_mem.first_name or "PersonWithNoName"
                     if cust_welcome:
+                        if cust_welcome == sql.DEFAULT_WELCOME:
+                            cust_welcome = random.choice(
+                            sql.DEFAULT_WELCOME_MESSAGES).format(
+                                first=escape_markdown(first_name))
+
                         if new_mem.last_name:
-                            fullname = "{} {}".format(
-                                first_name, new_mem.last_name)
+                            fullname = escape_markdown(
+                            f"{first_name} {new_mem.last_name}")
                         else:
-                            fullname = first_name
-                        count = chat.get_members_count()
-                        mention = mention_html(new_mem.id, first_name)
+                            fullname = escape_markdown(first_name)
+                            count = chat.get_members_count()
+                            mention = mention_markdown(new_mem.id,
+                                               escape_markdown(first_name))
                         if new_mem.username:
-                            username = "@" + escape(new_mem.username)
+                            username = "@" + escape_markdown(new_mem.username)
                         else:
                             username = mention
 
-                        valid_format = escape_invalid_curly_brackets(
-                            cust_welcome, VALID_WELCOME_FORMATTERS
-                        )
+                    valid_format = escape_invalid_curly_brackets(
+                        cust_welcome, VALID_WELCOME_FORMATTERS)
                         res = valid_format.format(
-                            first=escape(first_name),
-                            last=escape(new_mem.last_name or first_name),
-                            fullname=escape(fullname),
-                            username=username,
-                            mention=mention,
-                            count=count,
-                            chatname=escape(chat.title),
-                            id=new_mem.id,
-                        )
-                        buttons = sql.get_welc_buttons(chat.id)
-                        keyb = build_keyboard(buttons)
-                    else:
-                        res = random.choice(sql.DEFAULT_WELCOME_MESSAGES).format(
-                        first=escape_markdown(first_name))
-                        keyb = []
+                        first=escape_markdown(first_name),
+                        last=escape_markdown(new_mem.last_name or first_name),
+                        fullname=escape_markdown(fullname),
+                        username=username,
+                        mention=mention,
+                        count=count,
+                        chatname=escape_markdown(chat.title),
+                        id=new_mem.id,
+                    )
 
-                        backup_message = random.choice(
-                        sql.DEFAULT_WELCOME_MESSAGES).format(
+                   else:
+                    res = random.choice(sql.DEFAULT_WELCOME_MESSAGES).format(
                         first=escape_markdown(first_name))
-                        keyboard = InlineKeyboardMarkup(keyb)
+                    keyb = []
 
+                backup_message = random.choice(
+                    sql.DEFAULT_WELCOME_MESSAGES).format(
+                        first=escape_markdown(first_name))
+                keyboard = InlineKeyboardMarkup(keyb)
 
                     if (
                         is_user_ban_protected(
