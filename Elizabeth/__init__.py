@@ -7,6 +7,11 @@ from redis import StrictRedis
 from pyrogram import Client, errors
 from telethon import TelegramClient
 import telegram.ext as tg
+from telegraph import Telegraph
+
+
+telegraph = Telegraph()
+telegraph.create_account(short_name='ryuzoku')
 
 # enable logging
 logging.basicConfig(
