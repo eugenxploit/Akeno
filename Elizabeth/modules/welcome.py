@@ -301,28 +301,28 @@ def new_member(update, context):
                         else:
                             username = mention
 
-                    valid_format = escape_invalid_curly_brackets(
-                        cust_welcome, VALID_WELCOME_FORMATTERS)
-                        res = valid_format.format(
-                        first=escape_markdown(first_name),
-                        last=escape_markdown(new_mem.last_name or first_name),
-                        fullname=escape_markdown(fullname),
-                        username=username,
-                        mention=mention,
-                        count=count,
-                        chatname=escape_markdown(chat.title),
-                        id=new_mem.id,
+                            valid_format = escape_invalid_curly_brackets(
+                            cust_welcome, VALID_WELCOME_FORMATTERS)
+                            res = valid_format.format(
+                            first=escape_markdown(first_name),
+                            last=escape_markdown(new_mem.last_name or first_name),
+                            fullname=escape_markdown(fullname),
+                            username=username,
+                            mention=mention,
+                            count=count,
+                            chatname=escape_markdown(chat.title),
+                            id=new_mem.id,
                     )
 
                    else:
-                    res = random.choice(sql.DEFAULT_WELCOME_MESSAGES).format(
-                        first=escape_markdown(first_name))
-                    keyb = []
+                        res = random.choice(sql.DEFAULT_WELCOME_MESSAGES).format(
+                            first=escape_markdown(first_name))
+                        keyb = []
 
-                backup_message = random.choice(
-                    sql.DEFAULT_WELCOME_MESSAGES).format(
-                        first=escape_markdown(first_name))
-                keyboard = InlineKeyboardMarkup(keyb)
+                        backup_message = random.choice(
+                        sql.DEFAULT_WELCOME_MESSAGES).format(
+                            first=escape_markdown(first_name))
+                        keyboard = InlineKeyboardMarkup(keyb)
 
                     if (
                         is_user_ban_protected(
