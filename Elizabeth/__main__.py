@@ -42,7 +42,7 @@ from Elizabeth.modules.helper_funcs.misc import paginate_modules
 from Elizabeth.modules.helper_funcs.alternate import typing_action
 
 
-PM_START_TEXT = f"""
+PM_START_TEXT = """
 — ♛ ——— 「 *Akeno* 」 ——— ♛ —
 • *Multifeatured chat-management Bot* [ㅤ](https://telegra.ph/file/204c34acf90114464888a.mp4)
 • *Server Uptime :* `{}`
