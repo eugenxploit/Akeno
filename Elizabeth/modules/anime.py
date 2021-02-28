@@ -25,9 +25,9 @@ def shorten(description, info='anilist.co'):
     msg = ""
     if len(description) > 700:
         description = description[0:500] + '....'
-        msg += f"\n*📕Description*: _{description}_[Read More]({info})"
+        msg += f"\n*Description*: _{description}_[Read More]({info})"
     else:
-        msg += f"\n*📕Description*:_{description}_"
+        msg += f"\n*Description*:_{description}_"
     return msg
 
 
@@ -179,13 +179,13 @@ def airing(update, context):
         }).json()['data']['Media']
     info = response.get('siteUrl')
     image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
-    msg = f"🇯🇵*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n\n*🧾ID*: `{response['id']}`[⁠ ⁠]({image})"
+    msg = f"*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n\n*🧾ID*: `{response['id']}`[⁠ ⁠]({image})"
     if response['nextAiringEpisode']:
         time = response['nextAiringEpisode']['timeUntilAiring'] * 1000
         time = t(time)
-        msg += f"\n*📺Episode*: `{response['nextAiringEpisode']['episode']}`\n*🎉Airing In*: `{time}`"
+        msg += f"\n*Episode*: `{response['nextAiringEpisode']['episode']}`\n*🎉Airing In*: `{time}`"
     else:
-        msg += f"\n*📺Episode*:{response['episodes']}\n*📂Status*: `N/A`"
+        msg += f"\n*Episode*:{response['episodes']}\n*📂Status*: `N/A`"
     update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
 
 
@@ -210,11 +210,11 @@ def anime(update, context):
         return
     if json:
         json = json['data']['Media']
-        msg = f"*🇯🇵{json['title']['romaji']}*(`{json['title']['native']}`)\n\n*📺Type*: {json['format']}\n*📂Status*: {json['status']}\n*🗓Episodes*: {json.get('episodes', 'N/A')}\n*⏲Duration*: {json.get('duration', 'N/A')} Per Ep.\n**📊Score*: {json['averageScore']}\n**🎭Genres*: `"
+        msg = f"*{json['title']['romaji']}*(`{json['title']['native']}`)\n\n*📺Type*: {json['format']}\n*Status*: {json['status']}\n*Episodes*: {json.get('episodes', 'N/A')}\n*Duration*: {json.get('duration', 'N/A')} Per Ep.\n**Score*: {json['averageScore']}\n**Genres*: `"
         for x in json['genres']:
             msg += f"{x}, "
         msg = msg[:-2] + '`\n'
-        msg += "*🎥Studios*: `"
+        msg += "*Studios*: `"
         for x in json['studios']['nodes']:
             msg += f"{x['name']}, "
         msg = msg[:-2] + '`\n'
@@ -236,6 +236,7 @@ def anime(update, context):
                 InlineKeyboardButton("More Info 📌", url=info),
                 InlineKeyboardButton("Trailer 🎬", url=trailer)
             ]]
+            buttons += [[InlineKeyboardButton("Add To Watchlist", callback_data=f"xanime_watchlist={anime_name_w}")]]
         else:
             buttons = [[InlineKeyboardButton("More Info", url=info)]]
             buttons += [[InlineKeyboardButton("Add To Watchlist", callback_data=f"xanime_watchlist={anime_name_w}")]]
@@ -331,12 +332,12 @@ def manga(update, context):
             if title_native:
                 msg += f"(`{title_native}`)"
         if start_date:
-            msg += f"\n*🎉Start Date* - `{start_date}`"
+            msg += f"\n*Start Date* - `{start_date}`"
         if status:
-            msg += f"\n*📂Status* - `{status}`"
+            msg += f"\n*Status* - `{status}`"
         if score:
-            msg += f"\n*📊Score* - `{score}`"
-        msg += '\n*🎭Genres* - '
+            msg += f"\n*Score* - `{score}`"
+        msg += '\n*Genres* - '
         for x in json.get('genres', []):
             msg += f"{x}, "
         msg = msg[:-2]
