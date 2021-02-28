@@ -219,6 +219,7 @@ def start(update, context):
 
         else:
                 #update.effective_message.reply_sticker(NISSHOKU)
+                first_name = update.effective_user.first_name
                 update.effective_message.reply_text(
                 PM_START_TEXT.format(
                 escape_markdown(uptime),
