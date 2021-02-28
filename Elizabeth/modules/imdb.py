@@ -120,7 +120,7 @@ async def imdb(e):
 __help__ = """
 ⚙️ *Search your query on IMDB*
 
-• /imdb <show name / movie name> 
+• /imdb <show name / movie name / anime name> 
 """
 
 __mod_name__ = "IMDB"
