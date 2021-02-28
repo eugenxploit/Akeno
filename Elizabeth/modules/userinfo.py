@@ -175,6 +175,9 @@ Reply to user's message: `/setbio He is such cool person`.
 
 ⚙️ *ERASE INFO:*
  • /gdpr: Deletes your information from the bot's database. Private chats only.
+
+⚙️ *BAN STATS:*
+ • /scan: shows CAS / Spamwatch Ban status.
 """
 
 __mod_name__ = "Info"
