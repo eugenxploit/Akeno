@@ -79,6 +79,7 @@ MIGRATEABLE = []
 HELPABLE = {}
 STATS = []
 USER_INFO = []
+USER_BOOK = []
 DATA_IMPORT = []
 DATA_EXPORT = []
 
@@ -114,6 +115,9 @@ for module_name in ALL_MODULES:
 
     if hasattr(imported_module, "__user_info__"):
         USER_INFO.append(imported_module)
+        
+    if hasattr(imported_module, "__user_book__"):
+        USER_BOOK.append(imported_module)    
 
     if hasattr(imported_module, "__import_data__"):
         DATA_IMPORT.append(imported_module)
