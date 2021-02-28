@@ -634,10 +634,8 @@ def Nisshoku_about_callback(update, context):
     if query.data == "nisshokuabout_":
         query.message.edit_text(
             text="""*About :*
-                 \n\nAkeno is a fork of *Marie + Userindo.* It also includes some unofficial plugins.
-                 \n- Current maintainer: @PresidentRias
-                 \n- Bot repository: {REPOSITORY}
-                 \n- For support, reach out: @AkenoSupportBot
+                 \nAkeno is a fork of *Marie + Userindo.* It also includes some unofficial plugins.                 
+                 \n-For support, reach out: @AkenoSupportBot
                  \n*Some Anime related links:*
                  \n*Anime Chat:* @AnimeRyuzoku
                  \n*Anime Bot:* @Any_AnimeBot
