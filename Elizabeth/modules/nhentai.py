@@ -8,7 +8,7 @@ from pyrogram.types import (InlineKeyboardMarkup,
                             )
 
 from Elizabeth import nyaa
-import telegraph
+from Elizabeth import telegraph
 
 
 
