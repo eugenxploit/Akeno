@@ -118,41 +118,41 @@ def ban(update, context):
 @user_admin
 @loggable
 @typing_action
-async def dban(update, context):
-      chat = update.effective_chat
-      user = update.effective_user
-      message = update.effective_message
-      args = context.args
+def dban(update, context):
+    chat = update.effective_chat
+    user = update.effective_user
+    message = update.effective_message
+    args = context.args
 
-      if user_can_ban(chat, user, context.bot.id) is False:
-          message.reply_text("You don't have enough rights to ban users!")
-          return ""
+    if user_can_ban(chat, user, context.bot.id) is False:
+        message.reply_text("You don't have enough rights to ban users!")
+        return ""
 
-      user_id, reason = extract_user_and_text(message, args)
+    user_id, reason = extract_user_and_text(message, args)
 
-      if not user_id:
-          message.reply_text("Dude atleast refer some user to ban!")
-          return ""
+    if not user_id:
+        message.reply_text("Dude atleast refer some user to ban!")
+        return ""
 
-      try:
-          member = chat.get_member(user_id)
-      except BadRequest as excp:
-          if excp.message == "User not found":
-              message.reply_text("I can't seem to find this user")
-              return ""
-          else:
-              raise
+    try:
+        member = chat.get_member(user_id)
+    except BadRequest as excp:
+        if excp.message == "User not found":
+            message.reply_text("I can't seem to find this user")
+            return ""
+        else:
+            raise
 
-      if is_user_ban_protected(chat, user_id, member):
-          message.reply_text(
+    if is_user_ban_protected(chat, user_id, member):
+        message.reply_text(
               "I'm not gonna ban an admin, don't make fun of yourself b-baka!")
-          return ""
+        return ""
 
-      if user_id == context.bot.id:
-          message.reply_text("性交オフ")
-          return ""
+    if user_id == context.bot.id:
+        message.reply_text("性交オフ")
+        return ""
 
-      log = (
+    log = (
         "<b>{}:</b>"
         "\n#BANNED"
         "\n<b>Admin:</b> {}"
@@ -163,10 +163,10 @@ async def dban(update, context):
             member.user.id,
         )
     )
-      if reason:
-        log += "\n<b>Reason:</b> {}".format(reason)
+    if reason:
+      log += "\n<b>Reason:</b> {}".format(reason)
 
-      try:
+    try:
         chat.kick_member(user_id)
         # context.bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie
         # sticker
@@ -183,7 +183,7 @@ async def dban(update, context):
         await event.client.delete_messages(chat, del_message)
         return log
 
-      except BadRequest as excp:
+    except BadRequest as excp:
           if excp.message == "Reply message not found":
             # Do not reply
             message.reply_text("Banned!", quote=False)
@@ -199,7 +199,7 @@ async def dban(update, context):
             )
             message.reply_text("Well damn, I can't ban that user.")
 
-      return ""
+    return ""
 ################
 
 @run_async
@@ -680,7 +680,7 @@ This module allows you to do that easily, by exposing some common actions, so ev
  • /skick <userhandle>: Silently kicks a user, (via handle, or reply)
 
 ⚙️ *An example of temporarily banning someone:*
-`/tban @username 2h`; this bans a user for 2 hours.
+• /tban @username 2h: this bans a user for 2 hours.
 """
 
 
