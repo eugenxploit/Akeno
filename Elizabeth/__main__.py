@@ -43,7 +43,7 @@ from Elizabeth.modules.helper_funcs.alternate import typing_action
 
 
 PM_START_TEXT = f"""
-ㅤ— ♛ ——— 「 *Akeno* 」 ——— ♛ —
+— ♛ ——— 「 *Akeno* 」 ——— ♛ —
 • *Multifeatured chat-management Bot* [ㅤ](https://telegra.ph/file/204c34acf90114464888a.mp4)
 • *Server Uptime :* `{}`
 • *Version :* `2.0.1`
@@ -201,7 +201,7 @@ def start(update, context):
             
     else:
         update.effective_message.reply_video(AKENOPINGIMG, 
-                    caption=AKENOPINGIMGTEXT.format(uptime), parse_mode=ParseMode.MARKDOWN,
+                    caption=AKENOPINGIMGTEXT.format(escape_markdown(uptime)), parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup([
                   [
                     InlineKeyboardButton(text="🧭 Ping ", callback_data="start_ping")
