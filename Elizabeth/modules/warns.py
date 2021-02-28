@@ -777,6 +777,11 @@ WARN_HANDLER = CommandHandler(
     warn_user,
     pass_args=True,
     filters=Filters.group)
+DWARN_HANDLER = CommandHandler(
+    "dwarn",
+    warn_user,
+    pass_args=True,
+    filters=Filters.group)
 RESET_WARN_HANDLER = CommandHandler(
     ["resetwarn", "resetwarns"], reset_warns, pass_args=True, filters=Filters.group
 )
@@ -799,6 +804,7 @@ WARN_STRENGTH_HANDLER = CommandHandler(
     "strongwarn", set_warn_strength, pass_args=True)
 
 dispatcher.add_handler(WARN_HANDLER)
+dispatcher.add_handler(DWARN_HANDLER)
 dispatcher.add_handler(CALLBACK_QUERY_HANDLER)
 dispatcher.add_handler(RESET_WARN_HANDLER)
 dispatcher.add_handler(REMOVE_WARNS_HANDLER)
