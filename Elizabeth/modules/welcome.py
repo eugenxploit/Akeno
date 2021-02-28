@@ -6,7 +6,7 @@ from functools import partial
 from html import escape
 
 import Elizabeth.modules.sql.welcome_sql as sql
-from Elizabeth import DEV_USERS, LOGGER, MESSAGE_DUMP, OWNER_ID, dispatcher, spamwtc
+from Elizabeth import DEV_USERS, LOGGER, MESSAGE_DUMP, OWNER_ID, SUDO_USERS, SUPPORT_USERS, dispatcher, spamwtc
 from Elizabeth.modules.helper_funcs.chat_status import (
     is_user_ban_protected,
     user_admin,
