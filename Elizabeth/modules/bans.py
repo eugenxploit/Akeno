@@ -18,7 +18,9 @@ from Elizabeth.modules.helper_funcs.chat_status import (
     is_user_ban_protected,
     is_user_in_chat,
     user_admin,
+    can_delete,
 )
+
 from Elizabeth.modules.helper_funcs.extraction import extract_user_and_text
 from Elizabeth.modules.helper_funcs.string_handling import extract_time
 from Elizabeth.modules.log_channel import loggable
