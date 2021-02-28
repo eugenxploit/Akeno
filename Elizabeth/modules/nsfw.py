@@ -13,6 +13,7 @@ from telegram.ext import CommandHandler, run_async, CallbackContext
 from Elizabeth.modules.helper_funcs.filters import CustomFilters
 from Elizabeth.modules.helper_funcs.chat_status import user_admin
 from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
+from Elizabeth.modules.disable import DisableAbleCommandHandler 
 
 @run_async
 @user_admin
@@ -654,58 +655,58 @@ ADD_NSFW_HANDLER = CommandHandler("addnsfw", add_nsfw)
 REMOVE_NSFW_HANDLER = CommandHandler("rmnsfw", rem_nsfw)
 LIST_NSFW_CHATS_HANDLER = CommandHandler(
     "nsfwchats", list_nsfw_chats, filters=CustomFilters.dev_filter)
-LEWDKEMO_HANDLER = CommandHandler("lewdkemo", lewdkemo)
-NEKO_HANDLER = CommandHandler("neko", neko)
-FEET_HANDLER = CommandHandler("feet", feet)
-YURI_HANDLER = CommandHandler("yuri", yuri)
-TRAP_HANDLER = CommandHandler("trap", trap)
-FUTANARI_HANDLER = CommandHandler("futanari", futanari)
-HOLOLEWD_HANDLER = CommandHandler("hololewd", hololewd)
-SOLOGIF_HANDLER = CommandHandler("sologif", sologif)
-CUMGIF_HANDLER = CommandHandler("cumgif", cumgif)
-EROKEMO_HANDLER = CommandHandler("erokemo", erokemo)
-LESBIAN_HANDLER = CommandHandler("lesbian", lesbian)
-#WALLPAPER_HANDLER = CommandHandler("wallpaper", wallpaper)
-LEWDK_HANDLER = CommandHandler("lewdk", lewdk)
-NGIF_HANDLER = CommandHandler("ngif", ngif)
-TICKLE_HANDLER = CommandHandler("tickle", tickle)
-LEWD_HANDLER = CommandHandler("lewd", lewd)
-FEED_HANDLER = CommandHandler("feed", feed)
-EROYURI_HANDLER = CommandHandler("eroyuri", eroyuri)
-ERON_HANDLER = CommandHandler("eron", eron)
-CUM_HANDLER = CommandHandler("cum", cum)
-BJGIF_HANDLER = CommandHandler("bjgif", bjgif)
-BJ_HANDLER = CommandHandler("bj", bj)
-NEKONSFW_HANDLER = CommandHandler("nekonsfw", nekonsfw)
-SOLO_HANDLER = CommandHandler("solo", solo)
-KEMONOMIMI_HANDLER = CommandHandler("kemonomimi", kemonomimi)
-AVATARLEWD_HANDLER = CommandHandler("avatarlewd", avatarlewd)
-GASM_HANDLER = CommandHandler("gasm", gasm)
-POKE_HANDLER = CommandHandler("poke", poke)
-ANAL_HANDLER = CommandHandler("anal", anal)
-HENTAI_HANDLER = CommandHandler("hentai", hentai)
-AVATAR_HANDLER = CommandHandler("avatar", avatar)
-EROFEET_HANDLER = CommandHandler("erofeet", erofeet)
-HOLO_HANDLER = CommandHandler("holo", holo)
-TITS_HANDLER = CommandHandler("tits", tits)
-PUSSYGIF_HANDLER = CommandHandler("pussygif", pussygif)
-HOLOERO_HANDLER = CommandHandler("holoero", holoero)
-PUSSY_HANDLER = CommandHandler("pussy", pussy)
-HENTAIGIF_HANDLER = CommandHandler("hentaigif", hentaigif)
-CLASSIC_HANDLER = CommandHandler("classic", classic)
-KUNI_HANDLER = CommandHandler("kuni", kuni)
-WAIFU_HANDLER = CommandHandler("waifu", waifu)
-LEWD_HANDLER = CommandHandler("lewd", lewd)
-KISS_HANDLER = CommandHandler("kiss", kiss)
-FEMDOM_HANDLER = CommandHandler("femdom", femdom)
-CUDDLE_HANDLER = CommandHandler("hug", hug)
-EROK_HANDLER = CommandHandler("erok", erok)
-FOXGIRL_HANDLER = CommandHandler("foxgirl", foxgirl)
-TITSGIF_HANDLER = CommandHandler("titsgif", titsgif)
-ERO_HANDLER = CommandHandler("ero", ero)
-SMUG_HANDLER = CommandHandler("smug", smug)
-BAKA_HANDLER = CommandHandler("baka", baka)
-DVA_HANDLER = CommandHandler("dva", dva)
+LEWDKEMO_HANDLER = DisableAbleCommandHandler("lewdkemo", lewdkemo)
+NEKO_HANDLER = DisableAbleCommandHandler("neko", neko)
+FEET_HANDLER = DisableAbleCommandHandler("feet", feet)
+YURI_HANDLER = DisableAbleCommandHandler("yuri", yuri)
+TRAP_HANDLER = DisableAbleCommandHandler("trap", trap)
+FUTANARI_HANDLER = DisableAbleCommandHandler("futanari", futanari)
+HOLOLEWD_HANDLER = DisableAbleCommandHandler("hololewd", hololewd)
+SOLOGIF_HANDLER = DisableAbleCommandHandler("sologif", sologif)
+CUMGIF_HANDLER = DisableAbleCommandHandler("cumgif", cumgif)
+EROKEMO_HANDLER = DisableAbleCommandHandler("erokemo", erokemo)
+LESBIAN_HANDLER = DisableAbleCommandHandler("lesbian", lesbian)
+WALLPAPER_HANDLER = DisableAbleCommandHandler("wallpaper", wallpaper)
+LEWDK_HANDLER = DisableAbleCommandHandler("lewdk", lewdk)
+NGIF_HANDLER = DisableAbleCommandHandler("ngif", ngif)
+TICKLE_HANDLER = DisableAbleCommandHandler("tickle", tickle)
+LEWD_HANDLER = DisableAbleCommandHandler("lewd", lewd)
+FEED_HANDLER = DisableAbleCommandHandler("feed", feed)
+EROYURI_HANDLER = DisableAbleCommandHandler("eroyuri", eroyuri)
+ERON_HANDLER = DisableAbleCommandHandler("eron", eron)
+CUM_HANDLER = DisableAbleCommandHandler("cum", cum)
+BJGIF_HANDLER = DisableAbleCommandHandler("bjgif", bjgif)
+BJ_HANDLER = DisableAbleCommandHandler("bj", bj)
+NEKONSFW_HANDLER = DisableAbleCommandHandler("nekonsfw", nekonsfw)
+SOLO_HANDLER = DisableAbleCommandHandler("solo", solo)
+KEMONOMIMI_HANDLER = DisableAbleCommandHandler("kemonomimi", kemonomimi)
+AVATARLEWD_HANDLER = DisableAbleCommandHandler("avatarlewd", avatarlewd)
+GASM_HANDLER = DisableAbleCommandHandler("gasm", gasm)
+POKE_HANDLER = DisableAbleCommandHandler("poke", poke)
+ANAL_HANDLER = DisableAbleCommandHandler("anal", anal)
+HENTAI_HANDLER = DisableAbleCommandHandler("hentai", hentai)
+AVATAR_HANDLER = DisableAbleCommandHandler("avatar", avatar)
+EROFEET_HANDLER = DisableAbleCommandHandler("erofeet", erofeet)
+HOLO_HANDLER = DisableAbleCommandHandler("holo", holo)
+TITS_HANDLER = DisableAbleCommandHandler("tits", tits)
+PUSSYGIF_HANDLER = DisableAbleCommandHandler("pussygif", pussygif)
+HOLOERO_HANDLER = DisableAbleCommandHandler("holoero", holoero)
+PUSSY_HANDLER = DisableAbleCommandHandler("pussy", pussy)
+HENTAIGIF_HANDLER = DisableAbleCommandHandler("hentaigif", hentaigif)
+CLASSIC_HANDLER = DisableAbleCommandHandler("classic", classic)
+KUNI_HANDLER = DisableAbleCommandHandler("kuni", kuni)
+WAIFU_HANDLER = DisableAbleCommandHandler("waifu", waifu)
+LEWD_HANDLER = DisableAbleCommandHandler("lewd", lewd)
+KISS_HANDLER = DisableAbleCommandHandler("kiss", kiss)
+FEMDOM_HANDLER = DisableAbleCommandHandler("femdom", femdom)
+CUDDLE_HANDLER = DisableAbleCommandHandler("hug", hug)
+EROK_HANDLER = DisableAbleCommandHandler("erok", erok)
+FOXGIRL_HANDLER = DisableAbleCommandHandler("foxgirl", foxgirl)
+TITSGIF_HANDLER = DisableAbleCommandHandler("titsgif", titsgif)
+ERO_HANDLER = DisableAbleCommandHandler("ero", ero)
+SMUG_HANDLER = DisableAbleCommandHandler("smug", smug)
+BAKA_HANDLER = DisableAbleCommandHandler("baka", baka)
+DVA_HANDLER = DisableAbleCommandHandler("dva", dva)
 
 
 dispatcher.add_handler(ADD_NSFW_HANDLER)
@@ -722,7 +723,7 @@ dispatcher.add_handler(SOLOGIF_HANDLER)
 dispatcher.add_handler(CUMGIF_HANDLER)
 dispatcher.add_handler(EROKEMO_HANDLER)
 dispatcher.add_handler(LESBIAN_HANDLER)
-#dispatcher.add_handler(WALLPAPER_HANDLER)
+dispatcher.add_handler(WALLPAPER_HANDLER)
 dispatcher.add_handler(LEWDK_HANDLER)
 dispatcher.add_handler(NGIF_HANDLER)
 dispatcher.add_handler(TICKLE_HANDLER)
@@ -778,7 +779,7 @@ __handlers__ = [
     CUMGIF_HANDLER,
     EROKEMO_HANDLER,
     LESBIAN_HANDLER,
-    #WALLPAPER_HANDLER,
+    WALLPAPER_HANDLER,
     LEWDK_HANDLER,
     NGIF_HANDLER,
     TICKLE_HANDLER,
@@ -823,13 +824,14 @@ __handlers__ = [
 ]
 
 __help__ = """
+[Nekos](https://github.com/Nekos-life/nekos.py) lewds module.
     
-*Usage:*
+⚙️ *Usage:*
     
   • /addnsfw : Enable NSFW mode
   • /rmnsfw : Disable NSFW mode
  
-*Commands:*   
+⚙️ *Commands:*   
 • /neko: Sends Random SFW Neko source Images.
 • /feet: Sends Random Anime Feet Images.
 • /yuri: Sends Random Yuri source Images.
@@ -880,7 +882,7 @@ __help__ = """
 • /smug: Sends Random Smug GIFs.
 • /baka: Sends Random Baka Shout GIFs.
 
-Thanks to [EverythingSuckz](https://t.me/EverythingSuckz) for NSFW filter.
+💝 Thanks to [EverythingSuckz](https://t.me/EverythingSuckz) for NSFW filter.
 """
 
 __mod_name__ = "NSFW"
