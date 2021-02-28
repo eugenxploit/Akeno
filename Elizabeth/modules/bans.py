@@ -24,6 +24,7 @@ from Elizabeth.modules.helper_funcs.chat_status import (
 from Elizabeth.modules.helper_funcs.extraction import extract_user_and_text
 from Elizabeth.modules.helper_funcs.string_handling import extract_time
 from Elizabeth.modules.log_channel import loggable
+from Elizabeth.modules.tr_engine.strings import tld
 
 
 @run_async
