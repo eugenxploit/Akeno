@@ -179,13 +179,13 @@ def airing(update, context):
         }).json()['data']['Media']
     info = response.get('siteUrl')
     image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
-    msg = f"*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n\n*🧾ID*: `{response['id']}`[⁠ ⁠]({image})"
+    msg = f"*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n\n*• ID*: `{response['id']}`[⁠ ⁠]({image})"
     if response['nextAiringEpisode']:
         time = response['nextAiringEpisode']['timeUntilAiring'] * 1000
         time = t(time)
-        msg += f"\n*Episode*: `{response['nextAiringEpisode']['episode']}`\n*🎉Airing In*: `{time}`"
+        msg += f"\n*Episode*: `{response['nextAiringEpisode']['episode']}`\n*• Airing In*: `{time}`"
     else:
-        msg += f"\n*Episode*:{response['episodes']}\n*📂Status*: `N/A`"
+        msg += f"\n*Episode*:{response['episodes']}\n*• Status*: `N/A`"
     update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
 
 
@@ -195,7 +195,7 @@ def anime(update, context):
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1:
-        update.effective_message.reply_text('Format : /anime < anime name >')
+        update.effective_message.reply_text('*Format :* /anime < anime name >')
         return
     else:
         search = search[1]
@@ -206,11 +206,11 @@ def anime(update, context):
             'variables': variables
         }).json()
     if 'errors' in json.keys():
-        update.effective_message.reply_text('Anime not found')
+        update.effective_message.reply_text('Anime not found ;-;')
         return
     if json:
         json = json['data']['Media']
-        msg = f"*{json['title']['romaji']}*(`{json['title']['native']}`)\n\n*📺Type*: {json['format']}\n*Status*: {json['status']}\n*Episodes*: {json.get('episodes', 'N/A')}\n*Duration*: {json.get('duration', 'N/A')} Per Ep.\n**Score*: {json['averageScore']}\n**Genres*: `"
+        msg = f"*{json['title']-['romaji']}*(*{json['title']-['native']}*)\n\n*• Type*: {json['format']}\n*• Status*: {json['status']}\n*• Episodes*: {json.get('episodes', 'N/A')}\n*• Duration*: {json.get('duration', 'N/A')} Per Ep.\n**• Score*: {json['averageScore']}\n**• Genres*: `"
         for x in json['genres']:
             msg += f"{x}, "
         msg = msg[:-2] + '`\n'
@@ -236,10 +236,10 @@ def anime(update, context):
                 InlineKeyboardButton("More Info 📌", url=info),
                 InlineKeyboardButton("Trailer 🎬", url=trailer)
             ]]
-            buttons += [[InlineKeyboardButton("Add To Watchlist", callback_data=f"xanime_watchlist={anime_name_w}")]]
+            buttons += [[InlineKeyboardButton("➕ Add To Watchlist", callback_data=f"xanime_watchlist={anime_name_w}")]]
         else:
             buttons = [[InlineKeyboardButton("More Info", url=info)]]
-            buttons += [[InlineKeyboardButton("Add To Watchlist", callback_data=f"xanime_watchlist={anime_name_w}")]]
+            buttons += [[InlineKeyboardButton("➕ Add To Watchlist", callback_data=f"xanime_watchlist={anime_name_w}")]]
         if image:
             try:
                 update.effective_message.reply_photo(
@@ -717,7 +717,7 @@ def change_quote(update: Update, context: CallbackContext):
 
 
 __help__ = """
-✨ *Fetch information about anime, manga or characters from Anilist.co*
+✨ *Fetch information about anime, manga or characters from* Anilist.co
 
 ⚙️ *Available commands:*
  • /whatanime : reply to an anime GIF / Video / Image for its sauce.
