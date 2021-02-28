@@ -756,6 +756,7 @@ QUOTE_CHANGE = CallbackQueryHandler(change_quote, pattern=r"quote_.*")
 
 dispatcher.add_handler(BUTTON_HANDLER)
 dispatcher.add_handler(ANIME_HANDLER)
+dispatcher.add_handler(ANIME_STUFFS_HANDLER)
 dispatcher.add_handler(CHARACTER_HANDLER)
 dispatcher.add_handler(MANGA_HANDLER)
 dispatcher.add_handler(AIRING_HANDLER)
