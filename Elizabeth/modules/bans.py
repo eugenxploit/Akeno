@@ -318,6 +318,7 @@ def temp_ban(update, context):
 @loggable
 def sban(update, context):
     bot = context.bot
+    args = context.args
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
     message = update.effective_message  # type: Optional[Message]
