@@ -51,7 +51,7 @@ PM_START_TEXT = f"""
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
 AKENOPINGIMG = "https://telegra.ph/file/6cd255ca75a70c4ebe92d.gif"
-AKENOPINGIMGTEXT = ("<b>Ara Ara! queen in command!</b>\n<b>since:</b> <code>{}</code>".format(uptime), parse_mode=ParseMode.HTML)
+AKENOPINGIMGTEXT = "*Ara Ara! queen in command!*\n*Since:* `{}`"
 
 buttons = [[InlineKeyboardButton(text="➕ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ",
                                   url="t.me/EchidnaRoBot?startgroup=true"),
@@ -201,7 +201,7 @@ def start(update, context):
             
     else:
         update.effective_message.reply_video(AKENOPINGIMG, 
-                    caption=AKENOPINGIMGTEXT,
+                    caption=AKENOPINGIMGTEXT.format(uptime), parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup([
                   [
                     InlineKeyboardButton(text="🧭 Ping ", callback_data="start_ping")
