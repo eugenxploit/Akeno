@@ -227,6 +227,11 @@ def new_member(update, context):
                 if welc_type != sql.Types.TEXT and welc_type != sql.Types.BUTTON_TEXT:
                     # edge case of empty name - occurs for some bugs.
                     first_name = new_mem.first_name or "PersonWithNoName"
+                    if cust_welcome:
+                        if cust_welcome == sql.DEFAULT_WELCOME:
+                            cust_welcome = random.choice(
+                                sql.DEFAULT_WELCOME_MESSAGES).format(
+                                first=escape_markdown(first_name))
                     # Start formating text
                     if new_mem.last_name:
                         fullname = "{} {}".format(
@@ -306,17 +311,15 @@ def new_member(update, context):
                         buttons = sql.get_welc_buttons(chat.id)
                         keyb = build_keyboard(buttons)
                     else:
-                        res = sql.DEFAULT_WELCOME.format(first=first_name)
+                        res = random.choice(sql.DEFAULT_WELCOME_MESSAGES).format(
+                        first=escape_markdown(first_name))
                         keyb = []
 
-                    keyboard = InlineKeyboardMarkup(keyb)
+                        backup_message = random.choice(
+                        sql.DEFAULT_WELCOME_MESSAGES).format(
+                        first=escape_markdown(first_name))
+                        keyboard = InlineKeyboardMarkup(keyb)
 
-                    sent = send(
-                        update,
-                        res,
-                        keyboard,
-                        sql.DEFAULT_WELCOME.format(first=first_name),
-                    )
 
                     if (
                         is_user_ban_protected(
