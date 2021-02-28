@@ -177,7 +177,7 @@ Reply to user's message: `/setbio He is such cool person`.
  • /gdpr: Deletes your information from the bot's database. Private chats only.
 
 ⚙️ *BAN STATS:*
- • /scan: shows CAS / Spamwatch Ban status.
+ • /scan: shows CAS / SpamWatch ban status.
 """
 
 __mod_name__ = "Info"
