@@ -9,7 +9,7 @@ jikanpy
 geopy
 future
 emoji
-requests
+requests==2.24.0
 Telethon==1.16.4
 sqlalchemy
 pylast
@@ -36,7 +36,6 @@ lxml
 demjson
 wget
 bs4
-telegraph
 pillow
 psutil
 speedtest-cli>=2.0.2
