@@ -11,7 +11,7 @@ from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CommandHandler, Filters, MessageHandler, CallbackQueryHandler
 from telegram.ext.dispatcher import run_async, DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
-
+import subprocess
 
 from Elizabeth import (
     dispatcher,
@@ -302,7 +302,10 @@ def error_handler(update, context):
         
         
 def send_start(update, context):
+    uptime = get_readable_time((time.time() - StartTime))
+
     # Try to remove old message
+    
     try:
         query = update.callback_query
         query.message.delete()
@@ -635,13 +638,11 @@ def Nisshoku_about_callback(update, context):
                  \n- Current maintainer: @PresidentRias
                  \n- Bot repository: {REPOSITORY}
                  \n- For support, reach out: @AkenoSupportBot
-                 \n➖➖➖➖➖➖➖➖➖
                  \n*Some Anime related links:*
-                 \n*❐ Anime Chat:* @AnimeRyuzoku
-                 \n*❐ Anime Bot:* @Any_AnimeBot
-                 \n*❐ Anime Memes:* @AnimeMemesXD
-                 \n*❐ Nekofied:* @Otakuzdream
-                 \n\n\n🔥 *Ryuzoku* 🔥 - @Ryuzoku""",
+                 \n*Anime Chat:* @AnimeRyuzoku
+                 \n*Anime Bot:* @Any_AnimeBot
+                 \n*Anime Memes:* @AnimeMemesXD
+                 \n\n\n*Ryuzoku* - @Ryuzoku""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
