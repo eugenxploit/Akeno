@@ -883,6 +883,11 @@ __help__ = """
 • /baka: Sends Random Baka Shout GIFs.
 
 💝 Thanks to [EverythingSuckz](https://t.me/EverythingSuckz) for NSFW filter.
+
+*Nhentai:*
+• /nhentai (doujin code): fetches nhentai doujin in telegraph format.
+
+E.g. `/nhentai 83615`
 """
 
 __mod_name__ = "NSFW"
