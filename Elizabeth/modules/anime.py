@@ -195,7 +195,7 @@ def anime(update, context):
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1:
-        update.effective_message.reply_text('*Format :* /anime < anime name >')
+        update.effective_message.reply_text('Format : /anime < anime name >')
         return
     else:
         search = search[1]
@@ -210,11 +210,11 @@ def anime(update, context):
         return
     if json:
         json = json['data']['Media']
-        msg = f"*{json['title']['romaji']}*(*-{json['title']['native']}*)\n\n*• Type*: {json['format']}\n*• Status*: {json['status']}\n*• Episodes*: {json.get('episodes', 'N/A')}\n*• Duration*: {json.get('duration', 'N/A')} Per Ep.\n**• Score*: {json['averageScore']}\n**• Genres*: `"
+        msg = f"*{json['title']['romaji']}*-*{json['title']['native']}*\n\n*• Type*: {json['format']}\n*• Status*: {json['status']}\n*• Episodes*: {json.get('episodes', 'N/A')}\n*• Duration*: {json.get('duration', 'N/A')} Per Ep.\n**• Score*: {json['averageScore']}\n**• Genres*: `"
         for x in json['genres']:
             msg += f"{x}, "
         msg = msg[:-2] + '`\n'
-        msg += "*Studios*: `"
+        msg += "*• Studios*: `"
         for x in json['studios']['nodes']:
             msg += f"{x['name']}, "
         msg = msg[:-2] + '`\n'
