@@ -127,7 +127,7 @@ if ENV:
     IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
     IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
     REDIS_URL = os.environ.get('REDIS_URL', None)
-    LASTFM_API_KEY = kigconfig.get("LASTFM_API_KEY")
+    LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY")
     #AI_API_KEY = os.environ.get('AI_API_KEY', "")
 
 else:
