@@ -49,6 +49,12 @@ VALID_WELCOME_FORMATTERS = [
     "mention",
 ]
 
+ECHIDNA = "https://telegra.ph/file/b2cba26a29eb9f91cb013.mp4"
+ECHIDNATEXT = """
+Come on, drink up, I especially made this body fluid tea for you!
+"""
+
+
 ENUM_FUNC_MAP = {
     sql.Types.TEXT.value: dispatcher.bot.send_message,
     sql.Types.BUTTON_TEXT.value: dispatcher.bot.send_message,
@@ -190,7 +196,7 @@ def new_member(update: Update, context: CallbackContext):
             # Welcome Sudos
             elif new_mem.id in SUDO_USERS:
                 update.effective_message.reply_text(
-                    "Ara Ara! the Red Dragon emperor is here! Issei-kun, you should continue practicing to focus your magic. ",
+                    "Ara Ara! the Red Dragon emperor is here!",
                     reply_to_message_id=reply,
                 )
                 continue
@@ -202,29 +208,18 @@ def new_member(update: Update, context: CallbackContext):
                     reply_to_message_id=reply,
                 )
                 continue
-
-            # Welcome yourself
-            elif new_mem.id == bot.id:
-                creator = None
-                for x in bot.bot.get_chat_administrators(
-                        update.effective_chat.id):
-                    if x.status == 'creator':
-                        creator = x.user
-                        break
-                if creator:
-                    bot.send_message(
-                        JOIN_LOGGER,
-                        "#NEW_GROUP\n<b>Group name:</b> {}\n<b>ID:</b> <code>{}</code>\n<b>Creator:</b> <code>{}</code>"
-                        .format(chat.title, chat.id, creator),
-                        parse_mode=ParseMode.HTML)
-                else:
-                    bot.send_message(
-                        JOIN_LOGGER,
-                        "#NEW_GROUP\n<b>Group name:</b> {}\n<b>ID:</b> <code>{}</code>"
-                        .format(chat.title, chat.id),
-                        parse_mode=ParseMode.HTML)
-                update.effective_message.reply_text(
-                    "Watashi ga kita!", reply_to_message_id=reply)
+            
+            elif new_mem.id == context.bot.id:
+                update.effective_message.reply_video(ECHIDNA, 
+                    caption=ECHIDNATEXT)
+                   
+                context.bot.send_message(
+                    MESSAGE_DUMP,
+                    "Akeno have been #added to <pre>{}</pre> with ID: \n<pre>{}</pre>".format(
+                        chat.title,
+                        chat.id),
+                    parse_mode=ParseMode.HTML,
+                )
                 continue
 
             else:
