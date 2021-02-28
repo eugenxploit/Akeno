@@ -31,6 +31,7 @@ from Elizabeth.modules.helper_funcs.chat_status import (
     is_user_admin,
     user_admin,
     user_admin_no_reply,
+    can_delete,
 )
 from Elizabeth.modules.helper_funcs.extraction import (
     extract_text,
@@ -213,7 +214,120 @@ def warn_user(update, context):
     else:
         message.reply_text("No user was designated!")
     return ""
+######## DWARN ########
 
+
+
+
+
+def dwarn(
+    user: User, chat: Chat, reason: str, message: Message, warner: User = None
+) -> str:
+    if message.reply_to_message:
+        user = update.effective_user  # type: Optional[User]
+        chat = update.effective_chat  # type: Optional[Chat]
+        if can_delete(chat, bot.id):
+            update.effective_message.reply_to_message.delete()
+    else:
+        message.reply_text("You have to reply to a message to delete it and warn the user.")
+        return ""
+    if is_user_admin(chat, user.id):
+        message.reply_text("Damn admins, can't even be warned!")
+        return ""
+
+    if warner:
+        warner_tag = mention_html(warner.id, warner.first_name)
+    else:
+        warner_tag = "Automated warn filter."
+
+    limit, soft_warn = sql.get_warn_setting(chat.id)
+    num_warns, reasons = sql.warn_user(user.id, chat.id, reason)
+    if num_warns >= limit:
+        sql.reset_warns(user.id, chat.id)
+        if soft_warn:  # kick
+            chat.unban_member(user.id)
+            reply = "That's {} warnings, {} has been kicked!".format(
+                limit, mention_html(user.id, user.first_name)
+            )
+
+        else:  # ban
+            chat.kick_member(user.id)
+            reply = "That's{} warnings, {} has been banned!".format(
+                limit, mention_html(user.id, user.first_name)
+            )
+
+        for warn_reason in reasons:
+            reply += "\n - {}".format(html.escape(warn_reason))
+
+        # message.bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie
+        # sticker
+        keyboard = None
+        log_reason = (
+            "<b>{}:</b>"
+            "\n#WARN_BAN"
+            "\n<b>Admin:</b> {}"
+            "\n<b>User:</b> {} (<code>{}</code>)"
+            "\n<b>Reason:</b> {}"
+            "\n<b>Counts:</b> <code>{}/{}</code>".format(
+                html.escape(chat.title),
+                warner_tag,
+                mention_html(user.id, user.first_name),
+                user.id,
+                reason,
+                num_warns,
+                limit,
+            )
+        )
+
+    else:
+        keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(
+            "Remove warn ⚠️", callback_data="rm_warn({})".format(user.id))]])
+
+        reply = "User {} has {}/{} warnings... watch out!".format(
+            mention_html(user.id, user.first_name), num_warns, limit
+        )
+        if reason:
+            reply += "\nReason for last warn:\n{}".format(html.escape(reason))
+
+        log_reason = (
+            "<b>{}:</b>"
+            "\n#WARN"
+            "\n<b>Admin:</b> {}"
+            "\n<b>User:</b> {} (<code>{}</code>)"
+            "\n<b>Reason:</b> {}"
+            "\n<b>Counts:</b> <code>{}/{}</code>".format(
+                html.escape(chat.title),
+                warner_tag,
+                mention_html(user.id, user.first_name),
+                user.id,
+                reason,
+                num_warns,
+                limit,
+            )
+        )
+
+    try:
+        message.reply_text(
+            reply,
+            reply_markup=keyboard,
+            parse_mode=ParseMode.HTML)
+    except BadRequest as excp:
+        if excp.message == "Reply message not found":
+            # Do not reply
+            message.reply_text(
+                reply,
+                reply_markup=keyboard,
+                parse_mode=ParseMode.HTML,
+                quote=False)
+        else:
+            raise
+    return log_reason
+
+
+
+
+######## DWARN ########
+    
 
 @run_async
 @user_admin
