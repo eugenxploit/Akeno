@@ -56,8 +56,12 @@ def ping(update, context):
     message = msg.reply_text("Pinging...")
     end_time = time.time()
     ping_time = round((end_time - start_time) * 1000, 3)
+    uptime = get_readable_time((time.time() - since_time_start))
     message.edit_text(
-        "*Pong!!!*\n`{}ms`".format(ping_time), parse_mode=ParseMode.MARKDOWN
+        "Ara Ara!!\n"
+        "<b>Ping :</b> <code>{}</code>\n"
+        "<b>Uptime :</b> <code>{}</code>".format(ping_time, uptime),
+        parse_mode=ParseMode.HTML        
     )
 
    
