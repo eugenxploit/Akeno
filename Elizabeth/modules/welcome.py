@@ -314,7 +314,7 @@ def new_member(update, context):
                             id=new_mem.id,
                     )
 
-                   else:
+                    else:
                         res = random.choice(sql.DEFAULT_WELCOME_MESSAGES).format(
                             first=escape_markdown(first_name))
                         keyb = []
