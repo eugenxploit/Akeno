@@ -1,4 +1,5 @@
 redis
+telegraph==1.4.1
 nekos.py
 PyYAML
 aiohttp>=2.2.5
