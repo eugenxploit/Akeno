@@ -95,7 +95,7 @@ def last_fm(update: Update, _):
 __mod_name__ = "Last.FM"
 
 __help__ = """
-*Share what you're what listening to at last.fm with the help of this module!*
+*Share what you're listening to at last.fm with the help of this module!*
 
 ⚙️ *Available commands:*
  •  /setuser <username>: sets your lastfm username.
