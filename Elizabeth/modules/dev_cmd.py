@@ -32,4 +32,4 @@ Here is all the staff's commands.
 """
 
 
-__mod_name__ = "Dev tools"
+__mod_name__ = "DEV"
