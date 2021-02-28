@@ -43,35 +43,44 @@ from Elizabeth.modules.helper_funcs.alternate import typing_action
 
 
 PM_START_TEXT = f"""
-[Echidna](https://telegra.ph/file/7c30923dc3a452294f27c.jpg)
-- A chat management bot 🦋
-- Exclusively made for @AnimeRyuzoku 🦋
-- I don't care 🦋
+ㅤ— ♛ ——— 「 *Akeno* 」 ——— ♛ —
+• *Multifeatured chat-management Bot* [ㅤ](https://telegra.ph/file/204c34acf90114464888a.mp4)
+• *Server Uptime :* `{}`
+• *Version :* `2.0.1`
+• *Welcome user {}, type /help to get list of my commands.*
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
+AKENOPINGIMG = "https://telegra.ph/file/6cd255ca75a70c4ebe92d.gif"
+AKENOPINGIMGTEXT = """<b>Ara Ara! queen in command!</b>\n<b>since:</b> <code>{}</code>""".format(uptime),
+            parse_mode=ParseMode.HTML)
 
-buttons = [[InlineKeyboardButton(text="➕ Add me to your group",
+buttons = [[InlineKeyboardButton(text="➕ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ",
                                   url="t.me/EchidnaRoBot?startgroup=true"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="Ryuzoku",
-                                  url="t.me/ryuzokux"),
-             InlineKeyboardButton(text="About me",
-                                  callback_data="nisshokuabout_"),
+buttons += [[InlineKeyboardButton(text="Aʙᴏᴜᴛ",
+                                 callback_data="nisshokuabout_"),
+             InlineKeyboardButton(text="Sᴜᴘᴘᴏʀᴛ",
+                                  url="t.me/akenosupportbot"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="Help & commands menu",
+buttons += [[InlineKeyboardButton(text="Hᴇʟᴘ & Cᴏᴍᴍᴀɴᴅs Mᴇɴᴜ",
                                   callback_data="help_back"),
 ]]
 
-buttons += [[InlineKeyboardButton(text="Close menu 🔒",
+buttons += [[InlineKeyboardButton(text="Cʟᴏsᴇ Mᴇɴᴜ 🔒",
                                   callback_data="close_menu")]]
 
 
 HELP_STRINGS = f"""
-*Echidna* [🦋](https://telegra.ph/file/a55641a64ee929a15cd0a.jpg) 
-
-- Click on the buttons below to get their usage instructions."""
+*Aᴋᴇɴᴏ Hɪᴍᴇᴊɪᴍᴀ 〔Bᴇᴛᴀ Rᴇʟᴇᴀsᴇ〕*[ㅤ](https://telegra.ph/file/5d60dd64f29b8cfd03f94.mp4) 
+⦿ _All commands can either be used with_ / _or_ ! _or_ ?
+⦿ _Imporved performance, REDIS support, extra features_
+⦿ _Pyrogram version_ 1.0.7
+⦿ _Telethon version_ 1.16.4
+ 
+*Report buggy modules at* - @AkenoSupportBot 
+"""
 
 
 IMPORTED = {}
@@ -182,7 +191,9 @@ def start(update, context):
         else:
                 #update.effective_message.reply_sticker(NISSHOKU)
                 update.effective_message.reply_text(
-                PM_START_TEXT,
+                PM_START_TEXT.format(
+                escape_markdown(uptime),
+                escape_markdown(first_name)),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
@@ -190,9 +201,50 @@ def start(update, context):
             )
             
     else:
-        update.effective_message.reply_text("I am Alive ^_^")
+        update.effective_message.reply_video(AKENOPINGIMG, 
+                    caption=AKENOPINGIMGTEXT,
+                    reply_markup=InlineKeyboardMarkup([
+                  [
+                    InlineKeyboardButton(text="🧭 Ping ", callback_data="start_ping")
+                  ],
+                
+                ]),
+            )
 
+def start_p(update, context):
+    query = update.callback_query
+    if query.data == "start_ping":
+        bot_runtime = get_readable_time((time.time() - since_time_start))
+        context.bot.answer_callback_query(query.id,
+                                          text=f"Akeno is up since: {bot_runtime}"
+                                               f"\n\nPing: {ping()}",
+                                          show_alert=True)        
 
+        
+def ping(server='google.com', count=1, wait_sec=1):
+   
+    cmd = "ping -c {} -W {} {}".format(count, wait_sec, server).split(' ')
+    try:
+        output = subprocess.check_output(cmd).decode().strip()
+        lines = output.split("\n")
+        total = lines[-2].split(',')[3].split()[1]
+        loss = lines[-2].split(',')[2].split()[0]
+        timing = lines[-1].split()[3].split('/')
+        ping_t = f"\nmin: {timing[0]}" \
+                 f"\navg: {timing[1]}" \
+                 f"\nmax: {timing[2]}" \
+                 f"\ntotal: {total}" \
+                 f"\nloss: {loss}" 
+                 
+                 
+        return ping_t
+   
+    except Exception as e:
+        print(e)
+        return None        
+        
+        
+        
 def send_start(update, context):
     # Try to remove old message
     try:
@@ -204,12 +256,12 @@ def send_start(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
     first_name = update.effective_user.first_name
     text = PM_START_TEXT
-    buttons = [[InlineKeyboardButton(text="Help and Commands ❓",
+    buttons = [[InlineKeyboardButton(text="Hᴇʟᴘ & Cᴏᴍᴍᴀɴᴅs Mᴇɴᴜ ❓",
                                   callback_data="help_back"),
     ]]
              
 
-    buttons += [[InlineKeyboardButton(text="Close the Menu 🔒",
+    buttons += [[InlineKeyboardButton(text="Cʟᴏsᴇ Mᴇɴᴜ 🔒",
                                   callback_data="close_menu")]]
 
 
@@ -232,8 +284,8 @@ def start_stop(update, context):
 
     chat = update.effective_chat  # type: Optional[Chat]
     first_name = update.effective_user.first_name
-    text = "The menu is closed 🔒"
-    buttons = [[InlineKeyboardButton(text="Reopen Menu 🔓",
+    text = "Tʜᴇ Mᴇɴᴜ Is Cʟᴏsᴇᴅ 🔒"
+    buttons = [[InlineKeyboardButton(text="Rᴇᴏᴘᴇɴ Mᴇɴᴜ 🔓",
                                      callback_data="bot_start")]]
 
     update.effective_message.reply_text(
@@ -518,11 +570,18 @@ def Nisshoku_about_callback(update, context):
     query = update.callback_query
     if query.data == "nisshokuabout_":
         query.message.edit_text(
-            text="*wkwkwkwkwkwkwkwkkwwkwkwkwkkwkw*"
-                 "\nsomething something"
-                 "\n\nsomething something"
-                 "\nsomething something"
-                 "\n\nsomething something",
+            text="""*About :*
+                 \n\nAkeno is a fork of *Marie + Userindo.* It also includes some unofficial plugins.
+                 \n- Current maintainer: @PresidentRias
+                 \n- Bot repository: {REPOSITORY}
+                 \n- For support, reach out: @AkenoSupportBot
+                 \n➖➖➖➖➖➖➖➖➖
+                 \n*Some Anime related links:*
+                 \n*❐ Anime Chat:* @AnimeRyuzoku
+                 \n*❐ Anime Bot:* @Any_AnimeBot
+                 \n*❐ Anime Memes:* @AnimeMemesXD
+                 \n*❐ Nekofied:* @Otakuzdream
+                 \n\n\n🔥 *Ryuzoku* 🔥 - @Ryuzoku""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -633,7 +692,8 @@ def is_chat_allowed(update, context):
 def main():
     # test_handler = CommandHandler("test", test)
     start_handler = CommandHandler("start", start, pass_args=True)
-
+    start_p_handler = CallbackQueryHandler(start_p, pattern=r"start_")
+    
     help_handler = CommandHandler("help", get_help)
     help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_")
     start_callback_handler = CallbackQueryHandler(
@@ -654,6 +714,8 @@ def main():
 
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
+    dispatcher.add_handler(start_p_handler)
+
     dispatcher.add_handler(help_handler)
     dispatcher.add_handler(settings_handler)
     dispatcher.add_handler(help_callback_handler)
@@ -679,11 +741,11 @@ def main():
             client.run_until_disconnected()
 
     else:
-        LOGGER.info("Using long polling.")
+        LOGGER.info("Ara Ara uhuhuhuhuhuhuhuhuhu....")
         updater.start_polling(timeout=15, read_latency=4)
         updater.bot.send_message(
             chat_id=MESSAGE_DUMP,
-            text="Come on, drink up, I especially made this body fluid tea for you @CrimsonAxel")
+            text="Ara Ara, Akeno is running @PresidentRias @SekieRyu")
         client.run_until_disconnected()
 
     updater.idle()
