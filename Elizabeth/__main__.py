@@ -72,8 +72,8 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 PM_START_TEXT = """
-— ♛ ——— 「 *Akeno* 」 ——— ♛ —
-• *Multifeatured chat-management Bot* [ㅤ](https://telegra.ph/file/204c34acf90114464888a.mp4)
+— ♛ —— 「 *Akeno* 」 —— ♛ —
+• *Multi-featured chat management bot* [ㅤ](https://telegra.ph/file/204c34acf90114464888a.mp4)
 • *Server Uptime :* `{}`
 • *Version :* `2.0.1`
 • *Welcome user {}, type /help to get list of my commands.*
@@ -103,7 +103,7 @@ buttons += [[InlineKeyboardButton(text="Cʟᴏsᴇ Mᴇɴᴜ 🔒",
 HELP_STRINGS = f"""
 *Aᴋᴇɴᴏ Hɪᴍᴇᴊɪᴍᴀ 〔Bᴇᴛᴀ Rᴇʟᴇᴀsᴇ〕*[ㅤ](https://telegra.ph/file/5d60dd64f29b8cfd03f94.mp4) 
 ⦿ _All commands can either be used with_ / _or_ ! _or_ ?
-⦿ _Imporved performance, REDIS support, extra features_
+⦿ _Imporved performance, added REDIS support and some extra features_
 ⦿ _Pyrogram version_ 1.0.7
 ⦿ _Telethon version_ 1.16.4
  
@@ -244,9 +244,9 @@ def start(update, context):
 def start_p(update, context):
     query = update.callback_query
     if query.data == "start_ping":
-        bot_runtime = get_readable_time((time.time() - since_time_start))
+        bot_xruntime = get_readable_time((time.time() - since_time_start))
         context.bot.answer_callback_query(query.id,
-                                          text=f"Akeno is up since: {bot_runtime}"
+                                          text=f"Akeno is up since: {bot_xruntime}"
                                                f"\n\nPing: {ping()}",
                                           show_alert=True)        
 
@@ -273,6 +273,32 @@ def ping(server='google.com', count=1, wait_sec=1):
         print(e)
         return None        
         
+def error_handler(update, context):
+    """Log the error and send a telegram message to notify the developer."""
+    # Log the error before we do anything else, so we can see it even if something breaks.
+    LOGGER.error(msg="Exception while handling an update:", exc_info=context.error)
+
+    # traceback.format_exception returns the usual python message about an exception, but as a
+    # list of strings rather than a single string, so we have to join them together.
+    tb_list = traceback.format_exception(
+        None, context.error, context.error.__traceback__
+    )
+    tb = "".join(tb_list)
+
+    # Build the message with some markup and additional information about what happened.
+    message = (
+        "An exception was raised while handling an update\n"
+        "<pre>update = {}</pre>\n\n"
+        "<pre>{}</pre>"
+    ).format(
+        html.escape(json.dumps(update.to_dict(), indent=2, ensure_ascii=False)),
+        html.escape(tb),
+    )
+
+    if len(message) >= 4096:
+        message = message[:4096]
+    # Finally, send the message
+    context.bot.send_message(chat_id=OWNER_ID, text=message, parse_mode=ParseMode.HTML)
         
         
 def send_start(update, context):
