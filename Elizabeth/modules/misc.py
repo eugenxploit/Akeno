@@ -688,6 +688,9 @@ def paste(update, context):
 
 __help__ = """
 ⚙️ *Some extras:*
+- Covid statistics:
+• /covid <country name>: Give stats about COVID-19.
+
 - Currency:
  • /cash: currency converter
 Example:
