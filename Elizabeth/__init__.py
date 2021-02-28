@@ -13,6 +13,8 @@ from telegraph import Telegraph
 telegraph = Telegraph()
 telegraph.create_account(short_name='ryuzoku')
 
+StartTime = time.time()
+
 # enable logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
