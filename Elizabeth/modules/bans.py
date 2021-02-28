@@ -310,63 +310,58 @@ def temp_ban(update, context):
 
     return ""
   
-#@run_async
-#@bot_admin
-#@can_restrict
-#@user_admin
-#@user_can_ban
-#@loggable
-#def sban(update, context): 
-#    chat = update.effective_chat
-#    user = update.effective_user
-#    message = update.effective_message
-#    log_message = ""
-#    bot = context.bot
-#    args = context.args
-#    user_id, reason = extract_user_and_text(message, args)
-#    update.effective_message.delete()
-#    if not user_id:
-#        return log_message
-#
-#    try:
-#        member = chat.get_member(user_id)
-#    except BadRequest as excp:
-#        if excp.message == "User not found":
-#            return log_message
-#        else:
-#            raise
-#
-#    if user_id == bot.id:
-#        return log_message
-#
-#    if is_user_ban_protected(chat, user_id, member):
-#        return log_message
-#      
-#    if user_id == 777000 or user_id == 1087968824:
-#        return log_message
-#      
-#    log = (
-#        f"<b>{html.escape(chat.title)}:</b>\n"
-#        f"#SBANNED\n"
-#        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-#        f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
-#    )
-#    if reason:
-#        log += "\n<b>Reason:</b> {}".format(reason)
-#
-#    try:
-#        chat.kick_member(user_id)
-#        return log
-#
-#    except BadRequest as excp:
-#        if excp.message == "Reply message not found":
-#            return log
-#        else:
-#            LOGGER.warning(update)
-#            LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s",
-#                             user_id, chat.title, chat.id, excp.message)
-#    return log_message
+######### SBAN ###########
+@run_async
+@bot_admin
+@can_restrict
+@user_admin
+@loggable
+def sban(bot: Bot, update: Update, args: List[str]) -> str:
+    chat = update.effective_chat  # type: Optional[Chat]
+    user = update.effective_user  # type: Optional[User]
+    message = update.effective_message  # type: Optional[Message]
 
+    update.effective_message.delete()
+
+    user_id, reason = extract_user_and_text(message, args)
+
+    if not user_id:
+        return ""
+
+    try:
+        member = chat.get_member(user_id)
+    except BadRequest as excp:
+        if excp.message == "User not found":
+            return ""
+        else:
+            raise
+
+    if is_user_ban_protected(chat, user_id, member):
+        return ""
+
+    if user_id == bot.id:
+        return ""
+
+    log = tld(chat.id, "bans_sban_logger").format(
+        html.escape(chat.title), mention_html(user.id, user.first_name),
+        mention_html(member.user.id, member.user.first_name), user_id)
+    if reason:
+        log += tld(chat.id, "bans_logger_reason").format(reason)
+
+    try:
+        chat.kick_member(user_id)
+        return log
+
+    except BadRequest as excp:
+        if excp.message == "Reply message not found":
+            return log
+        else:
+            LOGGER.warning(update)
+            LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s",
+                             user_id, chat.title, chat.id, excp.message)
+    return ""
+
+########### SBAN ###########
 
 
   
@@ -781,10 +776,15 @@ This module allows you to do that easily, by exposing some common actions, so ev
 
 __mod_name__ = "Bans"
 
-BAN_HANDLER = CommandHandler(["ban", "sban"], ban, pass_args=True, filters=Filters.group)
+BAN_HANDLER = CommandHandler("ban", ban, pass_args=True, filters=Filters.group)
 TEMPBAN_HANDLER = CommandHandler(
     ["tban", "tempban"], temp_ban, pass_args=True, filters=Filters.group
 )
+SBAN_HANDLER = DisableAbleCommandHandler("sban",
+                                         sban,
+                                         pass_args=True,
+                                         filters=Filters.group,
+                                         admin_ok=True)
 KICK_HANDLER = CommandHandler(
     "kick",
     kick,
@@ -801,7 +801,7 @@ KICKME_HANDLER = DisableAbleCommandHandler(
 BANME_HANDLER = DisableAbleCommandHandler(
     "banme", banme, filters=Filters.group)
 #STEMPBAN_HANDLER = CommandHandler(["stban"], stemp_ban)
-#SBAN_HANDLER = CommandHandler("sban", sban)
+SBAN_HANDLER = CommandHandler("sban", sban)
 #SKICK_HANDLER = CommandHandler("skick", skick)
 DBAN_HANDLER = CommandHandler("dban", dban)
 
@@ -815,5 +815,5 @@ dispatcher.add_handler(KICKME_HANDLER)
 dispatcher.add_handler(BANME_HANDLER)
 #dispatcher.add_handler(STEMPBAN_HANDLER)
 #dispatcher.add_handler(SKICK_HANDLER)
-#dispatcher.add_handler(SBAN_HANDLER)
+dispatcher.add_handler(SBAN_HANDLER)
 dispatcher.add_handler(DBAN_HANDLER)
