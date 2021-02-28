@@ -18,6 +18,8 @@ from Elizabeth import MESSAGE_DUMP, OWNER_ID, dispatcher
 from Elizabeth.modules.helper_funcs.alternate import typing_action
 from Elizabeth.modules.helper_funcs.filters import CustomFilters
 
+since_time_start = time.time()
+
 def get_readable_time(seconds: int) -> str:
     count = 0
     ping_time = ""
