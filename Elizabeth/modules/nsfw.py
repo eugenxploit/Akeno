@@ -14,6 +14,7 @@ from Elizabeth.modules.helper_funcs.filters import CustomFilters
 from Elizabeth.modules.helper_funcs.chat_status import user_admin
 from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
 from Elizabeth.modules.disable import DisableAbleCommandHandler 
+from telegram.ext import Filters, MessageHandler
 
 @run_async
 @user_admin
@@ -262,7 +263,9 @@ def lewd(update, context):
 def feed(update, context):
     msg = update.effective_message
     target = "feed"
-    msg.reply_video(nekos.img(target))
+    name = msg.reply_to_message.from_user.first_name if msg.reply_to_message else msg.from_user.first_name
+    reply_animation = msg.reply_to_message.reply_animation if msg.reply_to_message else msg.reply_animation
+    reply_animation(nekos.img(target), caption=f'Eat this! {name}')
 
 
 @run_async
@@ -707,6 +710,15 @@ ERO_HANDLER = DisableAbleCommandHandler("ero", ero)
 SMUG_HANDLER = DisableAbleCommandHandler("smug", smug)
 BAKA_HANDLER = DisableAbleCommandHandler("baka", baka)
 DVA_HANDLER = DisableAbleCommandHandler("dva", dva)
+NEKO_REGEX_HANDLER = DisableAbleRegexHandler("(?i)+neko", neko, friendly="neko")
+TICKLE_REGEX_HANDLER = DisableAbleRegexHandler("(?i)+tickle", tickle, friendly="tickle")
+FEED_REGEX_HANDLER = DisableAbleRegexHandler("(?i)+feed", feed, friendly="feed")
+POKE_REGEX_HANDLER = DisableAbleRegexHandler("(?i)+poke", poke, friendly="poke")
+WAIFU_REGEX_HANDLER = DisableAbleRegexHandler("(?i)+waifu", waifu, friendly="waifu")
+KISS_REGEX_HANDLER = DisableAbleRegexHandler("(?i)+kiss", kiss, friendly="kiss")
+CUDDLE_REGEX_HANDLER = DisableAbleRegexHandler("(?i)+hug", hug, friendly="hug")
+SMUG_REGEX_HANDLER = DisableAbleRegexHandler("(?i)+smug", smug, friendly="smug")
+BAKA_REGEX_HANDLER = DisableAbleRegexHandler("(?i)+baka", baka, friendly="baka")
 
 
 dispatcher.add_handler(ADD_NSFW_HANDLER)
@@ -764,6 +776,18 @@ dispatcher.add_handler(ERO_HANDLER)
 dispatcher.add_handler(SMUG_HANDLER)
 dispatcher.add_handler(BAKA_HANDLER)
 dispatcher.add_handler(DVA_HANDLER)
+
+dispatcher.add_handler(NEKO_REGEX_HANDLER)
+dispatcher.add_handler(TICKLE_REGEX_HANDLER)
+dispatcher.add_handler(FEED_REGEX_HANDLER)
+dispatcher.add_handler(POKE_REGEX_HANDLER)
+dispatcher.add_handler(WAIFU_REGEX_HANDLER)
+dispatcher.add_handler(KISS_REGEX_HANDLER)
+dispatcher.add_handler(CUDDLE_REGEX_HANDLER)
+dispatcher.add_handler(SMUG_REGEX_HANDLER)
+dispatcher.add_handler(BAKA_REGEX_HANDLER)
+
+
 
 __handlers__ = [
     ADD_NSFW_HANDLER,
