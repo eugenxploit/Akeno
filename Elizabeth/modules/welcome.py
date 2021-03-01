@@ -49,9 +49,10 @@ VALID_WELCOME_FORMATTERS = [
     "mention",
 ]
 
-ECHIDNA = "https://telegra.ph/file/b2cba26a29eb9f91cb013.mp4"
+ECHIDNA = "https://telegra.ph/file/2a3101b477597c690654c.mp4"
 ECHIDNATEXT = """
-Come on, drink up, I especially made this body fluid tea for you!
+Ara! Watashi wa anata no gurūpu no sewa o shimasu! 
+De aimashō 🀄️ @AnimeRyuzoku 🀄️
 """
 
 
