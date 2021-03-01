@@ -323,9 +323,7 @@ def send_start(update, context):
 
     chat = update.effective_chat  # type: Optional[Chat]
     first_name = update.effective_user.first_name
-    text = PM_START_TEXT.format(
-                escape_markdown(uptime),
-                escape_markdown(first_name))
+    text = PM_START_TEXT.format(escape_markdown(uptime), sql.num_users(), sql.num_chats(), escape_markdown(first_name)),
     buttons = [[InlineKeyboardButton(text="Hᴇʟᴘ & Cᴏᴍᴍᴀɴᴅs Mᴇɴᴜ ❓",
                                   callback_data="help_back"),
     ]]
@@ -336,9 +334,7 @@ def send_start(update, context):
 
 
     update.effective_message.reply_text(
-        PM_START_TEXT.format(
-                escape_markdown(uptime),
-                escape_markdown(first_name)),
+        PM_START_TEXT.format(escape_markdown(uptime), sql.num_users(), sql.num_chats(), escape_markdown(first_name)),
         reply_markup=InlineKeyboardMarkup(buttons),
         parse_mode=ParseMode.MARKDOWN,
         timeout=60,
