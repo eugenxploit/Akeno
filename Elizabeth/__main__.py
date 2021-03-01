@@ -78,7 +78,6 @@ PM_START_TEXT = """
 • *Multi-featured chat management bot* [ㅤ](https://telegra.ph/file/204c34acf90114464888a.mp4)
 • *Server Uptime :* `{}`
 • *Version :* `2.0.1`
-• *{} users, across {} chats*
 • *Welcome user {}, type /help to get list of my commands.*
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
@@ -113,8 +112,7 @@ HELP_STRINGS = f"""
 *Report buggy modules at* - @AkenoSupportBot 
 """
 
-xusers = sql.num_users()
-xchats = sql.num_chats()
+AUDCOUNT = "{} users, across {} chats"
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -227,10 +225,9 @@ def start(update, context):
                 first_name = update.effective_user.first_name
                 update.effective_message.reply_text(
                 PM_START_TEXT.format(
-                escape_markdown(uptime),                    
-                escape_markdown(xusers), 
-                escape_markdown(xchats),
+                escape_markdown(uptime),                    ,
                 escape_markdown(first_name)),
+                AUDCOUNT.format(sql.num_users(), sql.num_chats()),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
