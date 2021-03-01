@@ -74,12 +74,14 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 PM_START_TEXT = """
-— ♛ —— 「 *Akeno* 」 —— ♛ —
-• *A multi-featured chat management bot* [ㅤ](https://telegra.ph/file/204c34acf90114464888a.mp4)
+——— 「 *Akeno Himejima* 」 ———
+[ㅤ](https://telegra.ph/file/204c34acf90114464888a.mp4)
+• *A multi-featured chat management bot* 
 • *Server Uptime :* `{}`
 • *Version :* `2.0.1`
-• *`{}` users, across `{}` chats.*
-• *Welcome user {}, type /help to get list of my commands.* 
+• `{}` *users, across* `{}` *chats.*
+
+• *Welcome user ({}), type /help to get list of my commands.* 
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
 AKENOPINGIMG = "https://telegra.ph/file/6cd255ca75a70c4ebe92d.gif"
