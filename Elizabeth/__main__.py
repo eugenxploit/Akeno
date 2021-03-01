@@ -112,12 +112,13 @@ HELP_STRINGS = f"""
 - _Telethon version:_ `1.16.4`
 - _Pyrogram version:_ `1.0.7`
 - _Python version:_ `3.8.6`
-- _Library version:_ `12.8
+- _Library version:_ `12.8`
 - _SpamWatch API:_ `0.3.0`
 
-• _All commands can either be used with_ / _or_ ! _or_ ?
+• All commands can either be used with / or ! or ?
 [ㅤ](https://telegra.ph/file/5d60dd64f29b8cfd03f94.mp4)  
-*For support:* - @AkenoSupportBot 
+• *For support:* @AkenoSupportBot
+
 """
 
 
