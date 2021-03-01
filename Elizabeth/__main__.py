@@ -253,11 +253,11 @@ def start(update, context):
 def start_p(update, context):
     query = update.callback_query
     if query.data == "start_ping":
-        bot_xruntime = get_readable_time((time.time() - since_time_start))
+        shoko_rbot = get_readable_time((time.time() - since_time_start))
         context.bot.answer_callback_query(query.id,
-                                          text=f"Akeno is up since: {bot_xruntime}"
-                                               f"\n\nPing: {ping()}",
-                                          show_alert=True)        
+                                          text=f"Akeno is running since: {shoko_rbot}"
+                                               f"\n\nTelegram ping: {ping()}",
+                                          show_alert=True)    
 
         
 def ping(server='google.com', count=1, wait_sec=1):
