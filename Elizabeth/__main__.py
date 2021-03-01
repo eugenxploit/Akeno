@@ -12,6 +12,8 @@ from telegram.ext import CommandHandler, Filters, MessageHandler, CallbackQueryH
 from telegram.ext.dispatcher import run_async, DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
 import subprocess
+import Elizabeth.modules.sql.users_sql as sql
+
 
 from Elizabeth import (
     dispatcher,
@@ -76,6 +78,7 @@ PM_START_TEXT = """
 • *Multi-featured chat management bot* [ㅤ](https://telegra.ph/file/204c34acf90114464888a.mp4)
 • *Server Uptime :* `{}`
 • *Version :* `2.0.1`
+• *{} users, across {} chats*
 • *Welcome user {}, type /help to get list of my commands.*
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
@@ -222,7 +225,9 @@ def start(update, context):
                 first_name = update.effective_user.first_name
                 update.effective_message.reply_text(
                 PM_START_TEXT.format(
-                escape_markdown(uptime),
+                escape_markdown(uptime),                    
+                escape_markdown(sql.num_users()), 
+                escape_markdown(sql.num_chats()),
                 escape_markdown(first_name)),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
