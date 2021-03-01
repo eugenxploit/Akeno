@@ -710,15 +710,15 @@ ERO_HANDLER = DisableAbleCommandHandler("ero", ero)
 SMUG_HANDLER = DisableAbleCommandHandler("smug", smug)
 BAKA_HANDLER = DisableAbleCommandHandler("baka", baka)
 DVA_HANDLER = DisableAbleCommandHandler("dva", dva)
-NEKO_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+neko(.*)$"), neko, friendly="neko")
-TICKLE_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+tickle(.*)$"), tickle, friendly="tickle")
-FEED_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+feed(.*)$"), feed, friendly="feed")
-POKE_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+poke(.*)$"), poke, friendly="poke")
-WAIFU_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+waifu(.*)$"), waifu, friendly="waifu")
-KISS_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+kiss(.*)$"), kiss, friendly="kiss")
-CUDDLE_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+hug(.*)$"), hug, friendly="hug")
-SMUG_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+smug(.*)$"), smug, friendly="smug")
-BAKA_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+baka(.*)$"), baka, friendly="baka")
+#NEKO_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+neko(.*)$"), neko, friendly="neko")
+#TICKLE_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+tickle(.*)$"), tickle, friendly="tickle")
+#FEED_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+feed(.*)$"), feed, friendly="feed")
+#POKE_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+poke(.*)$"), poke, friendly="poke")
+#WAIFU_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+waifu(.*)$"), waifu, friendly="waifu")
+#KISS_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+kiss(.*)$"), kiss, friendly="kiss")
+#CUDDLE_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+hug(.*)$"), hug, friendly="hug")
+#SMUG_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+smug(.*)$"), smug, friendly="smug")
+#BAKA_REGEX_HANDLER = DisableAbleMessageHandler(Filters.regex(r"^+baka(.*)$"), baka, friendly="baka")
 
 
 dispatcher.add_handler(ADD_NSFW_HANDLER)
@@ -777,15 +777,15 @@ dispatcher.add_handler(SMUG_HANDLER)
 dispatcher.add_handler(BAKA_HANDLER)
 dispatcher.add_handler(DVA_HANDLER)
 
-dispatcher.add_handler(NEKO_REGEX_HANDLER)
-dispatcher.add_handler(TICKLE_REGEX_HANDLER)
-dispatcher.add_handler(FEED_REGEX_HANDLER)
-dispatcher.add_handler(POKE_REGEX_HANDLER)
-dispatcher.add_handler(WAIFU_REGEX_HANDLER)
-dispatcher.add_handler(KISS_REGEX_HANDLER)
-dispatcher.add_handler(CUDDLE_REGEX_HANDLER)
-dispatcher.add_handler(SMUG_REGEX_HANDLER)
-dispatcher.add_handler(BAKA_REGEX_HANDLER)
+#dispatcher.add_handler(NEKO_REGEX_HANDLER)
+#dispatcher.add_handler(TICKLE_REGEX_HANDLER)
+#dispatcher.add_handler(FEED_REGEX_HANDLER)
+#dispatcher.add_handler(POKE_REGEX_HANDLER)
+#dispatcher.add_handler(WAIFU_REGEX_HANDLER)
+#dispatcher.add_handler(KISS_REGEX_HANDLER)
+#dispatcher.add_handler(CUDDLE_REGEX_HANDLER)
+#dispatcher.add_handler(SMUG_REGEX_HANDLER)
+#dispatcher.add_handler(BAKA_REGEX_HANDLER)
 
 
 
@@ -845,15 +845,15 @@ __handlers__ = [
     SMUG_HANDLER,
     BAKA_HANDLER,
     DVA_HANDLER,
-    NEKO_REGEX_HANDLER,
-    TICKLE_REGEX_HANDLER,
-    FEED_REGEX_HANDLER,
-    POKE_REGEX_HANDLER,
-    WAIFU_REGEX_HANDLER,
-    KISS_REGEX_HANDLER,
-    CUDDLE_REGEX_HANDLER,
-    SMUG_REGEX_HANDLER,
-    BAKA_REGEX_HANDLER
+    #NEKO_REGEX_HANDLER,
+    #TICKLE_REGEX_HANDLER,
+    #FEED_REGEX_HANDLER,
+    #POKE_REGEX_HANDLER,
+    #WAIFU_REGEX_HANDLER,
+    #KISS_REGEX_HANDLER,
+    #CUDDLE_REGEX_HANDLER,
+    #SMUG_REGEX_HANDLER,
+    #BAKA_REGEX_HANDLER
     
 ]
 
