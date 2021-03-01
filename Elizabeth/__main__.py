@@ -85,7 +85,7 @@ PM_START_TEXT = """
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
 AKENOPINGIMG = "https://telegra.ph/file/6cd255ca75a70c4ebe92d.gif"
-AKENOPINGIMGTEXT = "*Ara Ara! queen in command!*\n*Since:* `{}`"
+AKENOPINGIMGTEXT = "*Ara Ara!*\n*Uptime:* `{}`"
 
 buttons = [[InlineKeyboardButton(text="➕ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ",
                                   url="t.me/EchidnaRoBot?startgroup=true"),
