@@ -106,7 +106,7 @@ buttons += [[InlineKeyboardButton(text="Cʟᴏsᴇ Mᴇɴᴜ 🔒",
 
 
 HELP_STRINGS = f"""
-*Aᴋᴇɴᴏ Hɪᴍᴇᴊɪᴍᴀ 〔Bᴇᴛᴀ Rᴇʟᴇᴀsᴇ〕*[ㅤ](https://telegra.ph/file/5d60dd64f29b8cfd03f94.mp4) 
+*Aᴋᴇɴᴏ Hɪᴍᴇᴊɪᴍᴀ 〔Bᴇᴛᴀ Rᴇʟᴇᴀsᴇ〕*
 
 • *Basic Sysinfo:*
 - _Telethon version:_ `1.16.4`
@@ -116,7 +116,7 @@ HELP_STRINGS = f"""
 - _SpamWatch API:_ `0.3.0`
 
 • _All commands can either be used with_ / _or_ ! _or_ ?
- 
+[ㅤ](https://telegra.ph/file/5d60dd64f29b8cfd03f94.mp4)  
 *For support:* - @AkenoSupportBot 
 """
 
