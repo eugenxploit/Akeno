@@ -75,11 +75,11 @@ def get_readable_time(seconds: int) -> str:
 
 PM_START_TEXT = """
 — ♛ —— 「 *Akeno* 」 —— ♛ —
-• *Multi-featured chat management bot* [ㅤ](https://telegra.ph/file/204c34acf90114464888a.mp4)
+• *A multi-featured chat management bot* [ㅤ](https://telegra.ph/file/204c34acf90114464888a.mp4)
 • *Server Uptime :* `{}`
 • *Version :* `2.0.1`
-• *Welcome user {}, type /help to get list of my commands.*
-- {} users, across {} chats
+• *`{}` users, across `{}` chats.*
+• *Welcome user {}, type /help to get list of my commands.* 
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
 AKENOPINGIMG = "https://telegra.ph/file/6cd255ca75a70c4ebe92d.gif"
@@ -105,15 +105,19 @@ buttons += [[InlineKeyboardButton(text="Cʟᴏsᴇ Mᴇɴᴜ 🔒",
 
 HELP_STRINGS = f"""
 *Aᴋᴇɴᴏ Hɪᴍᴇᴊɪᴍᴀ 〔Bᴇᴛᴀ Rᴇʟᴇᴀsᴇ〕*[ㅤ](https://telegra.ph/file/5d60dd64f29b8cfd03f94.mp4) 
-⦿ _All commands can either be used with_ / _or_ ! _or_ ?
-⦿ _Imporved performance, added REDIS support and some extra features_
-⦿ _Pyrogram version_ 1.0.7
-⦿ _Telethon version_ 1.16.4
+
+• *Basic Sysinfo:*
+- _Telethon version:_ `1.16.4`
+- _Pyrogram version:_ `1.0.7`
+- _Python version:_ `3.8.6`
+- _Library version:_ `12.8
+- _SpamWatch API:_ `0.3.0`
+
+• _All commands can either be used with_ / _or_ ! _or_ ?
  
-*Report buggy modules at* - @AkenoSupportBot 
+*For support:* - @AkenoSupportBot 
 """
 
-AUDCOUNT = ""
 
 IMPORTED = {}
 MIGRATEABLE = []
