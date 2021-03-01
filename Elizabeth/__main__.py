@@ -232,7 +232,7 @@ def start_p(update, context):
         context.bot.answer_callback_query(query.id,
                                           text=f"Akeno is running since: {shoko_rbot}"
                                                f"\n\nTelegram ping: {ping()}",
-                                          show_alert=True)    
+                                          show_alert=True, parse_mode=ParseMode.MARKDOWN)    
 
         
 def ping(server='google.com', count=1, wait_sec=1):
