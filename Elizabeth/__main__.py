@@ -231,7 +231,7 @@ def start(update, context):
                 #update.effective_message.reply_sticker(NISSHOKU)
                 first_name = update.effective_user.first_name
                 update.effective_message.reply_text(
-                PM_START_TEXT.format(escape_markdown(uptime), escape_markdown(first_name), sql.num_users(), sql.num_chats()),
+                PM_START_TEXT.format(escape_markdown(uptime), sql.num_users(), sql.num_chats(), escape_markdown(first_name)),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
