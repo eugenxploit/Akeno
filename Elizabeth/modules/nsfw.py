@@ -13,7 +13,7 @@ from telegram.ext import CommandHandler, run_async, CallbackContext
 from Elizabeth.modules.helper_funcs.filters import CustomFilters
 from Elizabeth.modules.helper_funcs.chat_status import user_admin
 from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
-from Elizabeth.modules.disable import DisableAbleCommandHandler 
+from Elizabeth.modules.disable import DisableAbleCommandHandler, DisableAbleMessageHandler
 from telegram.ext import Filters, MessageHandler
 
 @run_async
