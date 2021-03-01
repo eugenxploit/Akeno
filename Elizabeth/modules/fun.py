@@ -6,7 +6,6 @@ from telegram import ParseMode, Update, ChatPermissions
 from telegram.ext import CallbackContext, run_async, Filters, MessageHandler
 from telegram.error import BadRequest
 
-import Elizabeth.modules.fun_strings as fun_strings
 from Elizabeth import dispatcher
 from Elizabeth.modules.disable import DisableAbleCommandHandler, DisableAbleMessageHandler
 from Elizabeth.modules.helper_funcs.chat_status import (is_user_admin)
