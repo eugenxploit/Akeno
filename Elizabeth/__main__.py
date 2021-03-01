@@ -113,6 +113,8 @@ HELP_STRINGS = f"""
 *Report buggy modules at* - @AkenoSupportBot 
 """
 
+xusers = sql.num_users()
+xchats = sql.num_chats()
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -226,8 +228,8 @@ def start(update, context):
                 update.effective_message.reply_text(
                 PM_START_TEXT.format(
                 escape_markdown(uptime),                    
-                escape_markdown(sql.num_users()), 
-                escape_markdown(sql.num_chats()),
+                escape_markdown(xusers), 
+                escape_markdown(xchats),
                 escape_markdown(first_name)),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
