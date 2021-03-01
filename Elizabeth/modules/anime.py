@@ -720,7 +720,8 @@ __help__ = """
 ✨ *Fetch information about anime, manga or characters from* Anilist.co
 
 ⚙️ *Available commands:*
- • /whatanime : reply to an anime GIF / Video / Image for its sauce.
+ • /detect : reply to an anime GIF / Video / Image for its sauce.
+ • /quote: random quotes from anime characters.                              
  • /anime <anime> : returns information about the anime.
  • /airing <anime> : returns anime airing info.
  • /manga <manga> : returns information about the manga.
@@ -732,8 +733,7 @@ __help__ = """
  • /mywaifus | characterlist | fcl: to get your favorite characters / waifus list.
  • /removewatchlist | rwl <anime>: to remove a anime from your list.
  • /rfcharacter | rfcl <character>: to remove a character from your list.  
- • /rmanga | rml <manga>: to remove a manga from your list. 
- • /quote: random quotes from anime characters.                              
+ • /rmanga | rml <manga>: to remove a manga from your list.                                
  """
 
 ANIME_HANDLER = DisableAbleCommandHandler("anime", anime)
