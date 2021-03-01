@@ -79,6 +79,7 @@ PM_START_TEXT = """
 • *Server Uptime :* `{}`
 • *Version :* `2.0.1`
 • *Welcome user {}, type /help to get list of my commands.*
+- {} users, across {} chats
 """
 NISSHOKU = "CAACAgQAAxkBAAOsYB7JNWt0STBz_h3MLXNZoN1MmOIAAjcAA9ZzixMWeG5RxOrEiR4E"
 AKENOPINGIMG = "https://telegra.ph/file/6cd255ca75a70c4ebe92d.gif"
@@ -112,7 +113,7 @@ HELP_STRINGS = f"""
 *Report buggy modules at* - @AkenoSupportBot 
 """
 
-AUDCOUNT = "{} users, across {} chats"
+AUDCOUNT = ""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -224,8 +225,7 @@ def start(update, context):
                 #update.effective_message.reply_sticker(NISSHOKU)
                 first_name = update.effective_user.first_name
                 update.effective_message.reply_text(
-                PM_START_TEXT.format(escape_markdown(uptime), escape_markdown(first_name)),
-                AUDCOUNT.format(sql.num_users(), sql.num_chats()),
+                PM_START_TEXT.format(escape_markdown(uptime), escape_markdown(first_name), sql.num_users(), sql.num_chats()),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
